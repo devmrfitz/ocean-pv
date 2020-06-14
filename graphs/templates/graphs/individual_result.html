@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block banner_text %}
+<h1>{{ user }}</h1>
+{% endblock %}
+
+{% block body %}
+<div id="gtco-services">
+  <div class="gtco-container">
+    <div class="row animate-box">
+      <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+        {% if plot %}
+        {% include 'includes/graph_instructions.html' %}
+        {{ plot|safe }}
+        {% endif %}
+        <a href="{% url 'graphs:multiple_results' %}">Click here to compare your personality with your friends</a>
+
+
+        <div class="card-group">
+          <div class="card">
+            <img class="card-img-top img-thumbnail" src="graphs/graphs.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Openess </h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

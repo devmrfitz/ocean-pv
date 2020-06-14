@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block banner_text %}
+<h1>Get in Touch </h1>
+{% endblock %}
+
+{% block body %}
+<div id="gtco-features">
+
+  <div class="gtco-container">
+    <form method="POST">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <div class="btn-toolbar">
+        <button class="btn btn-success" type="submit">Submit </button>
+        <a href="{% url 'users:profile' username=user.username %}" class="btn btn-danger">Cancel </a>
+      </div>
+    </form>
+  </div>
+
+</div>
+{% endblock %}

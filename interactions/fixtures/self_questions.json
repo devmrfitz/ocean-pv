@@ -1,0 +1,442 @@
+[
+{
+  "model": "interactions.selfquestion",
+  "pk": 1,
+  "fields": {
+    "overall_question_number": 1,
+    "question_text": "Can you be cold and aloof",
+    "ocean_subclass": "agreeableness",
+    "question_factor": -1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 2,
+  "fields": {
+    "overall_question_number": 2,
+    "question_text": "You do things efficiently",
+    "ocean_subclass": "conscientiousness",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 3,
+  "fields": {
+    "overall_question_number": 3,
+    "question_text": "Are you depressed, blue? ",
+    "ocean_subclass": "neuroticism",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 4,
+  "fields": {
+    "overall_question_number": 4,
+    "question_text": "Are you sometimes shy and inhibited? ",
+    "ocean_subclass": "extraversion",
+    "question_factor": -1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 5,
+  "fields": {
+    "overall_question_number": 5,
+    "question_text": "You are relaxed and handle stress well",
+    "ocean_subclass": "neuroticism",
+    "question_factor": -1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 6,
+  "fields": {
+    "overall_question_number": 6,
+    "question_text": "Are you easily distracted? ",
+    "ocean_subclass": "agreeableness",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 7,
+  "fields": {
+    "overall_question_number": 7,
+    "question_text": "Are you full of energy? ",
+    "ocean_subclass": "extraversion",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 8,
+  "fields": {
+    "overall_question_number": 8,
+    "question_text": "You can be somewhat careless",
+    "ocean_subclass": "conscientiousness",
+    "question_factor": -1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 9,
+  "fields": {
+    "overall_question_number": 9,
+    "question_text": "Are you sophisticated in art, music, or literature",
+    "ocean_subclass": "openness",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 10,
+  "fields": {
+    "overall_question_number": 10,
+    "question_text": "You start quarrels with others",
+    "ocean_subclass": "agreeableness",
+    "question_factor": -1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 11,
+  "fields": {
+    "overall_question_number": 11,
+    "question_text": "Are you mostly moody? ",
+    "ocean_subclass": "neuroticism",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 12,
+  "fields": {
+    "overall_question_number": 12,
+    "question_text": "Do you remain calm in tense situations? ",
+    "ocean_subclass": "neuroticism",
+    "question_factor": -1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 13,
+  "fields": {
+    "overall_question_number": 13,
+    "question_text": "You like to reflect and play with ideas",
+    "ocean_subclass": "openness",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 14,
+  "fields": {
+    "overall_question_number": 14,
+    "question_text": "Do you consider yourself talkative? ",
+    "ocean_subclass": "extraversion",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 15,
+  "fields": {
+    "overall_question_number": 15,
+    "question_text": "Are you easily distracted? ",
+    "ocean_subclass": "conscientiousness",
+    "question_factor": -1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 16,
+  "fields": {
+    "overall_question_number": 16,
+    "question_text": "You have a forgiving nature",
+    "ocean_subclass": "agreeableness",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 17,
+  "fields": {
+    "overall_question_number": 17,
+    "question_text": "You have an assertive personality",
+    "ocean_subclass": "extraversion",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 18,
+  "fields": {
+    "overall_question_number": 18,
+    "question_text": "Are you original and come up with new ideas? ",
+    "ocean_subclass": "openness",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 19,
+  "fields": {
+    "overall_question_number": 19,
+    "question_text": "Do you generate a lot of enthusiasm? ",
+    "ocean_subclass": "extraversion",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 20,
+  "fields": {
+    "overall_question_number": 20,
+    "question_text": "Do you have an active imagination? ",
+    "ocean_subclass": "openness",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 21,
+  "fields": {
+    "overall_question_number": 21,
+    "question_text": "Do you make plans and follows through with them? ",
+    "ocean_subclass": "conscientiousness",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 22,
+  "fields": {
+    "overall_question_number": 22,
+    "question_text": "You do a thorough job",
+    "ocean_subclass": "conscientiousness",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 23,
+  "fields": {
+    "overall_question_number": 23,
+    "question_text": "You tend to be quiet",
+    "ocean_subclass": "extraversion",
+    "question_factor": -1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 24,
+  "fields": {
+    "overall_question_number": 24,
+    "question_text": "You consider yourself inventive",
+    "ocean_subclass": "openness",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 25,
+  "fields": {
+    "overall_question_number": 25,
+    "question_text": "Are you curious about many different things? ",
+    "ocean_subclass": "openness",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 26,
+  "fields": {
+    "overall_question_number": 26,
+    "question_text": "Do you value artistic and aesthetic experiences? ",
+    "ocean_subclass": "openness",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 27,
+  "fields": {
+    "overall_question_number": 27,
+    "question_text": "Are you a reliable worker? ",
+    "ocean_subclass": "conscientiousness",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 28,
+  "fields": {
+    "overall_question_number": 28,
+    "question_text": "Do you tend to be lazy? ",
+    "ocean_subclass": "conscientiousness",
+    "question_factor": -1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 29,
+  "fields": {
+    "overall_question_number": 29,
+    "question_text": "You can sometimes be rude to others",
+    "ocean_subclass": "agreeableness",
+    "question_factor": -1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 30,
+  "fields": {
+    "overall_question_number": 30,
+    "question_text": "Are you helpful and unselfish with others? ",
+    "ocean_subclass": "agreeableness",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 31,
+  "fields": {
+    "overall_question_number": 31,
+    "question_text": "Would you describe yourself as an ingenious and deep thinker? ",
+    "ocean_subclass": "openness",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 32,
+  "fields": {
+    "overall_question_number": 32,
+    "question_text": "You worry a lot",
+    "ocean_subclass": "neuroticism",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 33,
+  "fields": {
+    "overall_question_number": 33,
+    "question_text": "Do you to be disorganized? ",
+    "ocean_subclass": "conscientiousness",
+    "question_factor": -1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 34,
+  "fields": {
+    "overall_question_number": 34,
+    "question_text": "Are you considerate and kind to almost everyone? ",
+    "ocean_subclass": "agreeableness",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 35,
+  "fields": {
+    "overall_question_number": 35,
+    "question_text": "Are you generally trusting? ",
+    "ocean_subclass": "agreeableness",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 36,
+  "fields": {
+    "overall_question_number": 36,
+    "question_text": "You can be tense",
+    "ocean_subclass": "neuroticism",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 37,
+  "fields": {
+    "overall_question_number": 37,
+    "question_text": "You have few artistic interests",
+    "ocean_subclass": "openness",
+    "question_factor": -1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 38,
+  "fields": {
+    "overall_question_number": 38,
+    "question_text": "You get nervous easily ",
+    "ocean_subclass": "neuroticism",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 39,
+  "fields": {
+    "overall_question_number": 39,
+    "question_text": "Are you reserved? ",
+    "ocean_subclass": "extraversion",
+    "question_factor": -1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 40,
+  "fields": {
+    "overall_question_number": 40,
+    "question_text": "You perseve until the task is finished",
+    "ocean_subclass": "conscientiousness",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 41,
+  "fields": {
+    "overall_question_number": 41,
+    "question_text": "Do you prefer work that is routine? ",
+    "ocean_subclass": "openness",
+    "question_factor": -1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 42,
+  "fields": {
+    "overall_question_number": 42,
+    "question_text": "You tend to find fault with others",
+    "ocean_subclass": "agreeableness",
+    "question_factor": -1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 43,
+  "fields": {
+    "overall_question_number": 43,
+    "question_text": "Are you outgoing and sociable? ",
+    "ocean_subclass": "extraversion",
+    "question_factor": 1
+  }
+},
+{
+  "model": "interactions.selfquestion",
+  "pk": 44,
+  "fields": {
+    "overall_question_number": 44,
+    "question_text": "Are you emotionally stable, not easily upset? ",
+    "ocean_subclass": "neuroticism",
+    "question_factor": -1
+  }
+}
+]
