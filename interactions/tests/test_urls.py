@@ -19,6 +19,7 @@ from interactions.views import (
 
         # Class-based Views
         ('interactions:howto', {}, '/interactions/howto/', HowtoView, True),
+        ('interactions:howto-relations', {}, '/interactions/howto/relations/', HowtoView, True),
     ]
 )
 @ pytest.mark.django_db

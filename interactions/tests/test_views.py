@@ -9,7 +9,9 @@ class TestInteractionsGetMethod:
     @pytest.mark.parametrize(
         "view_namespace_url, kwargs, template_name, response_content",
         [
-            ('interactions:howto', {}, 'interactions/howto.html',
+            ('interactions:howto', {}, 'interactions/howto_self.html',
+             'Since you are not logged in, you will be redirected to the login page '),
+             ('interactions:howto-relations', {}, 'interactions/howto_relations.html',
              'Since you are not logged in, you will be redirected to the login page '),
         ]
     )
@@ -59,9 +61,9 @@ class TestInteractionsGetMethod:
         "view_namespace_url, kwargs, template_name, response_content",
         [
             ('interactions:taketest', {}, 'interactions/error.html',
-             'There are no questions in the database'),
+             'there are no questions in the database'),
             ('interactions:taketest-relations', {}, 'interactions/error.html',
-             'There are no questions in the database'),
+             'there are no questions in the database'),
         ]
     )
     def test_interactions_views_registered_empty(
@@ -86,9 +88,9 @@ class TestInteractionsGetMethod:
         "view_namespace_url, kwargs, template_name, response_content, question_model",
         [
             ('interactions:taketest', {}, 'interactions/questions.html',
-             'Are you sometimes shy and inhibited?', 'SelfQuestion'),
+             'there are no questions in the database', 'SelfQuestion'),
             ('interactions:taketest-relations', {}, 'interactions/questions.html',
-             'They are relaxed and handle stress well', 'RelationQuestion'),
+             'there are no questions in the database', 'RelationQuestion'),
         ]
     )
     @pytest.mark.testing
@@ -100,19 +102,15 @@ class TestInteractionsGetMethod:
             response_content,
             login_user,
             question_model,
-            create_self_questions,
-            create_relation_questions
+            create_questions 
     ):
         """ Test clients are registered here and they should be able to access these views, and there are questions in the database and they should be displayed properly """
 
+        create_questions(question_model)
         user, client = login_user()
-        if question_model == 'SelfQuestion':
-            create_self_questions()
-        else:
-            create_relation_questions()
         url = reverse(view_namespace_url, kwargs=kwargs if kwargs else None)
         response = client.get(url)
 
         assert response.status_code == 200
         assert template_name in [t.name for t in response.templates]
-        assert response_content.encode() in response.content
+        assert response_content.encode() not in response.content

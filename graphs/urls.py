@@ -1,6 +1,5 @@
-from django.contrib import admin
 from django.urls import path
-from graphs.views import (
+from .views import (
     single_result_view,
     multiple_result_view,
 )

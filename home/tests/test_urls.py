@@ -4,6 +4,7 @@ from django.urls import reverse, resolve
 from home.views import (
     HomeView,
     ContactView,
+    ContactDoneView, 
     ResourcesView
 )
 
@@ -13,6 +14,7 @@ from home.views import (
     [
         ('home:home', {}, '/', HomeView, True),
         ('home:contact', {}, '/contact/', ContactView, True),
+        ('home:contact-done', {}, '/contact/done/', ContactDoneView, True),
         ('home:resources', {}, '/resources/', ResourcesView, True),
     ]
 )

@@ -7,23 +7,18 @@ class ContactForm(forms.Form):
     from_email = forms.EmailField(
         required=True,
         label='Email ID',
-        widget=forms.TextInput(
-            attrs={'placeholder': 'Please enter your Email ID here (required)'}
+        widget=forms.TextInput()
         )
-    )
+        
     subject = forms.CharField(
         required=True,
-        label='Email Subject',
-        widget=forms.Textarea(
-            attrs={'placeholder': 'Please enter the Email subject (optional)'}
+        label='Email Subject', 
+        widget=forms.TextInput()
         )
-    )
     message = forms.CharField(
         required=True,
         label='Email Body', 
-        widget=forms.Textarea(
-            attrs={'placeholder': 'Please enter the message you want to send (required)'}
-        )
+        widget=forms.Textarea()
     )
 
     def send_email(self, *args, **kwargs):

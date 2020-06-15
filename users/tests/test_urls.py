@@ -8,10 +8,14 @@ from users.views import (
     register,
     ProfileView,
     UserLoginView,
-    result_view,
     update_profile_view,
+    result_view,
     password_change_view,
-    UserPasswordChangeDoneView
+    UserPasswordChangeDoneView,
+    PasswordResetView,
+    PasswordResetDoneView,
+    PasswordResetConfirmView,
+    PasswordResetCompleteView
 )
 
 
@@ -31,6 +35,14 @@ from users.views import (
         ('users:logout', {}, '/users/logout/', auth_views.LogoutView, True),
         ('users:password-change-done', {}, '/users/password-change/done/',
          UserPasswordChangeDoneView, True),
+         ('users:password-reset', {}, '/users/password-reset/',
+         PasswordResetView, True),
+         ('users:password-reset-done', {}, '/users/password-reset/done/',
+         PasswordResetDoneView, True),
+         ('users:password-reset-confirm', {'uidb64':'27c80dab7a26c5e1', 'token':'27c80dab7a26c5e1'}, '/users/password-reset/confirm/27c80dab7a26c5e1/27c80dab7a26c5e1/',
+         PasswordResetConfirmView, True),
+         ('users:password-reset-complete', {}, '/users/password-reset/complete/',
+         PasswordResetCompleteView, True),
     ]
 )
 def test_users_urls(

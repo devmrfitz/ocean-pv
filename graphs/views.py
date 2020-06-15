@@ -3,14 +3,13 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from graphs.functions import(
+from .functions import(
     graph_wrapper_function,
     return_ocean_descriptions_with_graph,
     clean_multiple_results_data,
 )
-from graphs.forms import GraphSelector
-from interactions.models import SelfAnswerGroup, RelationAnswerGroup
-
+from .forms import GraphSelector
+from interactions.models import SelfAnswerGroup 
 
 @login_required
 def single_result_view(request, pk):

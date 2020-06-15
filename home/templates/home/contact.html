@@ -8,12 +8,11 @@
 <div id="gtco-features">
 
   <div class="gtco-container">
-    <form method="POST">
+    <form method="POST" class="form-inline">
       {% csrf_token %}
       {{ form|crispy }}
       <div class="btn-toolbar">
         <button class="btn btn-success" type="submit">Submit </button>
-        <a href="{% url 'users:profile' username=user.username %}" class="btn btn-danger">Cancel </a>
       </div>
     </form>
   </div>

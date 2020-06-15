@@ -8,6 +8,7 @@ class TestHomeGetMethod:
         "view_namespace_url, args, template_name",
         [
             ('home:home', {}, 'home/home.html'),
+            ('home:contact-done', {}, 'home/contact_done.html'),
             ('home:contact', {}, 'home/contact.html'),
             ('home:resources', {}, 'home/resources.html')
         ]
@@ -20,6 +21,7 @@ class TestHomeGetMethod:
         client
     ):
         """ Test clients are unregistered here but should be able to access these views """
+        
         url = reverse(view_namespace_url, args=args if args else None)
         response = client.get(url)
 
