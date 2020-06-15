@@ -22,12 +22,12 @@ from interactions.models import(
     SelfAnswerGroup,
     RelationAnswerGroup
 )
-from users.forms import (
+from .forms import (
     RegistrationForm,
     ProfileUpdateForm,
     UserUpdateForm
 )
-from users.models import UserProfile
+from .models import UserProfile
 from decorators import check_recaptcha
 
 
@@ -36,7 +36,7 @@ def result_view(request, username):
     self_answer_groups = SelfAnswerGroup.objects.filter(
         user_profile=request.user.profile ).order_by('-answer_date_and_time')
     relation_answer_groups = RelationAnswerGroup.objects.filter(
-        user_profile =request.user.profile ).order_by('-answer_date_and_time')
+        self_user_profile =request.user.profile ).order_by('-answer_date_and_time')
     return render(
         request, 'users/results.html', {
             'self_answer_groups': self_answer_groups,

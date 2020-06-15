@@ -8,8 +8,11 @@ from django.contrib.auth.mixins import (
     UserPassesTestMixin
 )
 
-from interactions.functions import save_answers_to_db
-from interactions.models import (
+from .functions import ( 
+save_self_answers_to_db, 
+save_relation_answers_to_db 
+)
+from .models import (
     SelfQuestion,
     UserAnswerChoice,
     SelfAnswerGroup,
@@ -17,7 +20,7 @@ from interactions.models import (
     RelationAnswerGroup,
     RelationAnswerChoice
 )
-from interactions.forms import (
+from .forms import (
     UserAnswerChoiceForm,
 )
 
@@ -41,9 +44,7 @@ def self_question_list_view(request):
     if request.method == 'POST':
         form = UserAnswerChoiceForm(request.POST)
         if form.is_valid():
-            new_answer_group_pk = save_answers_to_db(
-                SelfAnswerGroup,
-                UserAnswerChoice,
+            new_answer_group_pk = save_self_answers_to_db(
                 request.user,
                 form,
                 len(questions)
@@ -61,7 +62,7 @@ def self_question_list_view(request):
 
 
 @login_required
-def relation_question_list_view(request):
+def relation_question_list_view(request, relation):
     questions = [question['question_text']
                  for question in RelationQuestion.objects.values('question_text')]
     if not questions:
@@ -69,10 +70,9 @@ def relation_question_list_view(request):
     if request.method == 'POST':
         form = UserAnswerChoiceForm(request.POST)
         if form.is_valid():
-            new_answer_group_pk = save_answers_to_db(
-                RelationAnswerGroup,
-                RelationAnswerChoice,
+            new_answer_group_pk = save_relation_answers_to_db(
                 request.user,
+                relation,
                 form,
                 len(questions)
             )
@@ -86,3 +86,7 @@ def relation_question_list_view(request):
         form = UserAnswerChoiceForm()
 
     return render(request, 'interactions/questions.html', {'form': zip(form, questions)})
+
+# TODO: Implement howto-relations to take user input for a user and then redirect to taketest-relations
+class HowtoViewRelations(HowtoView):
+	pass

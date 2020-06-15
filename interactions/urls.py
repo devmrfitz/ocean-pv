@@ -12,6 +12,6 @@ urlpatterns = [
     path('howto/relations/', HowtoView.as_view(
         template_name='interactions/howto_relations.html'), name='howto-relations'),
     path('taketest/', self_question_list_view, name='taketest'),
-    path('taketest/relations/', relation_question_list_view,
+    path('taketest/relations/<int:pk>/', relation_question_list_view,
          name='taketest-relations'),
 ]

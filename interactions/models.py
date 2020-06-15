@@ -79,12 +79,12 @@ class RelationQuestion(models.Model):
 
 
 class RelationAnswerGroup(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    self_user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='self')
     answer_date_and_time = models. DateTimeField(auto_now_add=True)
-    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    relation_user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='relation')
 
     def __str__(self):
-        return f"{self.user}'s answer group, {self.id}"
+        return f"{self.self_user_profile}'s answer group for {self.relation_user_profile}"
 
     def get_absolute_url(self):
         return reverse('graphs:single_result', kwargs={'pk': self.pk})

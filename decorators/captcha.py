@@ -7,6 +7,7 @@ import requests
 # You need to register your own development website (127.0.0.1) with goggle recaptcha to enable this functionality 
 
 def check_recaptcha(view_func):
+	
     @wraps(view_func)
     def _wrapped_view(request, *args, **kwargs):
         request.recaptcha_is_valid = None
@@ -24,5 +25,7 @@ def check_recaptcha(view_func):
             else:
                 request.recaptcha_is_valid = False
                 messages.error(request, 'Invalid reCAPTCHA. Please try again.')
+                
         return view_func(request, *args, **kwargs)
+        
     return _wrapped_view
