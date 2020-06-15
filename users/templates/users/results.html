@@ -3,7 +3,6 @@
 <h1>Tests attempted by {{ user }} </h1>
 {% endblock %}
 
-<!--TODO: Make this page so that it has more information-->
 
 {% block body %}
 <div id="gtco-services">
@@ -84,8 +83,7 @@
                 </table>
                 {% else %}
                 You haven't attempted any tests on behalf of your relations, would you like to take one?
-                <a class="btn btn-success btn-block"
-                    href="{% url 'interactions:howto-relations' %}">Attempt
+                <a class="btn btn-success btn-block" href="{% url 'interactions:howto-relations' %}">Attempt
                     survey </a>
                 {% endif %}
 

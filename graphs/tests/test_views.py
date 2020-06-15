@@ -23,7 +23,7 @@ class TestGraphsViewsGetMethod:
         template_name,
         login_user
     ):
-        """ Test clients are unregisterd here and they should return temporary redirect url """
+        """ Test clients are unregistered here and they should return temporary redirect url """
         user, client = login_user()
         url = reverse(view_namespace_url, args=args if args else None)
         response = client.get(url)

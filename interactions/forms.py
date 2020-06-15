@@ -106,3 +106,7 @@ class UserAnswerChoiceForm(forms.Form):
         widget=forms.Select(choices=CHOICES))
     answer_for_question_44 = forms.CharField(
         widget=forms.Select(choices=CHOICES))
+
+
+class RelationSelectorForm(forms.Form):
+    username = forms.CharField()

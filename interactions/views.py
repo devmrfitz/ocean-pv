@@ -1,16 +1,18 @@
-from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
+from django.db.models import ObjectDoesNotExist
+from django.shortcuts import render, redirect, reverse
+from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.views.generic import TemplateView, ListView
-from django.contrib.auth.admin import User
+from django.views.generic import TemplateView, ListView, FormView
+from django.contrib.auth.models import User
 from django.contrib.auth.mixins import (
     LoginRequiredMixin,
     UserPassesTestMixin
 )
 
-from .functions import ( 
-save_self_answers_to_db, 
-save_relation_answers_to_db 
+from .functions import (
+    save_self_answers_to_db,
+    save_relation_answers_to_db
 )
 from .models import (
     SelfQuestion,
@@ -22,16 +24,18 @@ from .models import (
 )
 from .forms import (
     UserAnswerChoiceForm,
+    RelationSelectorForm
 )
 
 
-# TODO: Convert to func based
 class HowtoView(TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.add_message(
-                request, messages.WARNING, 'Since you are not logged in, you will be redirected to the login page ')
+                request,
+                messages.WARNING,
+                'Since you are not logged in, you will be redirected to the login page ')
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -62,7 +66,7 @@ def self_question_list_view(request):
 
 
 @login_required
-def relation_question_list_view(request, relation):
+def relation_question_list_view(request, pk):
     questions = [question['question_text']
                  for question in RelationQuestion.objects.values('question_text')]
     if not questions:
@@ -72,7 +76,7 @@ def relation_question_list_view(request, relation):
         if form.is_valid():
             new_answer_group_pk = save_relation_answers_to_db(
                 request.user,
-                relation,
+                pk,
                 form,
                 len(questions)
             )
@@ -87,6 +91,33 @@ def relation_question_list_view(request, relation):
 
     return render(request, 'interactions/questions.html', {'form': zip(form, questions)})
 
-# TODO: Implement howto-relations to take user input for a user and then redirect to taketest-relations
-class HowtoViewRelations(HowtoView):
-	pass
+
+class HowtoViewRelations(HowtoView, FormView):
+    form_class = RelationSelectorForm
+    template_name = 'interactions/howto_relations.html'
+
+    def form_valid(self, form):
+        username = form.cleaned_data.get('username').strip()
+        profile = self.request.user.profile
+        try:
+            self.profile = User.objects.get(username=username).profile.pk
+        except ObjectDoesNotExist:
+            messages.add_message(self.request, messages.INFO,
+                                 "The requested user does not exist")
+            self.profile = None
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        if self.profile:
+            url = reverse('interactions:taketest-relations',
+                          kwargs={'pk': self.profile})
+            self.success_url = url
+        else:
+            url = reverse('interactions:howto-relations')
+            self.success_url = url
+        return super().get_success_url()
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.INFO,
+                             "Please correct the errors below")
+        return super().form_invalid(form)

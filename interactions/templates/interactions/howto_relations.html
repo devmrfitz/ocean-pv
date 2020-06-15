@@ -1,6 +1,12 @@
 {% extends 'interactions/howto.html' %}
+{% load crispy_forms_tags %}
+{% block form %}
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button class="btn btn-success btn-block" type="submit">Submit</button>
+</form>
+{% endblock %}
+
 {% block button %}
-
-{% url 'interactions:taketest-relations' %}
-
 {% endblock %}

@@ -65,15 +65,15 @@
 						</div>
 					</div>
 				</div>
+				{% block form %}
+				{% endblock %}
 
-				<a class="btn btn-success btn-block" href="{% block button %}{% endblock %}">I'm ready! </a>
+				{% block button %}
+				<a class="btn btn-success btn-block" href="">I'm ready! </a>
+				{% endblock %}
 
 			</div>
 		</div>
 	</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 {% endblock %}
