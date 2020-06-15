@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib import messages
 import requests
 
+# You need to register your own development website (127.0.0.1) with goggle recaptcha to enable this functionality 
 
 def check_recaptcha(view_func):
     @wraps(view_func)

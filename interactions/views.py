@@ -26,7 +26,6 @@ from interactions.forms import (
 class HowtoView(TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
-        print(request.get_full_path().split('?next=')[-1])
         if not request.user.is_authenticated:
             messages.add_message(
                 request, messages.WARNING, 'Since you are not logged in, you will be redirected to the login page ')
