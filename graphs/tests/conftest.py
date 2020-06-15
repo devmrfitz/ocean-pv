@@ -20,7 +20,6 @@ def create_answer_group():
     """
     def _create_answer_group(user, answer_group_model):
         answer_group = answer_group_model.objects.create(
-            user=user,
             answer_date_and_time=now(),
             user_profile=user.profile
         )

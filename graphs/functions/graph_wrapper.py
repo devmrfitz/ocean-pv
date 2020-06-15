@@ -41,7 +41,7 @@ def return_group_and_score(primary_key):
             scores[4] = scores[4]+final_score
 
     score_list_dictionary[
-        f"{answer_group.id}: {answer_group.user.username}"] = scores
+        f"{answer_group.id}: {answer_group.user_profile.user.username}"] = scores
 
     return score_list_dictionary
 

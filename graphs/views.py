@@ -19,7 +19,7 @@ def single_result_view(request, pk):
 
 @login_required
 def multiple_result_view(request):
-    answer_groups = SelfAnswerGroup.objects.filter(user=request.user)
+    answer_groups = SelfAnswerGroup.objects.filter(user_profile =request.user.profile )
     if request.method == 'POST':
         form = GraphSelector(request.POST)
         if form.is_valid():

@@ -13,8 +13,7 @@ def save_answers_to_db(
     form,
     num_questions
 ):
-    new_answer_group = answer_group_model.objects.create(
-        user=user, user_profile=user.profile,)
+    new_answer_group = answer_group_model.objects.create(user_profile=user.profile,)
     for x in range(1, num_questions+1):
         answer = answer_choice_model.objects.create(
             user=user,

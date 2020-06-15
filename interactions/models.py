@@ -35,12 +35,11 @@ class SelfQuestion(models.Model):
 
 
 class SelfAnswerGroup(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     answer_date_and_time = models. DateTimeField(auto_now_add=True)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.user}'s answer group, {self.id}"
+        return f"{self.user_profile}'s answer group, {self.id}"
 
     def get_absolute_url(self):
         return reverse('graphs:single_result', kwargs={'pk': self.pk})
