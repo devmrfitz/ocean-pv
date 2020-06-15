@@ -11,7 +11,7 @@ class TestInteractionsGetMethod:
         [
             ('interactions:howto', {}, 'interactions/howto_self.html',
              'Since you are not logged in, you will be redirected to the login page '),
-             ('interactions:howto-relations', {}, 'interactions/howto_relations.html',
+            ('interactions:howto-relations', {}, 'interactions/howto_relations.html',
              'Since you are not logged in, you will be redirected to the login page '),
         ]
     )
@@ -37,7 +37,7 @@ class TestInteractionsGetMethod:
         [
             ('interactions:taketest', {}, 'interactions/questions.html', ''),
             ('interactions:taketest-relations',
-             {}, 'interactions/questions.html', '')
+             {'pk': 1}, 'interactions/questions.html', '')
         ]
     )
     def test_interactions_views_unregistered_redirect(
@@ -62,7 +62,7 @@ class TestInteractionsGetMethod:
         [
             ('interactions:taketest', {}, 'interactions/error.html',
              'there are no questions in the database'),
-            ('interactions:taketest-relations', {}, 'interactions/error.html',
+            ('interactions:taketest-relations', {'pk': 1}, 'interactions/error.html',
              'there are no questions in the database'),
         ]
     )
@@ -89,7 +89,7 @@ class TestInteractionsGetMethod:
         [
             ('interactions:taketest', {}, 'interactions/questions.html',
              'there are no questions in the database', 'SelfQuestion'),
-            ('interactions:taketest-relations', {}, 'interactions/questions.html',
+            ('interactions:taketest-relations', {'pk': 1}, 'interactions/questions.html',
              'there are no questions in the database', 'RelationQuestion'),
         ]
     )
@@ -102,7 +102,7 @@ class TestInteractionsGetMethod:
             response_content,
             login_user,
             question_model,
-            create_questions 
+            create_questions
     ):
         """ Test clients are registered here and they should be able to access these views, and there are questions in the database and they should be displayed properly """
 

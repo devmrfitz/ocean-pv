@@ -3,6 +3,7 @@ import pytest
 
 from interactions.views import (
     HowtoView,
+    HowtoViewRelations,
     relation_question_list_view,
     self_question_list_view
 )
@@ -14,12 +15,13 @@ from interactions.views import (
         # Func-based Views
         ('interactions:taketest', {}, '/interactions/taketest/',
          self_question_list_view, False),
-        ('interactions:taketest-relations', {},
-         '/interactions/taketest/relations/', relation_question_list_view, False),
+        ('interactions:taketest-relations', {'pk': 1},
+         '/interactions/taketest/relations/1/', relation_question_list_view, False),
 
         # Class-based Views
         ('interactions:howto', {}, '/interactions/howto/', HowtoView, True),
-        ('interactions:howto-relations', {}, '/interactions/howto/relations/', HowtoView, True),
+        ('interactions:howto-relations', {},
+         '/interactions/howto/relations/', HowtoViewRelations, True),
     ]
 )
 @ pytest.mark.django_db
