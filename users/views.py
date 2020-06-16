@@ -10,10 +10,6 @@ from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.urls import reverse
-from django.contrib.auth.mixins import (
-    LoginRequiredMixin,
-    UserPassesTestMixin
-)
 from django.views.generic import TemplateView, UpdateView, DetailView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
@@ -29,6 +25,7 @@ from .forms import (
 )
 from .models import UserProfile
 from decorators import check_recaptcha
+from mixins import CustomLoginRequiredMixin 
 
 
 @login_required
@@ -45,23 +42,16 @@ def result_view(request, username):
     )
 
 
-class ProfileView(LoginRequiredMixin, DetailView):
+class ProfileView(CustomLoginRequiredMixin, DetailView):
     template_name = 'users/profile.html'
     login_url = reverse_lazy('users:login')
 
     def get_object(self):
         return UserProfile.objects.get(user=self.request.user)
 
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            messages.add_message(
-                request, messages.WARNING, 'You are not authorized to view that page, please login first')
-            return self.handle_no_permission()
-        return super().dispatch(request, *args, **kwargs)
 
-
-class ProfileUpdateView(LoginRequiredMixin, UpdateView):
-    login_url = '/users/login'
+class ProfileUpdateView(CustomLoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('users:login')
     model = UserProfile
     form_class = ProfileUpdateForm
 

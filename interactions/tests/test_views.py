@@ -11,8 +11,6 @@ class TestInteractionsGetMethod:
         [
             ('interactions:howto', {}, 'interactions/howto_self.html',
              'Since you are not logged in, you will be redirected to the login page '),
-            ('interactions:howto-relations', {}, 'interactions/howto_relations.html',
-             'Since you are not logged in, you will be redirected to the login page '),
         ]
     )
     def test_interactions_views(
@@ -37,7 +35,9 @@ class TestInteractionsGetMethod:
         [
             ('interactions:taketest', {}, 'interactions/questions.html', ''),
             ('interactions:taketest-relations',
-             {'pk': 1}, 'interactions/questions.html', '')
+             {'pk': 1}, 'interactions/questions.html', ''), 
+            ('interactions:howto-relations', {}, 'interactions/howto_relations.html',
+             ''),
         ]
     )
     def test_interactions_views_unregistered_redirect(

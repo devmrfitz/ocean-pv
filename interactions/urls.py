@@ -9,7 +9,7 @@ from interactions.views import (
 app_name = 'interactions'
 
 urlpatterns = [
-    path('howto/', HowtoView.as_view(template_name='interactions/howto_self.html'), name='howto'),
+    path('howto/', HowtoView.as_view(), name='howto'),
     path('howto/relations/', HowtoViewRelations.as_view(), name='howto-relations'),
     path('taketest/', self_question_list_view, name='taketest'),
     path('taketest/relations/<int:pk>/', relation_question_list_view,

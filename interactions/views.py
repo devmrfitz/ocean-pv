@@ -1,14 +1,10 @@
-from django.db.models import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect, reverse
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views.generic import TemplateView, ListView, FormView
 from django.contrib.auth.models import User
-from django.contrib.auth.mixins import (
-    LoginRequiredMixin,
-    UserPassesTestMixin
-)
 
 from .functions import (
     save_self_answers_to_db,
@@ -26,18 +22,11 @@ from .forms import (
     UserAnswerChoiceForm,
     RelationSelectorForm
 )
+from mixins import CustomLoginRequiredMixin 
 
 
 class HowtoView(TemplateView):
-
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            messages.add_message(
-                request,
-                messages.WARNING,
-                'Since you are not logged in, you will be redirected to the login page ')
-        return super().dispatch(request, *args, **kwargs)
-
+    template_name = 'interactions/howto_self.html'
 
 @login_required
 def self_question_list_view(request):
@@ -92,7 +81,7 @@ def relation_question_list_view(request, pk):
     return render(request, 'interactions/questions.html', {'form': zip(form, questions)})
 
 
-class HowtoViewRelations(HowtoView, FormView):
+class HowtoViewRelations(CustomLoginRequiredMixin, FormView):
     form_class = RelationSelectorForm
     template_name = 'interactions/howto_relations.html'
 
