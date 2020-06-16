@@ -141,7 +141,7 @@ def password_change_view(request):
     return render(request, 'users/password_change_form.html', {'form': form})
 
 
-class UserPasswordChangeDoneView(auth_views.PasswordChangeDoneView):
+class UserPasswordChangeDoneView(CustomLoginRequiredMixin, auth_views.PasswordChangeDoneView):
     template_name = 'users/password_change_done.html'
 
 
