@@ -27,6 +27,12 @@ from mixins import CustomLoginRequiredMixin
 
 class HowtoView(TemplateView):
     template_name = 'interactions/howto_self.html'
+    
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.add_message(
+                request, messages.WARNING, 'Since you are not logged in, you will be redirected to the login page ')
+        return super().dispatch(request, *args, **kwargs)
 
 @login_required
 def self_question_list_view(request):
