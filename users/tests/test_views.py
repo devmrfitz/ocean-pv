@@ -1,15 +1,19 @@
 from django.urls import resolve, reverse
 import pytest
 
-# TODO: test 'users:password-reset' views
+
 class TestInteractionsViewsGetMethod:
 
     @pytest.mark.parametrize(
         "view_namespace_url, kwargs, template_name",
         [
-            ('users:profile', {'username':'testinguser'}, 'users/profile.html'),
+            ('users:profile', {'username': 'testinguser'},
+             'users/profile.html'),
             ('users:profile-update',
-             {'username':'testinguser'}, 'users/user profile_form.html')
+             {'username': 'testinguser'}, 'users/user profile_form.html'),
+
+            ('users:password-change', {}, 'users/password_change_form.html'),
+            ('users:password-change-done', {}, 'users/password_change_done.html')
         ]
     )
     def test_users_views_unregistered(
@@ -20,7 +24,7 @@ class TestInteractionsViewsGetMethod:
         client
     ):
         """ Test clients are unregistered here and shouldn't be able to access these views """
-        
+
         url = reverse(view_namespace_url, kwargs=kwargs if kwargs else None)
         response = client.get(url)
 
@@ -33,11 +37,18 @@ class TestInteractionsViewsGetMethod:
             ('users:login', {}, 'users/login.html'),
             ('users:logout', {}, 'users/logout.html'),
             ('users:register', {}, 'users/register.html'),
-            
-            ('users:password-reset', {}, 'users/password_reset/password_reset_form.html'),
-            ('users:password-reset-done', {}, 'users/password_reset/password_reset_done.html'),
-            ('users:password-reset-confirm', {'token':'uMMOt9DTk3L9ETVt7gDjkJXzZ3P7KKAKdYViuyJQmWE', 'uidb64':'X2k'}, 'users/password_reset/password_reset_confirm.html'),
-            ('users:password-reset-complete', {}, 'users/password_reset/password_reset_complete.html'),
+
+
+
+            ('users:password-reset', {},
+             'users/password_reset/password_reset_form.html'),
+            ('users:password-reset-done', {},
+             'users/password_reset/password_reset_done.html'),
+            ('users:password-reset-confirm',
+             {'token': 'uMMOt9DTk3L9ETVt7gDjkJXzZ3P7KKAKdYViuyJQmWE', 'uidb64': 'X2k'},
+             'users/password_reset/password_reset_confirm.html'),
+            ('users:password-reset-complete', {},
+             'users/password_reset/password_reset_complete.html'),
         ]
     )
     def test_users_views(
@@ -58,17 +69,21 @@ class TestInteractionsViewsGetMethod:
     @pytest.mark.parametrize(
         "view_namespace_url, kwargs, template_name",
         [
-            ('users:profile', {'username':'testinguser'}, 'users/profile.html'),
+            ('users:profile', {'username': 'testinguser'},
+             'users/profile.html'),
             ('users:profile-update',
-             {'username':'testinguser'}, 'users/userprofile_form.html')
+             {'username': 'testinguser'}, 'users/userprofile_form.html'),
+            ('users:password-change', {}, 'users/password_change_form.html'),
+            ('users:password-change-done', {}, 'users/password_change_done.html')
+
         ]
     )
     def test_users_views_registered(
-        	self,
-            view_namespace_url,
-            kwargs,
-            template_name,
-            login_user,
+        self,
+        view_namespace_url,
+        kwargs,
+        template_name,
+        login_user,
     ):
         """ Test clients are registered here and they should be able to access these views """
 
