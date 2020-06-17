@@ -1,4 +1,4 @@
-from .models import (
+from interactions.models import (
     SelfAnswerGroup,
     RelationAnswerGroup,
     UserAnswerChoice,

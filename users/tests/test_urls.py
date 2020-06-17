@@ -20,29 +20,29 @@ from users.views import (
 
 
 @pytest.mark.parametrize(
-    "reverse_url, kwargs, resolve_url, view_func, class_based",
+    "reverse_url, kwargs, resolve_url, view_func",
     [
-        ('users:register', {}, '/users/register/', register, False),
+        ('users:register', {}, '/users/register/', register),
         ('users:results', {'username': 'testuser'},
-         '/users/results/testuser/', result_view, False),
+         '/users/results/testuser/', result_view),
         ('users:profile-update',
-         {'username': 'testuser'}, '/users/profile/testuser/update/', update_profile_view, False),
+         {'username': 'testuser'}, '/users/profile/testuser/update/', update_profile_view),
         ('users:password-change', {}, '/users/password-change/',
-         password_change_view, False),
+         password_change_view),
         ('users:profile', {'username': 'testuser'},
-         '/users/profile/testinguser/', ProfileView, True),
-        ('users:login', {}, '/users/login/', UserLoginView, True),
-        ('users:logout', {}, '/users/logout/', auth_views.LogoutView, True),
+         '/users/profile/testinguser/', ProfileView),
+        ('users:login', {}, '/users/login/', UserLoginView),
+        ('users:logout', {}, '/users/logout/', auth_views.LogoutView),
         ('users:password-change-done', {}, '/users/password-change/done/',
-         UserPasswordChangeDoneView, True),
+         UserPasswordChangeDoneView),
          ('users:password-reset', {}, '/users/password-reset/',
-         PasswordResetView, True),
+         PasswordResetView),
          ('users:password-reset-done', {}, '/users/password-reset/done/',
-         PasswordResetDoneView, True),
+         PasswordResetDoneView),
          ('users:password-reset-confirm', {'uidb64':'27c80dab7a26c5e1', 'token':'27c80dab7a26c5e1'}, '/users/password-reset/confirm/27c80dab7a26c5e1/27c80dab7a26c5e1/',
-         PasswordResetConfirmView, True),
+         PasswordResetConfirmView),
          ('users:password-reset-complete', {}, '/users/password-reset/complete/',
-         PasswordResetCompleteView, True),
+         PasswordResetCompleteView),
     ]
 )
 def test_users_urls(
@@ -50,16 +50,15 @@ def test_users_urls(
     reverse_url,
     kwargs,
     resolve_url,
-    view_func,
-    class_based
+    view_func
 ):
     """ Test app-> users urls """
 
     reverse_view, resolve_view = return_views(reverse_url, resolve_url, kwargs)
 
-    if not class_based:
+    try:
         assert reverse_view.func == view_func
         assert resolve_view.func == view_func
-    else:
+    except (AttributeError, AssertionError):
         assert reverse_view.func.view_class == view_func
         assert resolve_view.func.view_class == view_func

@@ -136,3 +136,4 @@ poetry.lock
 # Text backup files
 *.bak
 DS_Store
+**syncthing**

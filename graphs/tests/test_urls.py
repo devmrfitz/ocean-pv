@@ -9,12 +9,12 @@ from graphs.views import (
 
 
 @pytest.mark.parametrize(
-    "reverse_url, kwargs, resolve_url, view_func, class_based",
+    "reverse_url, kwargs, resolve_url, view_func",
     [
         ('graphs:multiple_results', {},
-         '/graphs/multiple/', multiple_result_view, False),
+         '/graphs/multiple/', multiple_result_view),
         ('graphs:single_result', {'pk': 30},
-         '/graphs/30/', single_result_view, False),
+         '/graphs/30/', single_result_view),
     ]
 )
 def test_home_urls(
@@ -23,16 +23,15 @@ def test_home_urls(
     kwargs,
     resolve_url,
     view_func,
-    class_based
 ):
     """ Test app-> graphs urls """
 
     reverse_view, resolve_view = return_views(
         reverse_url, resolve_url, kwargs)
 
-    if not class_based:
+    try:
         assert reverse_view.func == view_func
         assert resolve_view.func == view_func
-    else:
+    except (AttributeError, AssertionError):
         assert reverse_view.func.view_class == view_func
         assert resolve_view.func.view_class == view_func

@@ -10,12 +10,12 @@ from home.views import (
 
 
 @pytest.mark.parametrize(
-    "reverse_url, kwargs, resolve_url, view_func, class_based",
+    "reverse_url, kwargs, resolve_url, view_func",
     [
-        ('home:home', {}, '/', HomeView, True),
-        ('home:contact', {}, '/contact/', ContactView, True),
-        ('home:contact-done', {}, '/contact/done/', ContactDoneView, True),
-        ('home:resources', {}, '/resources/', ResourcesView, True),
+        ('home:home', {}, '/', HomeView),
+        ('home:contact', {}, '/contact/', ContactView),
+        ('home:contact-done', {}, '/contact/done/', ContactDoneView),
+        ('home:resources', {}, '/resources/', ResourcesView),
     ]
 )
 def test_home_urls(
@@ -23,16 +23,15 @@ def test_home_urls(
     reverse_url,
     kwargs,
     resolve_url,
-    view_func,
-    class_based,
+    view_func
 ):
     """ Test app-> home urls """
 
     reverse_view, resolve_view = return_views(reverse_url, resolve_url, kwargs)
 
-    if not class_based:
+    try:
         assert reverse_view.func == view_func
         assert resolve_view.func == view_func
-    else:
+    except (AttributeError, AssertionError):
         assert reverse_view.func.view_class == view_func
         assert resolve_view.func.view_class == view_func

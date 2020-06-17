@@ -10,36 +10,34 @@ from interactions.views import (
 
 
 @pytest.mark.parametrize(
-    "reverse_url,kwargs ,resolve_url, view_func, class_based",
+    "reverse_url,kwargs ,resolve_url, view_func",
     [
         # Func-based Views
         ('interactions:taketest', {}, '/interactions/taketest/',
-         self_question_list_view, False),
+         self_question_list_view),
         ('interactions:taketest-relations', {'pk': 1},
-         '/interactions/taketest/relations/1/', relation_question_list_view, False),
+         '/interactions/taketest/relations/1/', relation_question_list_view),
 
         # Class-based Views
-        ('interactions:howto', {}, '/interactions/howto/', HowtoView, True),
+        ('interactions:howto', {}, '/interactions/howto/', HowtoView),
         ('interactions:howto-relations', {},
-         '/interactions/howto/relations/', HowtoViewRelations, True),
+         '/interactions/howto/relations/', HowtoViewRelations),
     ]
 )
-@ pytest.mark.django_db
 def test_urls_interactions(
     return_views,
     kwargs,
     reverse_url,
     resolve_url,
-    view_func,
-    class_based
+    view_func
 ):
     """ Test app-> interactions urls """
 
     reverse_view, resolve_view = return_views(reverse_url, resolve_url, kwargs)
 
-    if not class_based:
+    try:
         assert reverse_view.func == view_func
         assert resolve_view.func == view_func
-    else:
+    except (AttributeError, AssertionError):
         assert reverse_view.func.view_class == view_func
         assert resolve_view.func.view_class == view_func
