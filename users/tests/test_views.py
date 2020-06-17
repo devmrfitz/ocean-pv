@@ -2,7 +2,7 @@ from django.urls import resolve, reverse
 import pytest
 
 
-class TestInteractionsViewsGetMethod:
+class TestUsersViewsGetMethod:
 
     @pytest.mark.parametrize(
         "view_namespace_url, kwargs, template_name",
@@ -93,3 +93,6 @@ class TestInteractionsViewsGetMethod:
 
         assert response.status_code == 200
         assert template_name in [t.name for t in response.templates]
+
+class TestUsersPostMethod:
+	pass

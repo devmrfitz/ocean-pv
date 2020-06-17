@@ -5,7 +5,8 @@ from interactions.views import (
     HowtoView,
     HowtoViewRelations,
     relation_question_list_view,
-    self_question_list_view
+    self_question_list_view,
+    howto_relations_view
 )
 
 
@@ -21,7 +22,7 @@ from interactions.views import (
         # Class-based Views
         ('interactions:howto', {}, '/interactions/howto/', HowtoView),
         ('interactions:howto-relations', {},
-         '/interactions/howto/relations/', HowtoViewRelations),
+         '/interactions/howto/relations/', howto_relations_view),
     ]
 )
 def test_urls_interactions(

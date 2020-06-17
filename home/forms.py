@@ -1,6 +1,7 @@
 from django import forms
 from django.core.mail import send_mail
 from django.conf import settings
+from django.template.loader import render_to_string
 
 
 class ContactForm(forms.Form):
@@ -22,14 +23,16 @@ class ContactForm(forms.Form):
     )
 
     def send_email(self, *args, **kwargs):
-        from_email = self.cleaned_data.get('from_email')
-        subject = self.cleaned_data.get('subject')
+        from_email = self.cleaned_data.get('from_email').strip()
+        subject = self.cleaned_data.get('subject').strip()
         message = self.cleaned_data.get('message')
+        html_message = render_to_string('emails/contact.html')
 
         send_mail(
-            subject=subject.strip(),
+            subject=subject,
             message=message,
-            from_email=from_email.strip(),
+            from_email=from_email,
             recipient_list=[settings.EMAIL_HOST_USER] if settings.EMAIL_HOST_USER else ['ocean-pv_dev@email.com'], 
+            html_message=html_message, 
             fail_silently=False, 
         )

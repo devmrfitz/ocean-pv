@@ -114,3 +114,7 @@ class TestInteractionsGetMethod:
         assert response.status_code == 200
         assert template_name in [t.name for t in response.templates]
         assert response_content.encode() not in response.content
+
+
+class TestInteractionsPostMethod:
+	pass

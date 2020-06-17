@@ -10,7 +10,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.urls import reverse
-from django.views.generic import TemplateView, UpdateView, DetailView
+from django.views.generic import TemplateView, UpdateView, DetailView, ListView 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
 
@@ -150,6 +150,7 @@ class PasswordResetView(auth_views.PasswordResetView):
     template_name = 'users/password_reset/password_reset_form.html'
     email_template_name = 'users/password_reset/password_reset_email.html'
     subject_template_name = 'users/password_reset/password_reset_subject.txt'
+    html_email_template_name = 'users/password_reset/html_email_template.html' 
 
 
 class PasswordResetDoneView(auth_views.PasswordResetDoneView):
@@ -163,3 +164,7 @@ class PasswordResetConfirmView(auth_views.PasswordResetConfirmView):
 
 class PasswordResetCompleteView(auth_views.PasswordResetCompleteView):
     template_name = 'users/password_reset/password_reset_complete.html'
+
+
+class SelfAnswerGroupsListView(ListView):
+	model = SelfAnswerGroup 

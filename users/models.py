@@ -21,6 +21,7 @@ class UserProfile(models.Model):
     )
     birth_date = models.DateField(null=True, blank=True)
     # relations = models.ManyToManyField(UserProfile)
+    visible = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.user}"

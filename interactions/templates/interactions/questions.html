@@ -12,7 +12,8 @@
             <div class="col-md-8 col-md-offset-2">
                 <form method="POST" class="post-form">
                     {% csrf_token %}
-                    <table class="table table-striped table-bordered">
+
+                    <table class="table table-striped table-bordered table-responsive">
                         <tbody>
                             {% for field, questions in form %}
                             <div class="form-group">
@@ -20,12 +21,14 @@
                                     <td>
                                         <label for="{{ field.id_for_label }}">
                                             {{ forloop.counter }}) {{ questions }}</label></td>
-                                    <td>{{ field|add_class:"form-control form-control-sm" }}</td>
+                                    <td>{{ field|add_class:"form-control form-control-lg col-lg-12"  }}
+                                    </td>
                                 </tr>
                             </div>
                             {% endfor %}
                         </tbody>
                     </table>
+
                     <div class="text-center">
                         <button href="{% url 'interactions:taketest' %}" class="btn-success btn-block"
                             type="submit">Submit </button>

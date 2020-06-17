@@ -13,7 +13,7 @@
 
                 <h1>Tests that you have attempted </h1>
                 {% if self_answer_groups %}
-                <table class="table table-striped table-bordered table-responsive">
+                <table class="table table-striped table-bordered">
                     <thead class="thead-light">
                         <tr>
                             <td><strong>S. No </strong></td>
@@ -37,7 +37,7 @@
                                 {% endif %}
                             </td>
                             <td>
-                                <a href="{% url 'graphs:single_result' answer_group.id %}"><span class="icon"><i
+                                <a href="{% url 'graphs:single_result' answer_group.pk %}"><span class="icon"><i
                                             class="icon-share"></i></span></a>
                             </td>
                         </tr>

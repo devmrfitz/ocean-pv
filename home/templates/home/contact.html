@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load crispy_forms_tags %}
 {% block banner_text %}
 <h1>Get in Touch </h1>
 {% endblock %}
@@ -8,7 +9,7 @@
 <div id="gtco-features">
 
   <div class="gtco-container">
-    <form method="POST" class="form-inline">
+    <form method="POST">
       {% csrf_token %}
       {{ form|crispy }}
       <div class="btn-toolbar">

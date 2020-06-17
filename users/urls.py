@@ -12,9 +12,12 @@ from users.views import (
     PasswordResetView,
     PasswordResetDoneView,
     PasswordResetConfirmView,
-    PasswordResetCompleteView
+    PasswordResetCompleteView, 
+    SelfAnswerGroupsListView
 )
 
+
+# TODO: Add tests for new url---> users:answer-profiles 
 app_name = 'users'
 
 urlpatterns = [
@@ -37,4 +40,7 @@ urlpatterns = [
          name='password-reset-confirm'),
     path('password-reset/complete/', PasswordResetCompleteView.as_view(),
          name='password-reset-complete'),
+         
+    path('profile/self/answers/<int:pk>/', SelfAnswerGroupsListView.as_view(),
+         name='answer-profiles'),
 ]

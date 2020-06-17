@@ -8,7 +8,9 @@ from django.contrib.auth.models import User
 
 from .functions import (
     save_self_answers_to_db,
-    save_relation_answers_to_db
+    save_relation_answers_to_db,
+    find_similar_usernames, 
+    find_answer_groups_counts 
 )
 from .models import (
     SelfQuestion,
@@ -22,17 +24,18 @@ from .forms import (
     UserAnswerChoiceForm,
     RelationSelectorForm
 )
-from mixins import CustomLoginRequiredMixin 
+from mixins import CustomLoginRequiredMixin
 
 
 class HowtoView(TemplateView):
     template_name = 'interactions/howto_self.html'
-    
+
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.add_message(
                 request, messages.WARNING, 'Since you are not logged in, you will be redirected to the login page ')
         return super().dispatch(request, *args, **kwargs)
+
 
 @login_required
 def self_question_list_view(request):
@@ -116,3 +119,32 @@ class HowtoViewRelations(CustomLoginRequiredMixin, FormView):
         messages.add_message(self.request, messages.INFO,
                              "Please correct the errors below")
         return super().form_invalid(form)
+
+
+@login_required
+def howto_relations_view(request):
+    if request.method == 'POST':
+        form = RelationSelectorForm(request.POST)
+        if form.is_valid():
+            queryset = find_similar_usernames(form)
+            answer_groups_counts= find_answer_groups_counts(queryset)
+            context={'form':form, 'queryset':zip(queryset, answer_groups_counts)}
+            if not queryset:
+                messages.info(request, 'No such profile exists')
+                return render(request, 'interactions/howto_relations.html',
+                              context)
+            if len(queryset) > 1:
+                messages.info(
+                    request, 'There are multiple profiles with that username')
+                return render(request, 'interactions/howto_relations.html',
+                              context)
+            if len(queryset) == 1:
+                profile = queryset.first().pk
+                messages.success(request, 'The requested profile was found!')
+                return render(request, 'interactions/howto_relations.html',
+                             context)
+        else:
+            messages.info(request, 'Please correct the errors below ')
+    else:
+        form = RelationSelectorForm(request.GET or None)
+    return render(request, 'interactions/howto_relations.html', {'form': form})
