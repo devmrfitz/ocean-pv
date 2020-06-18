@@ -95,7 +95,7 @@ class RelationAnswerGroup(models.Model):
 class RelationAnswerChoice(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     answer_choice = models.IntegerField(choices=CHOICES)
-    question = models.ForeignKey(SelfQuestion, on_delete=models.CASCADE)
+    question = models.ForeignKey(RelationQuestion, on_delete=models.CASCADE)
     self_answer_group = models.ForeignKey(
         RelationAnswerGroup, on_delete=models.CASCADE)
 

@@ -1,3 +1,4 @@
+# TODO: Group CBVs and FBVs separately to make this page look a bit more presentable 
 from django.shortcuts import (
     render,
     redirect,
@@ -166,5 +167,6 @@ class PasswordResetCompleteView(auth_views.PasswordResetCompleteView):
     template_name = 'users/password_reset/password_reset_complete.html'
 
 
+# TODO: Override the get_queryset method (or change self.queryset and also set the self.ordering attribute) so that only user_profiles of relevance are shown (currently, queryset is UserProfile.objects.all()). If you put self.queryset, then there is no need to define a model
 class SelfAnswerGroupsListView(CustomLoginRequiredMixin, ListView):
     model = SelfAnswerGroup

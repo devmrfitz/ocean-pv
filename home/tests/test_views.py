@@ -2,7 +2,7 @@ import re
 
 from django.urls import resolve, reverse
 from django.core import mail
-from django.conf import settings 
+from django.conf import settings
 import pytest
 
 
@@ -170,4 +170,4 @@ class TestHomePostMethod:
         assert mail.outbox[0].body == data['message']
         assert mail.outbox[0].from_email == data['from_email']
         assert mail.outbox[0].to == [settings.EMAIL_HOST_USER] if settings.EMAIL_HOST_USER else [
-                'ocean-pv_dev@email.com']
+            'ocean-pv_dev@email.com']

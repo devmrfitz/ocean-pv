@@ -3,7 +3,6 @@ import pytest
 
 from interactions.views import (
     HowtoView,
-    HowtoViewRelations,
     relation_question_list_view,
     self_question_list_view,
     howto_relations_view
