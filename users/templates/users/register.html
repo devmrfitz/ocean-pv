@@ -16,7 +16,7 @@ Register
 <form method="POST">
     {% csrf_token %}
     {{ form|crispy }}
-    <div class="g-recaptcha form-control mb-4" data-sitekey="6LfJcKQZAAAAADtU7qYOyhx4niIhuuJeBX_fBl1y"></div>
+    <div class="g-recaptcha form-control mb-4" data-sitekey="{{ SITE_KEY }}"></div>
     <div class="btn-toolbar">
         <button class="btn btn-info" type="submit">Sign Up</button>
         <a href="{% url 'home:home' %}" class="btn btn-danger ml-auto">Homepage </a>

@@ -13,6 +13,7 @@ from django.urls import reverse
 from django.views.generic import TemplateView, UpdateView, DetailView, ListView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
+from django.conf import settings 
 
 from interactions.models import(
     SelfAnswerGroup,
@@ -106,6 +107,7 @@ class UserLoginView(auth_views.LoginView):
 
 @check_recaptcha
 def register(request):
+    SITE_KEY = settings.GOOGLE_RECAPTCHA_SITE_KEY
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -119,7 +121,7 @@ def register(request):
             return redirect('home:home')
     else:
         form = RegistrationForm()
-    return render(request, 'users/register.html', {'form': form})
+    return render(request, 'users/register.html', {'form': form, 'SITE_KEY':SITE_KEY})
 
 
 @login_required
