@@ -13,8 +13,8 @@ urlpatterns = [
     path('howto/', HowtoView.as_view(), name='howto'),
     path('howto/relations/', howto_relations_view, name='howto-relations'),
     path('taketest/', self_question_list_view, name='taketest'),
-    
+
     path('taketest/relations/<int:pk>/', relation_question_list_view,
          name='taketest-relations'),
-    
+
 ]

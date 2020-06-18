@@ -13,7 +13,9 @@ class TestUsersViewsGetMethod:
              {'username': 'testinguser'}, 'users/user profile_form.html'),
 
             ('users:password-change', {}, 'users/password_change_form.html'),
-            ('users:password-change-done', {}, 'users/password_change_done.html')
+            ('users:password-change-done', {}, 'users/password_change_done.html'),
+            ('users:answer-profiles', {'pk': 1},
+             '/users/selfanswergroup_list.html'),
         ]
     )
     def test_users_views_unregistered(
@@ -74,7 +76,9 @@ class TestUsersViewsGetMethod:
             ('users:profile-update',
              {'username': 'testinguser'}, 'users/userprofile_form.html'),
             ('users:password-change', {}, 'users/password_change_form.html'),
-            ('users:password-change-done', {}, 'users/password_change_done.html')
+            ('users:password-change-done', {}, 'users/password_change_done.html'),
+            ('users:answer-profiles', {'pk': 1},
+             'interactions/selfanswergroup_list.html')
 
         ]
     )
@@ -94,5 +98,6 @@ class TestUsersViewsGetMethod:
         assert response.status_code == 200
         assert template_name in [t.name for t in response.templates]
 
+
 class TestUsersPostMethod:
-	pass
+    pass

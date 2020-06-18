@@ -35,7 +35,7 @@ class TestInteractionsGetMethod:
         [
             ('interactions:taketest', {}, 'interactions/questions.html', ''),
             ('interactions:taketest-relations',
-             {'pk': 1}, 'interactions/questions.html', ''), 
+             {'pk': 1}, 'interactions/questions.html', ''),
             ('interactions:howto-relations', {}, 'interactions/howto_relations.html',
              ''),
         ]
@@ -117,4 +117,4 @@ class TestInteractionsGetMethod:
 
 
 class TestInteractionsPostMethod:
-	pass
+    pass

@@ -9,16 +9,16 @@ class ContactForm(forms.Form):
         required=True,
         label='Email ID',
         widget=forms.TextInput()
-        )
-        
+    )
+
     subject = forms.CharField(
         required=True,
-        label='Email Subject', 
+        label='Email Subject',
         widget=forms.TextInput()
-        )
+    )
     message = forms.CharField(
         required=True,
-        label='Email Body', 
+        label='Email Body',
         widget=forms.Textarea()
     )
 
@@ -32,7 +32,8 @@ class ContactForm(forms.Form):
             subject=subject,
             message=message,
             from_email=from_email,
-            recipient_list=[settings.EMAIL_HOST_USER] if settings.EMAIL_HOST_USER else ['ocean-pv_dev@email.com'], 
-            html_message=html_message, 
-            fail_silently=False, 
+            recipient_list=[settings.EMAIL_HOST_USER] if settings.EMAIL_HOST_USER else [
+                'ocean-pv_dev@email.com'],
+            html_message=html_message,
+            fail_silently=False,
         )

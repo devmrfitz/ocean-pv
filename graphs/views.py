@@ -9,7 +9,8 @@ from .functions import(
     clean_multiple_results_data,
 )
 from .forms import GraphSelector
-from interactions.models import SelfAnswerGroup 
+from interactions.models import SelfAnswerGroup
+
 
 @login_required
 def single_result_view(request, pk):
@@ -19,7 +20,8 @@ def single_result_view(request, pk):
 
 @login_required
 def multiple_result_view(request):
-    answer_groups = SelfAnswerGroup.objects.filter(user_profile =request.user.profile )
+    answer_groups = SelfAnswerGroup.objects.filter(
+        user_profile=request.user.profile)
     if request.method == 'POST':
         form = GraphSelector(request.POST)
         if form.is_valid():

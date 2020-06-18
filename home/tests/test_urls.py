@@ -4,7 +4,7 @@ from django.urls import reverse, resolve
 from home.views import (
     HomeView,
     ContactView,
-    ContactDoneView, 
+    ContactDoneView,
     ResourcesView
 )
 

@@ -10,7 +10,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.urls import reverse
-from django.views.generic import TemplateView, UpdateView, DetailView, ListView 
+from django.views.generic import TemplateView, UpdateView, DetailView, ListView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
 
@@ -25,15 +25,15 @@ from .forms import (
 )
 from .models import UserProfile
 from decorators import check_recaptcha
-from mixins import CustomLoginRequiredMixin 
+from mixins import CustomLoginRequiredMixin
 
 
 @login_required
 def result_view(request, username):
     self_answer_groups = SelfAnswerGroup.objects.filter(
-        user_profile=request.user.profile ).order_by('-answer_date_and_time')
+        user_profile=request.user.profile).order_by('-answer_date_and_time')
     relation_answer_groups = RelationAnswerGroup.objects.filter(
-        self_user_profile =request.user.profile ).order_by('-answer_date_and_time')
+        self_user_profile=request.user.profile).order_by('-answer_date_and_time')
     return render(
         request, 'users/results.html', {
             'self_answer_groups': self_answer_groups,
@@ -150,7 +150,7 @@ class PasswordResetView(auth_views.PasswordResetView):
     template_name = 'users/password_reset/password_reset_form.html'
     email_template_name = 'users/password_reset/password_reset_email.html'
     subject_template_name = 'users/password_reset/password_reset_subject.txt'
-    html_email_template_name = 'users/password_reset/html_email_template.html' 
+    html_email_template_name = 'users/password_reset/html_email_template.html'
 
 
 class PasswordResetDoneView(auth_views.PasswordResetDoneView):
@@ -166,5 +166,5 @@ class PasswordResetCompleteView(auth_views.PasswordResetCompleteView):
     template_name = 'users/password_reset/password_reset_complete.html'
 
 
-class SelfAnswerGroupsListView(ListView):
-	model = SelfAnswerGroup 
+class SelfAnswerGroupsListView(CustomLoginRequiredMixin, ListView):
+    model = SelfAnswerGroup

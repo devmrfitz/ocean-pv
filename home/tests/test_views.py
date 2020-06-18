@@ -1,6 +1,8 @@
 import re
 
 from django.urls import resolve, reverse
+from django.core import mail
+from django.conf import settings 
 import pytest
 
 
@@ -90,15 +92,15 @@ class TestHomePostMethod:
         assert len(list(re.finditer(expected_response,
                                     response_content))) is num_expected
 
-
     @pytest.mark.parametrize(
-            "view_namespace_url, kwargs, data, expected_response, num_expected",
-            [
-                ('home:contact', {}, {'from_email': 'testemail.com', 'message':'test message body', 'subject':'test subject'},
-                 'Enter a valid email', 1),
-            ]
-        )
-    @pytest.mark.testing
+        "view_namespace_url, kwargs, data, expected_response, num_expected",
+        [
+            ('home:contact', {}, {'from_email': 'testemail.com', 'message': 'test message body', 'subject': 'test subject'},
+             'Enter a valid email', 1),
+            ('home:contact', {}, {'from_email': 'test@email.com', 'message': '', 'subject': ''},
+             'This field is required', 2),
+        ]
+    )
     def test_home_invalid_data(
         self,
         view_namespace_url,
@@ -117,3 +119,55 @@ class TestHomePostMethod:
         assert response.status_code == 200
         assert len(list(re.finditer(expected_response,
                                     response_content))) is num_expected
+
+    @pytest.mark.parametrize(
+        "view_namespace_url, kwargs, data, expected_response",
+        [
+            ('home:contact', {}, {'from_email': 'test@email.com', 'message': 'This is a test message', 'subject': 'This is a test body'},
+             'Your contact form has been submitted'),
+        ]
+    )
+    def test_home_valid_data(
+        self,
+        view_namespace_url,
+        kwargs,
+        data,
+        expected_response,
+        client
+    ):
+        """ Test clients are unregistered here but should be able to post data in these views. The data is complete and valid here and there should be instances of <expected_response> in the response content """
+
+        url = reverse(view_namespace_url, kwargs=kwargs if kwargs else None)
+        response = client.post(url, data=data, follow=True)
+        response_content = response.content.decode()
+
+        assert response.status_code == 200
+        assert expected_response in response_content
+
+    @pytest.mark.parametrize(
+        "view_namespace_url, kwargs, data",
+        [
+            ('home:contact', {}, {'from_email': 'test@email.com',
+                                  'message': 'This is a test message', 'subject': 'This is a test subject'}),
+        ]
+    )
+    @pytest.mark.testing
+    def test_home_contact_email(
+        self,
+        view_namespace_url,
+        kwargs,
+        data,
+        client
+    ):
+        """ Test clients are unregistered here but should be able to post data in these views. The data is complete and valid here and there should be the data sent through form should be present in the mail inbox """
+
+        url = reverse(view_namespace_url, kwargs=kwargs if kwargs else None)
+        response = client.post(url, data=data, follow=True)
+
+        assert response.status_code == 200
+        assert len(mail.outbox) == 1, "Inbox is not empty"
+        assert mail.outbox[0].subject == data['subject']
+        assert mail.outbox[0].body == data['message']
+        assert mail.outbox[0].from_email == data['from_email']
+        assert mail.outbox[0].to == [settings.EMAIL_HOST_USER] if settings.EMAIL_HOST_USER else [
+                'ocean-pv_dev@email.com']

@@ -79,9 +79,11 @@ class RelationQuestion(models.Model):
 
 
 class RelationAnswerGroup(models.Model):
-    self_user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='self')
+    self_user_profile = models.ForeignKey(
+        UserProfile, on_delete=models.CASCADE, related_name='self')
     answer_date_and_time = models. DateTimeField(auto_now_add=True)
-    relation_user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='relation')
+    relation_user_profile = models.ForeignKey(
+        UserProfile, on_delete=models.CASCADE, related_name='relation')
 
     def __str__(self):
         return f"{self.self_user_profile}'s answer group for {self.relation_user_profile}"

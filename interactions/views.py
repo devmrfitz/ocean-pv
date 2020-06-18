@@ -9,8 +9,8 @@ from django.contrib.auth.models import User
 from .functions import (
     save_self_answers_to_db,
     save_relation_answers_to_db,
-    find_similar_usernames, 
-    find_answer_groups_counts 
+    find_similar_usernames,
+    find_answer_groups_counts
 )
 from .models import (
     SelfQuestion,
@@ -127,8 +127,9 @@ def howto_relations_view(request):
         form = RelationSelectorForm(request.POST)
         if form.is_valid():
             queryset = find_similar_usernames(form)
-            answer_groups_counts= find_answer_groups_counts(queryset)
-            context={'form':form, 'queryset':zip(queryset, answer_groups_counts)}
+            answer_groups_counts = find_answer_groups_counts(queryset)
+            context = {'form': form, 'queryset': zip(
+                queryset, answer_groups_counts)}
             if not queryset:
                 messages.info(request, 'No such profile exists')
                 return render(request, 'interactions/howto_relations.html',
@@ -142,7 +143,7 @@ def howto_relations_view(request):
                 profile = queryset.first().pk
                 messages.success(request, 'The requested profile was found!')
                 return render(request, 'interactions/howto_relations.html',
-                             context)
+                              context)
         else:
             messages.info(request, 'Please correct the errors below ')
     else:

@@ -14,9 +14,9 @@ class RegistrationForm(UserCreationForm):
         model = User
         fields = [
             'username',
-            'first_name', 
-            'last_name', 
-            'email', 
+            'first_name',
+            'last_name',
+            'email',
             'password1',
             'password2'
         ]
@@ -45,8 +45,8 @@ class ProfileUpdateForm(forms.ModelForm):
                 layout='{widget}'
             ),
         }
-        help_texts={
-        	'visible':'Whether your profile will be publicly visible or not'
+        help_texts = {
+            'visible': 'Whether your profile will be publicly visible or not'
         }
 
 

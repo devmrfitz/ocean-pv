@@ -1,7 +1,7 @@
 from django.db.models import Q
 
 from users.models import UserProfile
-from interactions.models import SelfAnswerGroup 
+from interactions.models import SelfAnswerGroup
 
 
 def find_similar_usernames(form):
@@ -12,6 +12,7 @@ def find_similar_usernames(form):
 
 
 def find_answer_groups_counts(queryset):
-    answer_groups=[SelfAnswerGroup.objects.filter(Q(user_profile__exact=profile)).count() for profile in queryset]
-    
+    answer_groups = [SelfAnswerGroup.objects.filter(
+        Q(user_profile__exact=profile)).count() for profile in queryset]
+
     return answer_groups

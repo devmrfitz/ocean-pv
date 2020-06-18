@@ -15,7 +15,8 @@ from users.views import (
     PasswordResetView,
     PasswordResetDoneView,
     PasswordResetConfirmView,
-    PasswordResetCompleteView
+    PasswordResetCompleteView,
+    SelfAnswerGroupsListView
 )
 
 
@@ -35,14 +36,16 @@ from users.views import (
         ('users:logout', {}, '/users/logout/', auth_views.LogoutView),
         ('users:password-change-done', {}, '/users/password-change/done/',
          UserPasswordChangeDoneView),
-         ('users:password-reset', {}, '/users/password-reset/',
+        ('users:password-reset', {}, '/users/password-reset/',
          PasswordResetView),
-         ('users:password-reset-done', {}, '/users/password-reset/done/',
+        ('users:password-reset-done', {}, '/users/password-reset/done/',
          PasswordResetDoneView),
-         ('users:password-reset-confirm', {'uidb64':'27c80dab7a26c5e1', 'token':'27c80dab7a26c5e1'}, '/users/password-reset/confirm/27c80dab7a26c5e1/27c80dab7a26c5e1/',
+        ('users:password-reset-confirm', {'uidb64': '27c80dab7a26c5e1', 'token': '27c80dab7a26c5e1'}, '/users/password-reset/confirm/27c80dab7a26c5e1/27c80dab7a26c5e1/',
          PasswordResetConfirmView),
-         ('users:password-reset-complete', {}, '/users/password-reset/complete/',
+        ('users:password-reset-complete', {}, '/users/password-reset/complete/',
          PasswordResetCompleteView),
+        ('users:answer-profiles', {'pk': 1}, '/users/results/self/answers/1/',
+         SelfAnswerGroupsListView),
     ]
 )
 def test_users_urls(

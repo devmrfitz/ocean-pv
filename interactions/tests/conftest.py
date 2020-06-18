@@ -2,7 +2,7 @@ import csv
 import random
 
 import pytest
-from mixer.backend.django import mixer 
+from mixer.backend.django import mixer
 
 
 @pytest.fixture
