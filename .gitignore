@@ -137,3 +137,6 @@ poetry.lock
 *.bak
 DS_Store
 **syncthing**
+
+# VSCode settings
+.vscode/
