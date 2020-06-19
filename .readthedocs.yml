@@ -6,4 +6,4 @@ python:
 
   install:
 
-    - requirements: docs/requirements.txt 
+    - requirements: docs/requirements-dev.txt 
