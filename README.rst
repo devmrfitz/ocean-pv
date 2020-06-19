@@ -1,10 +1,10 @@
 *******************************
 OCEAN-Personality-Visualization
 *******************************
-.. image:: https://img.shields.io/pypi/l/sphinx_rtd_theme.svg
-   :target: https://pypi.python.org/pypi/sphinx_rtd_theme/
-   :alt: License 
-   
+
+.. image:: https://img.shields.io/github/license/IgnisDa/OCEAN-personality-visualization?style=for-the-badge   
+	:alt: GitHub
+
 A website that helps you visualize your personality using graphs and compare it with others. It asks you a
 series of questions and analyzes your inputs to create an easy to understand graph. It also provides you an
 easy way to share these results with your peers and compare your personalities. It is based on the 
@@ -71,8 +71,6 @@ This was done because this project uses 4 different settings files for *developm
 
 .. warning:: 
 	Add stuff about $OCEAN_PV
-	
-	Add '$' before all console commands 
 
 .. _structure: https://django-project-skeleton.readthedocs.io/en/latest/structure.html
 
