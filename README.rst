@@ -39,6 +39,7 @@ The root directory contains a ``requirements.txt`` which can you can use to whip
 
 .. code:: console
 
+	$ cd OCEAN-personality-visualization
 	$ python -m venv env
 	$ source ./env/bin/activate
 	$ pip install -r requirements.txt
