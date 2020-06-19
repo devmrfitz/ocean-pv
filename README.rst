@@ -29,8 +29,10 @@ and other web-dev components.
 
 Installing
 ==========
-First, clone this project from github:
+First, clone this project from Github_:
 	
+.. _Github: https://github.com/IgnisDa/OCEAN-personality-visualization
+
 .. code:: console 
 
 	$ git clone https://github.com/IgnisDa/OCEAN-personality-visualization.git
@@ -60,6 +62,11 @@ To get the website up and running, you need to run the following:
 
 You can then visit ``127.0.0.1:8000/`` to access the website.
 
+.. note::
+	
+	If you want to use ``ocean_website/settings/production_settings.py`` as the default settings then rename ``.env.example`` to ``.env``
+	and fill it with correct information, and then add an environment variable ``export $OCEAN_PV 1`` or change ``manage.py`` instead. 
+		
 Project Structure
 =================
 The project was created using the command ``django-admin startproject ocean_website`` and that is also the main directory where important files like ``settings.py`` and ``wsgi.py`` live. 
