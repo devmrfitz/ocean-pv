@@ -28,25 +28,26 @@ calculate_coordinates([{'9: ignisda': [9, 3, 11, 10, 7]}])
 def calculate_area():
     pass
 
+
 def multiply(a, b):
-  """Multiplies two integers
-  
-  The first number does not have constraints, but the second number
-  cannot be negative. Doing otherwise leads to unexpected behaviour.
-  :param a: First number
-  :type a: integer
-  :param b: Second number
-  :type b: positive integer
-  
-  :returns: Multiplication of a and b
-  :rtype: integer"""
-  # If any of the numbers is zero, result will be zero
-  if a == 0 or b == 0:
-    return 0
-  # Define a variable to store the result temporarily
-  res = 0
-  # Sum the a to the temporary result b times
-  for i in range(b):
-    # Update the temporary result
-    res += a
-  return res
+    """Multiplies two integers
+
+    The first number does not have constraints, but the second number
+    cannot be negative. Doing otherwise leads to unexpected behaviour.
+    :param a: First number
+    :type a: integer
+    :param b: Second number
+    :type b: positive integer
+
+    :returns: Multiplication of a and b
+    :rtype: integer"""
+    # If any of the numbers is zero, result will be zero
+    if a == 0 or b == 0:
+        return 0
+    # Define a variable to store the result temporarily
+    res = 0
+    # Sum the a to the temporary result b times
+    for i in range(b):
+        # Update the temporary result
+        res += a
+    return res

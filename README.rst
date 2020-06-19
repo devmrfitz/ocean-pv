@@ -16,7 +16,9 @@ The documentation lives at https://ocean-personality-visualization.readthedocs.i
 
 The Website
 ===========
-.. warning:: This is incomplete 
+.. todo::
+	
+	This is incomplete 
 
 Prerequisites
 =============
@@ -29,8 +31,10 @@ and other web-dev components.
 
 Installing
 ==========
-First, clone this project from github:
+First, clone this project from Github_:
 	
+.. _Github: https://github.com/IgnisDa/OCEAN-personality-visualization
+
 .. code:: console 
 
 	$ git clone https://github.com/IgnisDa/OCEAN-personality-visualization.git
@@ -60,6 +64,11 @@ To get the website up and running, you need to run the following:
 
 You can then visit ``127.0.0.1:8000/`` to access the website.
 
+.. note::
+	
+	If you want to use ``ocean_website/settings/production_settings.py`` as the default settings then rename ``.env.example`` to ``.env``
+	and fill it with correct information, and then add an environment variable using ``export $OCEAN_PV 1`` or change ``manage.py`` instead to point to the required settings. 
+		
 Project Structure
 =================
 The project was created using the command ``django-admin startproject ocean_website`` and that is also the main directory where important files like ``settings.py`` and ``wsgi.py`` live. 
@@ -69,31 +78,34 @@ This project uses the default django project structure_ with a few modifications
 Major modifications include changing the location of ``ocean_website/settings.py`` to ``ocean_website/settings/settings.py``. 
 This was done because this project uses 4 different settings files for *development*, *testing*, *production* and *heroku*. The ``manage.py`` and ``wsgi.py`` files have been changed accordingly. 
 
-.. warning:: 
-	Add stuff about $OCEAN_PV
+.. note:: 
+	 
+	 When starting a development server, the project will look for an environment variable ``$OCEAN_PV``, and use that to decide which settings file to use. 
+	 If ``$OCEAN_PV == "1"``, ``ocean_website/settings/production_settings.py`` will be used. Otherwise, it uses ``ocean_website/settings/development_settings.py`` by default. 
 
 .. _structure: https://django-project-skeleton.readthedocs.io/en/latest/structure.html
 
-Running Tests
-=============
-There is a ``requirements-dev.txt`` in ``docs/`` which will install all the dependencies required for testing this project. The tests are
-present in ``*/tests/*`` and ``integrated_tests/*``. 
-
-.. code:: console
-
-	$ python -m venv env
-	$ source ./env/bin/activate
-	$ pip install -r docs/requirements-dev.txt
-
-If you use Poetry_ package manager to manage your dependencies, you can instead run the following command in the project root. 
-
-.. code:: console 
-
-	$ poetry install
+Testing
+=======
+The project uses pytest_ and a plugin pytest-django_ as its standard test-runner. Read the full documentation on `testing the project`_
 
 .. _Poetry: https://python-poetry.org/
+.. _pytest-django: https://github.com/pytest-dev/pytest-django 
+.. _pytest: https://docs.pytest.org/en/latest/
+.. _testing the project:
+	
+.. todo::
+	
+	Fix testing the project link, contributing, authors, licensing
 
-How tests are arranged
-----------------------
-Since Django_ allows to separate 
-Each app_ contains 
+Contributing
+============
+Contributions are welcome! Read more at `contributing to the project`_
+
+Authors
+=======
+This project is maintained by the community. Read more at `authors of this project`_.
+
+License
+=======
+This project is licensed under the MIT License. Read more at `licensingband legal`_. 
