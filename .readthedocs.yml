@@ -4,6 +4,6 @@ python:
 
   version: 3.8
 
-  install:
 
-    - requirements: docs/requirements-dev.txt 
+
+
