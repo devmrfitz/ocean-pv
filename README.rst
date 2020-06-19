@@ -33,30 +33,30 @@ First, clone this project from github:
 	
 .. code:: console 
 
-	git clone https://github.com/IgnisDa/OCEAN-personality-visualization.git
+	$ git clone https://github.com/IgnisDa/OCEAN-personality-visualization.git
 	
 The root directory contains a ``requirements.txt`` which can you can use to whip up a working environment. 
 
 .. code:: console
 
-	python -m venv env
-	source ./env/bin/activate
-	pip install -r requirements.txt
+	$ python -m venv env
+	$ source ./env/bin/activate
+	$ pip install -r requirements.txt
 
 If you use Poetry_ package manager to manage your dependencies, you can run the following command in the project root. 
 
 .. code:: console 
 
-	poetry install --no-dev
+	$ poetry install --no-dev
 
 To get the website up and running, you need to run the following:
 	
 .. code:: console
 
-	python manage.py makemigrations
-	python manage.py migrate
+	$ python manage.py makemigrations
+	$ python manage.py migrate
 	$ python manage.py loaddata questions.json user_data.json
-	python manage.py runserver 
+	$ python manage.py runserver 
 
 You can then visit ``127.0.0.1:8000/`` to access the website.
 
@@ -83,15 +83,15 @@ present in ``*/tests/*`` and ``integrated_tests/*``.
 
 .. code:: console
 
-	python -m venv env
-	source ./env/bin/activate
-	pip install -r docs/requirements-dev.txt
+	$ python -m venv env
+	$ source ./env/bin/activate
+	$ pip install -r docs/requirements-dev.txt
 
 If you use Poetry_ package manager to manage your dependencies, you can instead run the following command in the project root. 
 
 .. code:: console 
 
-	poetry install
+	$ poetry install
 
 .. _Poetry: https://python-poetry.org/
 
