@@ -120,3 +120,4 @@ LOGIN_REDIRECT_URL = 'home:home'
 AUTH_PROFILE_MODULE = 'users.UserProfile'
 
 DEVELOPMENT_STATUS = True
+
