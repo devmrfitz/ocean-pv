@@ -12,6 +12,8 @@ OCEAN_ personality model which is the most acceptable model to measure personali
 
 .. _OCEAN: https://en.m.wikipedia.org/wiki/Big_Five_personality_traits 
 
+The documentation lives at https://ocean-personality-visualization.readthedocs.io/en/latest/
+
 The Website
 ===========
 .. warning:: This is incomplete 
