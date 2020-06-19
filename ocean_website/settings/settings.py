@@ -119,14 +119,14 @@ LOGIN_REDIRECT_URL = 'home:home'
 
 AUTH_PROFILE_MODULE = 'users.UserProfile'
 
-<<<<<<< HEAD
-CSRF_COOKIE_SECURE=True
+<< << << < HEAD
+CSRF_COOKIE_SECURE = True
 
-# The following are the codes for recaptcha, but specifically for testing purposes. You'll likely have to create a new site key and register your domain on https://developers.google.com/recaptcha 
+# The following are the codes for recaptcha, but specifically for testing purposes. You'll likely have to create a new site key and register your domain on https://developers.google.com/recaptcha
 GOOGLE_RECAPTCHA_SITE_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
 
 GOOGLE_RECAPTCHA_SECRET_KEY = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe"
-=======
+== == == =
 DEVELOPMENT_STATUS = True
 
->>>>>>> development
+>>>>>> > development

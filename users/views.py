@@ -1,4 +1,4 @@
-# TODO: Group CBVs and FBVs separately to make this page look a bit more presentable 
+# TODO: Group CBVs and FBVs separately to make this page look a bit more presentable
 from django.shortcuts import (
     render,
     redirect,
@@ -14,7 +14,7 @@ from django.urls import reverse
 from django.views.generic import TemplateView, UpdateView, DetailView, ListView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
-from django.conf import settings 
+from django.conf import settings
 
 from interactions.models import(
     SelfAnswerGroup,
@@ -122,7 +122,7 @@ def register(request):
             return redirect('home:home')
     else:
         form = RegistrationForm()
-    return render(request, 'users/register.html', {'form': form, 'SITE_KEY':SITE_KEY})
+    return render(request, 'users/register.html', {'form': form, 'SITE_KEY': SITE_KEY})
 
 
 @login_required
@@ -148,6 +148,7 @@ class UserPasswordChangeDoneView(CustomLoginRequiredMixin, auth_views.PasswordCh
     template_name = 'users/password_change_done.html'
 
 
+# TODO: Fix html_email_template.html
 class PasswordResetView(auth_views.PasswordResetView):
     success_url = reverse_lazy('users:password-reset-done')
     template_name = 'users/password_reset/password_reset_form.html'

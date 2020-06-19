@@ -1,10 +1,14 @@
 .. include:: ../README.rst
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :caption: Table of contents
+   :maxdepth: 4
+   :hidden:
 
-
+   testing
+   contributing
+   authors
+   license
 
 Indices and tables
 ==================
