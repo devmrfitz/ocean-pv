@@ -4,9 +4,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from .functions import(
-    graph_wrapper_function,
     return_ocean_descriptions_with_graph,
     clean_multiple_results_data,
+    utility_function
 )
 from .forms import GraphSelector
 from interactions.models import SelfAnswerGroup
@@ -38,10 +38,10 @@ def multiple_result_view(request):
                 messages.info(request,
                               f"Some IDs you entered were duplicates and have been filtered out")
 
-            plot = graph_wrapper_function(*valid_primary_keys)
+            plot, areas_list = utility_function(*valid_primary_keys)
 
             return render(request, 'graphs/multiple_results.html', {
-                'form': form,
+                'form': form, 'answer_groups': answer_groups, 
                 'plot': plot,
             })
 

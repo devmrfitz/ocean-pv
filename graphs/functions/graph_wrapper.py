@@ -68,7 +68,6 @@ def plotly_draw(list_of_dictionaries):
 
     fig = go.Figure()
     for score, legend_tag in zip(score_list, tag_list):
-        print(list_of_dictionaries)
         fig.add_trace(go.Scatterpolar(
             r=score,
             theta=ocean_subclasses,
@@ -102,12 +101,6 @@ def plotly_draw(list_of_dictionaries):
         fig, output_type='div',
         auto_open=False, image_filename='ocean_plot',
     )
-
-
-def graph_wrapper_function(*args, **kwargs):
-    list_of_dictionaries = return_list_of_dictionaries(*args)
-    return plotly_draw(list_of_dictionaries)
-
 
 def return_ocean_descriptions(scores):
     return scores

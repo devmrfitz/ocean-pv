@@ -37,6 +37,9 @@ def calculate_coordinates(list_of_dictionaries: list) -> list:
 
 
 def find_determinant(matrix: list) -> float:
+    """ Find the determinant of a 2*2 matrix 
+
+    Only 2*2 matrices are supported. Anything else will raise a TypeError """
     if len(matrix) == 2:
         return (matrix[0][0]*matrix[1][1])-(matrix[0][1]*matrix[1][0])
     else:
