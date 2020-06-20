@@ -1,4 +1,4 @@
-.. include:: ../README2.rst
+.. include:: ../README.rst
 
 .. toctree::
    :caption: Table of contents

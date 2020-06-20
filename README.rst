@@ -143,10 +143,6 @@ Read the full documentation on `testing the project`_
 .. _pytest-django: https://github.com/pytest-dev/pytest-django 
 .. _pytest: https://docs.pytest.org/en/latest/
 	
-.. todo::
-	
-	Fix testing the project link, contributing, authors, licensing
-
 Contributing
 ============
 Contributions are welcome! Read more at `contributing to the project`_
@@ -160,3 +156,8 @@ License
 =======
 This project is licensed under the MIT License. Read more at 
 `licensing and legal`_.
+
+.. _licensing and legal: https://ocean-personality-visualization.readthedocs.io/en/latest/license.html
+.. _authors of this project: https://ocean-personality-visualization.readthedocs.io/en/latest/authors.html
+.. _contributing to the project: https://ocean-personality-visualization.readthedocs.io/en/latest/contributing.html
+.. _testing the project: https://ocean-personality-visualization.readthedocs.io/en/latest/testing.html
