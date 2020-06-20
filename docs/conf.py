@@ -23,8 +23,6 @@ extensions = [
 
 todo_include_todos = True
 
-todo_include_todos = True
-
 html_theme = "sphinx_rtd_theme"
 
 # -- Project information -----------------------------------------------------

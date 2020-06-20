@@ -1,3 +1,6 @@
+.. 
+	TODO: Create a new README, move this one to docs/
+
 *******************************
 OCEAN-Personality-Visualization
 *******************************
@@ -60,10 +63,11 @@ To get the website up and running, you need to run the following:
 
 	$ python manage.py makemigrations
 	$ python manage.py migrate
-	$ python manage.py loaddata questions.json user_data.json
+	$ python manage.py loaddata questions.json
+	$ python manage.py createsuperuser
 	$ python manage.py runserver 
 
-You can then visit ``127.0.0.1:8000/`` to access the website.
+You can then visit ``127.0.0.1:8000/`` in your browser to access the website.
 
 .. note::
 	
@@ -93,7 +97,6 @@ The project uses pytest_ and a plugin pytest-django_ as its standard test-runner
 .. _Poetry: https://python-poetry.org/
 .. _pytest-django: https://github.com/pytest-dev/pytest-django 
 .. _pytest: https://docs.pytest.org/en/latest/
-.. _testing the project:
 	
 .. todo::
 	
@@ -109,4 +112,4 @@ This project is maintained by the community. Read more at `authors of this proje
 
 License
 =======
-This project is licensed under the MIT License. Read more at `licensingband legal`_. 
+This project is licensed under the MIT License. Read more at `licensing and legal`_.
