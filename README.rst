@@ -41,7 +41,24 @@ First, clone this project from Github_:
 .. code:: console 
 
 	$ git clone https://github.com/IgnisDa/OCEAN-personality-visualization.git
-	
+
+From here, there are two ways to proceed. A quick one and a customisable one.
+
+Quick one:
+----------
+
+..code:: console
+
+	$ cd OCEAN-personality-visualization
+	$ sh start
+
+You can then visit ``http://127.0.0.1:8000/`` in your browser to access the website.
+
+
+Customisable one:
+-----------------
+
+  	
 The root directory contains a ``requirements.txt`` which can you can use to whip up a working environment. 
 
 .. code:: console
@@ -67,7 +84,7 @@ To get the website up and running, you need to run the following:
 	$ python manage.py createsuperuser
 	$ python manage.py runserver 
 
-You can then visit ``127.0.0.1:8000/`` in your browser to access the website.
+You can then visit ``http://127.0.0.1:8000/`` in your browser to access the website.
 
 .. note::
 	
