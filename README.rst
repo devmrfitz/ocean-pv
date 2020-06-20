@@ -92,6 +92,9 @@ You can then visit ``http://127.0.0.1:8000/`` in your browser to access the webs
 	If you want to use ``ocean_website/settings/production_settings.py`` as the default settings then rename ``.env.example`` to ``.env``
 	and fill it with correct information, and then add an environment variable using ``export $OCEAN_PV 1`` or change ``manage.py`` instead to point to the required settings. 
 		
+.. note::
+
+        The above commands are only one-time use. You can start a normal serverby simply running ``python manage.py runserver``.
 Project Structure
 =================
 The project was created using the command ``django-admin startproject ocean_website`` and that is also the main directory where important files like ``settings.py`` and ``wsgi.py`` live. 
