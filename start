@@ -1,10 +1,12 @@
 #!bin/env/sh
 
+echo "Creating virtual environment"
 python -m venv env
-echo "Virtual environment activated"
 
 source ./env/bin/activate
-#pip install -r requirements.txt
+echo "Virtual environment activated"
+
+pip install -r requirements.txt
 echo "All dependencies installed"
 
 echo "Setting up secret keys"
@@ -17,8 +19,7 @@ python manage.py migrate
 python manage.py loaddata questions.json
 
 tput setaf 1; echo "Please enter superuser details"; tput sgr0       
-tput setaf 1; echo "You can use the above credentials to access the admin page 
-at http://127.0.01:8000/admin/"; tput sgr0       
+tput setaf 1; echo "You can use the credentials below to access the admin page at http://127.0.01:8000/admin/"; tput sgr0       
 
 python manage.py createsuperuser
 python manage.py runserver
