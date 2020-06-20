@@ -47,10 +47,11 @@ From here, there are two ways to proceed. A quick one and a customisable one.
 Quick one:
 ----------
 
-..code:: console
+.. code:: console 
 
 	$ cd OCEAN-personality-visualization
 	$ sh start
+
 
 You can then visit ``http://127.0.0.1:8000/`` in your browser to access the website.
 
