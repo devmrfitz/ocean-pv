@@ -65,7 +65,7 @@ website.
 Customizable one:
 -----------------	
 The root directory contains a ``requirements.txt`` which can you can use to whip
- up a working environment. 
+up a working environment. 
 
 .. code:: console
 
@@ -95,22 +95,23 @@ You can then visit ``http://127.0.0.1:8000/`` in your browser to access the webs
 
 .. note::
 
-    The above commands are only one-time use. You can start a normal server by
+	The above commands are only for one-time use. You can start a normal server by
 	simply running ``python manage.py runserver``.
 
 .. note::
 	
+	The project uses ``ocean_website/settings/development_settings.py`` as the default.
 	If you want to use ``ocean_website/settings/production_settings.py`` as 
-	the default settings then rename ``.env.example`` to ``.env``
-	and fill it with correct information, and then add an environment variable 
+	the settings module, then rename ``.env.example`` to ``.env``
+	and fill it with correct information. Then add an environment variable 
 	using ``export $OCEAN_PV 1`` or change ``manage.py`` instead to point to 
 	the required settings. 
 	
 Project Structure
 =================
 The project was created using the command ``django-admin startproject
- ocean_website`` and that is also the main directory where important files like
-  ``settings.py`` and ``wsgi.py`` live. 
+ocean_website`` and that is also the main directory where important files like
+``settings.py`` and ``wsgi.py`` live. 
 
 This project uses the default django project structure_ with a few 
 modifications. The apps that are part of the website are ``graphs``, ``home``, 
@@ -128,15 +129,15 @@ This was done because this project uses 4 different settings files for
 	environment variable ``$OCEAN_PV``, and use that to decide which settings 
 	file to use. 
 	If ``$OCEAN_PV == "1"``, ``ocean_website/settings/production_settings.py`` 
-	will be used. Otherwise, it uses 
-	``ocean_website/settings/development_settings.py`` by default. 
+	will be used. Otherwise, ``ocean_website/settings/development_settings.py`` 
+	is used by default. 
 
 .. _structure: https://django-project-skeleton.readthedocs.io/en/latest/structure.html
 
 Testing
 =======
 The project uses pytest_ and a plugin pytest-django_ as its standard test-runner.
- Read the full documentation on `testing the project`_
+Read the full documentation on `testing the project`_
 
 .. _Poetry: https://python-poetry.org/
 .. _pytest-django: https://github.com/pytest-dev/pytest-django 
