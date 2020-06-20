@@ -18,7 +18,7 @@ personality used by researchers.
 
 The documentation lives at https://ocean-personality-visualization.readthedocs.io/en/latest/
 
-.. image:: ./project_deps/pictures/single_result_view.png
+.. image:: ./docs/project_deps/pictures/single_result_view.png
     :align: center 
     :alt: alternate text
 
