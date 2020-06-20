@@ -1,5 +1,6 @@
 #!bin/env/sh
 
+clear
 echo "Creating virtual environment"
 python -m venv env
 
@@ -13,7 +14,7 @@ echo "Setting up secret keys"
 cp .env.example .env
 rm .env.example
 echo "Setup done"
-tput setaf 1; echo "Please edit '.env' file to include the correct secret keys"; tput sgr0       
+tput setaf 1; echo "Please edit '.env' file to include the correct details"; tput sgr0       
 
 python manage.py makemigrations
 python manage.py migrate

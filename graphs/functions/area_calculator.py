@@ -69,13 +69,9 @@ def calculate_areas(list_of_dictionaries: list) -> list:
     """ A function that takes a list of dictionaries and returns the area of the graphs that these dictionaries would generate. 
 
     This function acts as a wrapper for all the above functions and returns the required area """
-    
+
     matrices = calculate_coordinates(list_of_dictionaries)
     areas_list = list()
     for matrix in matrices:
         areas_list.append(find_summation(matrix))
     return areas_list
-
-
-#print(calculate_areas([{'testuser': [6,, 4, 3, 10, 5]},
-#                       {'testuser2': [1, 5, 17, 20, 6]}]))
