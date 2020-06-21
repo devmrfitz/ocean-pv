@@ -131,6 +131,8 @@ dmypy.json
 # Personal Files
 personal/
 new
+new.py
+new2.py
 poetry.lock
 
 # Text backup files

@@ -1,4 +1,3 @@
-# TODO: Group CBVs and FBVs separately to make this page look a bit more presentable
 from django.shortcuts import (
     render,
     redirect,
@@ -44,20 +43,6 @@ def result_view(request, username):
     )
 
 
-class ProfileView(CustomLoginRequiredMixin, DetailView):
-    template_name = 'users/profile.html'
-    login_url = reverse_lazy('users:login')
-
-    def get_object(self):
-        return UserProfile.objects.get(user=self.request.user)
-
-
-class ProfileUpdateView(CustomLoginRequiredMixin, UpdateView):
-    login_url = reverse_lazy('users:login')
-    model = UserProfile
-    form_class = ProfileUpdateForm
-
-
 @login_required
 def update_profile_view(request, username):
     if not request.user.is_authenticated:
@@ -85,25 +70,6 @@ def update_profile_view(request, username):
         'profile_form': profile_form,
         'user_form': user_form,
     })
-
-
-# TODO: Change to FormView CBV
-class UserLoginView(auth_views.LoginView):
-    template_name = 'users/login.html'
-
-    def dispatch(self, request, *args, **kwargs):
-        if self.redirect_authenticated_user and self.request.user.is_authenticated:
-            redirect_to = self.get_success_url()
-            if redirect_to == self.request.path:
-                raise ValueError(
-                    "Redirection loop for authenticated user detected. Check that "
-                    "your LOGIN_REDIRECT_URL doesn't point to a login page."
-                )
-            return HttpResponseRedirect(redirect_to)
-        if self.request.user.is_authenticated:
-            messages.add_message(request, messages.INFO,
-                                 'You are now logged in successfully! ')
-        return super().dispatch(request, *args, **kwargs)
 
 
 @check_recaptcha
@@ -142,6 +108,39 @@ def password_change_view(request):
 
     print(form.as_p, request.POST)
     return render(request, 'users/password_change_form.html', {'form': form})
+
+
+class ProfileView(CustomLoginRequiredMixin, DetailView):
+    template_name = 'users/profile.html'
+    login_url = reverse_lazy('users:login')
+
+    def get_object(self):
+        return UserProfile.objects.get(user=self.request.user)
+
+
+class ProfileUpdateView(CustomLoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('users:login')
+    model = UserProfile
+    form_class = ProfileUpdateForm
+
+
+# TODO: Change to FormView CBV
+class UserLoginView(auth_views.LoginView):
+    template_name = 'users/login.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if self.redirect_authenticated_user and self.request.user.is_authenticated:
+            redirect_to = self.get_success_url()
+            if redirect_to == self.request.path:
+                raise ValueError(
+                    "Redirection loop for authenticated user detected. Check that "
+                    "your LOGIN_REDIRECT_URL doesn't point to a login page."
+                )
+            return HttpResponseRedirect(redirect_to)
+        if self.request.user.is_authenticated:
+            messages.add_message(request, messages.INFO,
+                                 'You are now logged in successfully! ')
+        return super().dispatch(request, *args, **kwargs)
 
 
 class UserPasswordChangeDoneView(CustomLoginRequiredMixin, auth_views.PasswordChangeDoneView):

@@ -12,6 +12,7 @@
             <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
                 {% if plot %}
                 {% include 'includes/graph_instructions.html' %}
+                {{ percentage_list }}
                 {{ plot|safe }}
                 {% endif %}
                 <form method="POST">
@@ -28,18 +29,22 @@
                 </form>
                 <div></div>
             </div>
-<div class="row animate-box">
-            <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
                     <h3>Example: </h3>
                     <img class="img img-thumbnail" src="{% static 'graphs/images/multiple_results.png' %}"
-                        alt="graph_instructions"></div>
+                        alt="graph_instructions">
+                </div>
             </div>
-<div class="row animate-box">
-            <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
                     <table class="table table-striped table-bordered">
                         <thead class="thead">
                             <tr>
-                            <td colspan="{{ answer_groups|length }}">Test IDs of all your attempts </td></tr> </thead><tbody>
+                                <td colspan="{{ answer_groups|length }}">Test IDs of all your attempts </td>
+                            </tr>
+                        </thead>
+                        <tbody>
                             <tr>
                                 {% for answer_group in answer_groups %}
                                 <td><strong>{{ answer_group.pk }}</strong></td>

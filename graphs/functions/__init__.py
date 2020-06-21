@@ -3,4 +3,4 @@ from .graph_wrapper import(
     clean_multiple_results_data,
 )
 from .area_calculator import calculate_areas
-from .utils import utility_function
+from .utils import utility_function, ultimate_wrapper

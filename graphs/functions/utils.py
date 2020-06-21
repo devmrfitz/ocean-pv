@@ -25,7 +25,7 @@ def calculate_percentages(areas_list: list) -> list:
         if index == 0:
             percentage_list.append(0)
         else:
-            percentage_list.append((((area-focus)/focus))*100)
+            percentage_list.append(abs((area-focus)/focus))
 
     return percentage_list
 
@@ -37,17 +37,14 @@ def ultimate_wrapper(*args, **kwargs) -> tuple:
     2) create and return the graph
     3) calculates the areas, and returns the percentage difference """
 
-    list_of_dictionaries = return_list_of_dictionaries(*args)
-    areas_list = calculate_areas(list_of_dictionaries)
     valid_pks, unavailable_pks, duplicate_pks = clean_multiple_results_data(
         *args)
+    list_of_dictionaries = return_list_of_dictionaries(*valid_pks)
+    areas_list = calculate_areas(list_of_dictionaries)
     percentage_list = calculate_percentages(areas_list)
+    plot = plotly_draw(list_of_dictionaries)
 
     return (
-        valid_pks, unavailable_pks, duplicate_pks
+        valid_pks, unavailable_pks, duplicate_pks,
+        percentage_list, plot
     )
-
-
-print(
-    calculate_percentages([0.8661387314952993, 71.92990985999438])
-)

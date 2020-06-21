@@ -77,8 +77,8 @@ def calculate_areas(list_of_dictionaries: list) -> list:
     return areas_list
 
 
-print(
-    calculate_areas(
-        [{'testuser': [6, 4, 3, 10, 5]}, {'testuser2': [1, 5, 17, 20, 6]}]
-    )
-)
+# print(
+#     calculate_areas(
+#         [{'testuser': [6, 4, 3, 10, 5]}, {'testuser2': [1, 5, 17, 20, 6]}]
+#     )
+# )

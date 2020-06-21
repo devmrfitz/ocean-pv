@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .functions import(
     return_ocean_descriptions_with_graph,
     clean_multiple_results_data,
+    ultimate_wrapper,
     utility_function
 )
 from .forms import GraphSelector
@@ -27,9 +28,11 @@ def multiple_result_view(request):
         if form.is_valid():
             primary_keys = list(primary_key for primary_key in form.cleaned_data.get(
                 'primary_key').split(',') if primary_key)
-
-            valid_primary_keys, unavailable_answer_pks, duplicate_answer_pks = clean_multiple_results_data(
-                *primary_keys)
+            try:
+                valid_primary_keys, unavailable_answer_pks, duplicate_answer_pks, percentage_list, plot = ultimate_wrapper(
+                    *primary_keys)
+            except:
+                return HttpResponse('You entered corrupted data')
 
             if unavailable_answer_pks:
                 messages.info(request,
@@ -38,11 +41,9 @@ def multiple_result_view(request):
                 messages.info(request,
                               f"Some IDs you entered were duplicates and have been filtered out")
 
-            plot, areas_list = utility_function(*valid_primary_keys)
-
             return render(request, 'graphs/multiple_results.html', {
-                'form': form, 'answer_groups': answer_groups, 
-                'plot': plot,
+                'form': form, 'answer_groups': answer_groups,
+                'plot': plot, 'percentage_list': percentage_list
             })
 
     else:
