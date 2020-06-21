@@ -16,10 +16,18 @@ def utility_function(*args, **kwargs) -> tuple:
     return plotly_draw(list_of_dictionaries), areas_list
 
 
-def calculate_percentages(username: str) -> list:
-    """ Calculate the percentage difference from username's score """
+def calculate_percentages(areas_list: list) -> list:
+    """ Calculate the percentage difference from [0]'s score area """
 
-    pass
+    focus = areas_list[0]
+    percentage_list = []
+    for index, area in enumerate(areas_list):
+        if index == 0:
+            percentage_list.append(0)
+        else:
+            percentage_list.append((((area-focus)/focus))*100)
+
+    return percentage_list
 
 
 def ultimate_wrapper(*args, **kwargs) -> tuple:
@@ -33,7 +41,13 @@ def ultimate_wrapper(*args, **kwargs) -> tuple:
     areas_list = calculate_areas(list_of_dictionaries)
     valid_pks, unavailable_pks, duplicate_pks = clean_multiple_results_data(
         *args)
+    percentage_list = calculate_percentages(areas_list)
 
     return (
         valid_pks, unavailable_pks, duplicate_pks
     )
+
+
+print(
+    calculate_percentages([0.8661387314952993, 71.92990985999438])
+)

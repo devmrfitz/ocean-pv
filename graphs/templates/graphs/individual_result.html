@@ -13,7 +13,18 @@
         {% include 'includes/graph_instructions.html' %}
         {{ plot|safe }}
         {% endif %}
-        <a href="{% url 'graphs:multiple_results' %}">Click here to compare your personality with your friends</a>
+        <div id="gtco-services">
+    <div class="gtco-container">
+        <div class="row animate-box">
+            <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+                <a href="{% url 'graphs:multiple_results' %}" class="btn btn-info btn-block">Click here to
+                    compare
+                    your personality with your
+                    friends</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 
         <div class="card-group">

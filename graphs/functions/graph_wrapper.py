@@ -78,16 +78,20 @@ def plotly_draw(list_of_dictionaries):
         ))
 
     max_num = 0
+    min_num = 0
     for score in score_list:
         if max_num < max(score):
             max_num = max(score)
+        if min_num > min(score):
+            min_num = min(score)
 
     max_num = round(max_num + 5.1, -1)
+    min_num = round(min_num - 5.1, -1)
     fig.update_layout(
         polar=dict(
             radialaxis=dict(
                 visible=True,
-                range=[0, max_num]
+                range=[min_num, max_num]
             )),
         showlegend=True,
         legend=dict(x=1.15, y=0.8),
@@ -101,6 +105,7 @@ def plotly_draw(list_of_dictionaries):
         fig, output_type='div',
         auto_open=False, image_filename='ocean_plot',
     )
+
 
 def return_ocean_descriptions(scores):
     return scores
