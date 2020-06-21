@@ -6,10 +6,7 @@ import sys
 
 def main():
     OCEAN_PV = os.environ.get('OCEAN_PV', False)
-    if OCEAN_PV == "0":
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE',
-                              'ocean_website.settings.heroku_settings')
-    elif OCEAN_PV == "1":
+    if OCEAN_PV == "1":
         os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                               'ocean_website.settings.production_settings')
     else:

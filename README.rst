@@ -58,7 +58,7 @@ Quick one:
 	$ sh start
 
 
-You can then visit ``http://127.0.0.1:8000/`` in your browser to access the 
+Fill in the required details when prompted, and then visit ``http://127.0.0.1:8000/`` in your browser to access the 
 website.
 
 

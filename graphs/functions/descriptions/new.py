@@ -24,7 +24,7 @@ def calculate_coordinates(list_of_dictionaries: list) -> list:
 
     theta = (2*math.pi)/len(score_list[0])
 
-    area_list=[]
+    area_list = []
     for dictionary in list_of_dictionaries:
         score_list.append(list(dictionary.values())[0])
 

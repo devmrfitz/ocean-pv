@@ -1,20 +1,19 @@
 #!bin/env/sh
 
 clear
-echo "Creating virtual environment"
-python -m venv env
+tput setaf 1; echo "Creating virtual environment"; tput sgr0
 
+python -m venv env
 source ./env/bin/activate
-echo "Virtual environment activated"
 
 pip install -r requirements.txt
-echo "All dependencies installed"
+tput setaf 1; echo "All dependencies installed"; tput sgr0
 
-echo "Setting up secret keys"
-cp .env.example .env
-rm .env.example
-echo "Setup done"
-tput setaf 1; echo "Please edit '.env' file to include the correct details"; tput sgr0       
+
+tput setaf 1; echo "Setting up secret keys"; tput sgr0
+mv .env.example .env
+tput setaf 1; echo "Setup done"; tput sgr0
+tput setaf 1; echo "Please edit '.env' file to include the correct details"; tput sgr0
 
 python manage.py makemigrations
 python manage.py migrate

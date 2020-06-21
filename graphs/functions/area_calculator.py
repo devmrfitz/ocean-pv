@@ -43,7 +43,7 @@ def find_determinant(matrix: list) -> float:
     if len(matrix) == 2:
         return (matrix[0][0]*matrix[1][1])-(matrix[0][1]*matrix[1][0])
     else:
-        raise TypeError("Only 2*2 determinants are supported")
+        raise TypeError("Only 2*2 matrices are supported")
 
 
 def find_summation(matrix: list) -> float:
@@ -75,3 +75,10 @@ def calculate_areas(list_of_dictionaries: list) -> list:
     for matrix in matrices:
         areas_list.append(find_summation(matrix))
     return areas_list
+
+
+print(
+    calculate_areas(
+        [{'testuser': [6, 4, 3, 10, 5]}, {'testuser2': [1, 5, 17, 20, 6]}]
+    )
+)

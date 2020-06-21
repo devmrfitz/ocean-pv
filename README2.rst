@@ -18,10 +18,13 @@ personality used by researchers.
 
 The documentation lives at https://ocean-personality-visualization.readthedocs.io/en/latest/
 
-.. image:: ./docs/project_deps/pictures/single_result_view.png
-    :align: center 
-    :alt: alternate text
 
 What this website does
 ======================
-After logging in (or signing up), you're guided to
+After logging in (or signing up), you're guided to take a small
+test and asked some questions. Based on your answers, a graph is
+generated. This graph tell you where you 
+
+.. image:: ./docs/project_deps/pictures/single_result_view.png
+    :align: center 
+    :alt: alternate text
