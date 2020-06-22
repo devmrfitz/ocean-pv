@@ -12,3 +12,20 @@ class CustomLoginRequiredMixin(LoginRequiredMixin):
                                  self.permission_denied_message)
             return self.handle_no_permission()
         return super(CustomLoginRequiredMixin, self).dispatch(request, *args, **kwargs)
+
+
+class RequiredFieldsMixin:
+
+    def __init__(self, *args, **kwargs):
+
+        super().__init__(*args, **kwargs)
+
+        required_fields = getattr(self.Meta, 'required_fields', None)
+
+        if required_fields:
+            if required_fields == '__all__':
+                for key in self.fields:
+                    self.fields[key].required = True
+            for key in self.fields:
+                if key in required_fields:
+                    self.fields[key].required = True

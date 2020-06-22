@@ -1,14 +1,14 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 from django_countries.widgets import CountrySelectWidget
 
 from users.models import UserProfile
+from mixins import RequiredFieldsMixin
 
 
-class RegistrationForm(UserCreationForm):
+class RegistrationForm(RequiredFieldsMixin, UserCreationForm):
 
     class Meta:
         model = User
@@ -20,6 +20,7 @@ class RegistrationForm(UserCreationForm):
             'password1',
             'password2'
         ]
+        required_fields = '__all__'
 
         def save(self, commit=True):
             user = super(RegistrationForm, self).save(commit=False)
@@ -30,9 +31,9 @@ class RegistrationForm(UserCreationForm):
             return user
 
 
-class ProfileUpdateForm(forms.ModelForm):
+class ProfileUpdateForm(RequiredFieldsMixin, forms.ModelForm):
 
-    user_bio = forms.CharField(required=False, widget=forms.Textarea)
+    user_bio = forms.CharField(widget=forms.Textarea)
     birth_date = forms.DateField(
         widget=forms.DateInput(attrs={'type': 'date'}))
 
@@ -48,12 +49,14 @@ class ProfileUpdateForm(forms.ModelForm):
         help_texts = {
             'visible': 'Whether your profile will be publicly visible or not'
         }
+        required_fields = '__all__'
 
 
-class UserUpdateForm(forms.ModelForm):
+class UserUpdateForm(RequiredFieldsMixin, forms.ModelForm):
 
-    email = forms.EmailField(required=False)
+    email = forms.EmailField()
 
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email']
+        required_fields = '__all__'

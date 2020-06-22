@@ -1,1 +1,1 @@
-from .custom_mixins import CustomLoginRequiredMixin
+from .custom_mixins import CustomLoginRequiredMixin, RequiredFieldsMixin
