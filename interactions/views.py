@@ -1,10 +1,7 @@
-from django.core.exceptions import ObjectDoesNotExist
-from django.shortcuts import render, redirect, reverse
-from django.urls import reverse_lazy
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.views.generic import TemplateView, ListView, FormView
-from django.contrib.auth.models import User
+from django.views.generic import TemplateView
 
 from .functions import (
     save_self_answers_to_db,
@@ -14,11 +11,7 @@ from .functions import (
 )
 from .models import (
     SelfQuestion,
-    UserAnswerChoice,
-    SelfAnswerGroup,
-    RelationQuestion,
-    RelationAnswerGroup,
-    RelationAnswerChoice
+    RelationQuestion
 )
 from .forms import (
     UserAnswerChoiceForm,
@@ -33,8 +26,14 @@ class HowtoView(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.add_message(
-                request, messages.WARNING, 'Since you are not logged in, you will be redirected to the login page ')
+                request, messages.WARNING,
+                'You are not logged in, you will be redirected to login'
+            )
         return super().dispatch(request, *args, **kwargs)
+
+
+class View(TemplateView):
+    template_name = 'interactions/view.html'
 
 
 @login_required
@@ -60,13 +59,16 @@ def self_question_list_view(request):
     else:
         form = UserAnswerChoiceForm()
 
-    return render(request, 'interactions/questions.html', {'form': zip(form, questions)})
+    return render(request, 'interactions/questions.html',
+                  {'form': zip(form, questions)})
 
 
 @login_required
 def relation_question_list_view(request, pk):
-    questions = [question['question_text']
-                 for question in RelationQuestion.objects.values('question_text')]
+    questions = [
+        question['question_text']
+        for question in RelationQuestion.objects.values('question_text')
+    ]
     if not questions:
         return render(request, 'interactions/error.html')
     if request.method == 'POST':
@@ -87,7 +89,8 @@ def relation_question_list_view(request, pk):
     else:
         form = UserAnswerChoiceForm()
 
-    return render(request, 'interactions/questions.html', {'form': zip(form, questions)})
+    return render(request, 'interactions/questions.html',
+                  {'form': zip(form, questions)})
 
 # TODO: queryset must not show current user's profile in the queryset
 
@@ -111,7 +114,6 @@ def howto_relations_view(request):
                 return render(request, 'interactions/howto_relations.html',
                               context)
             if len(queryset) == 1:
-                profile = queryset.first().pk
                 messages.success(request, 'The requested profile was found!')
                 return render(request, 'interactions/howto_relations.html',
                               context)
