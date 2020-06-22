@@ -504,7 +504,7 @@ class TestUsersPostMethod:
              {'birth_date': '11/11/2001'},
              'This field is required', 7),
             ('users:profile-update', {'username': 'testuser'},
-             {'visible': 'False'},
+             {'visible': 'off'},
              'This field is required', 7),
 
             ('users:password-change', {}, {},
@@ -544,8 +544,8 @@ class TestUsersPostMethod:
             },
                 'Enter a valid email', 1),
             ('home:contact', {}, {
-                'from_email': 'test@email.com', 'message': '',
-                'subject': ''
+                'from_email': 'test@email.com',
+                'message': '', 'subject': ''
             },
 
                 'This field is required', 2),
@@ -578,7 +578,6 @@ class TestInteractionsPostMethodValid:
     """ The data submitted here should be completely valid. Tests 
     should not be parameterized here, unless they really need to be. """
 
-    @pytest.mark.testing
     def test_home_contact_email(
         self,
         client

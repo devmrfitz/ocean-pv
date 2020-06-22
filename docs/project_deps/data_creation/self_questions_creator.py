@@ -1,3 +1,10 @@
+""" This module can be used to insert self questions into the
+database for initial setup. Run 
+`cat docs/project_deps/data_creation/self_questions_creator.py | python manage.py shell` 
+to use this. Alternatively, you can also run 
+`python manage.py loaddata questions.json` to load the fixtures present in 
+'users/fixtures/questions.json' """
+
 import random
 import csv
 

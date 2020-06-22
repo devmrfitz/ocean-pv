@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% load static %}
+<!--================Home Banner Area =================-->
+{% block banner_text %}
+<h1>Here's a little surprise</h1>
+{% endblock %}
+<!--===Home banner area===-->
+{% block body %}
+
+<div id="gtco-services">
+    <div class="gtco-container">
+
+        <div class="row animate-box">
+            <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+                <div id="gtco-testimonial">
+                    <div class="gtco-container">
+
+                        <div class="row animate-box">
+                            <div class="owl-carousel owl-carousel-fullwidth ">
+
+                                <div class="item">
+                                    <div class="testimony-slide2 active text-center">
+                                        <figure>
+                                            <img src="{% static 'interactions/images/hugs.jpg' %}" alt="user">
+                                        </figure>
+                                        <span><strong>Hugs from Behind</strong></span>
+                                        <blockquote>
+                                            <p>Diptesh</p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <div class="testimony-slide2 active text-center">
+                                        <figure>
+                                            <img src="{% static 'interactions/images/long_walks.jpg' %}" alt="user">
+                                        </figure>
+                                        <span><strong>Long Walks</strong></span>
+                                        <blockquote>
+                                            <p>Diptesh</p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <div class="testimony-slide2 active text-center">
+                                        <figure>
+                                            <img src="{% static 'interactions/images/dinner_together.jpg' %}">
+                                        </figure>
+                                        <span><strong>Cooking Dinner to Slow Music</strong></span>
+                                        <blockquote>
+                                            <p>Diptesh</p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <div class="testimony-slide2 active text-center">
+                                        <figure>
+                                            <img src="{% static 'interactions/images/stars_together.jpg' %}">
+                                        </figure>
+                                        <span><strong>Watching the Stars Together</strong></span>
+                                        <blockquote>
+                                            <p>Diptesh</p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <div class="testimony-slide2 active text-center">
+                                        <figure>
+                                            <img src="{% static 'interactions/images/' %}">
+                                        </figure>
+                                        <span><strong> </strong></span>
+                                        <blockquote>
+                                            <p>Gunjan</p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
