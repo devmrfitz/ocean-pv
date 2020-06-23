@@ -1,1 +1,5 @@
-language : python
+language: python
+install:
+  - pip install -r docs/requirements-dev.txt 
+script:
+  - pytest
