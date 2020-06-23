@@ -11,7 +11,7 @@ import csv
 
 from interactions.models import RelationQuestion
 
-with open('docs/questions/data/relation_questions.csv') as f:
+with open('docs/project_deps/data/relation_questions.csv') as f:
     fieldnames = ['subclass', 'text', 'factor']
     f_reader = csv.DictReader(f, fieldnames=fieldnames, delimiter='|')
     mylst = list(f_reader)

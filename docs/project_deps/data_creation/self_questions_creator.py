@@ -10,7 +10,7 @@ import csv
 
 from interactions.models import SelfQuestion
 
-with open('docs/questions/data/self_questions.csv') as f:
+with open('docs/project_deps/data/self_questions.csv') as f:
     fieldnames = ['subclass', 'text', 'factor']
     f_reader = csv.DictReader(f, fieldnames=fieldnames, delimiter='|')
     mylst = list(f_reader)
@@ -23,4 +23,3 @@ with open('docs/questions/data/self_questions.csv') as f:
             ocean_subclass=row['subclass'],
             question_factor=row['factor']
         )
-print('done')

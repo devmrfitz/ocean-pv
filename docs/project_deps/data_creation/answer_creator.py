@@ -1,6 +1,6 @@
 """ This module can be used to create random answers for the insertion into the
-database for initial setup. Run 
-`cat docs/project_deps/data_creation/answer_creator.py | python manage.py shell` 
+database for initial setup. Run
+`cat docs/project_deps/data_creation/answer_creator.py | python manage.py shell
 to use this. User should exist in the database first.
 Remember to change USERNAME to your username. """
 
@@ -11,7 +11,7 @@ from users.models import UserProfile
 
 USERNAME = 'ignisda'  # Change this
 
-for i in range(15):
+for i in range(5):
     user_profile = UserProfile.objects.get(user__username=USERNAME)
 
     answer_group = SelfAnswerGroup.objects.create(user_profile=user_profile)

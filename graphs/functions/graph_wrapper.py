@@ -1,12 +1,7 @@
-import datetime
-import random
-import os
-
 import plotly.graph_objects as go
 from plotly.offline import plot
 
 from interactions.models import (
-    SelfQuestion,
     SelfAnswerGroup,
     UserAnswerChoice
 )
@@ -16,19 +11,28 @@ def return_group_and_score(primary_key):
     score_list_dictionary = {}
     answer_group = SelfAnswerGroup.objects.get(pk=primary_key)
 
-    answers = [answer.answer_choice for answer in UserAnswerChoice.objects.filter(
-        self_answer_group=answer_group)]
+    answers = [
+        answer.answer_choice for answer in UserAnswerChoice.objects.filter(
+            self_answer_group=answer_group)
+    ]
 
-    question_factors = [answer.question.question_factor for answer in UserAnswerChoice.objects.filter(
-        self_answer_group=answer_group)]
+    question_factors = [
+        answer.question.question_factor for
+        answer in UserAnswerChoice.objects.filter(
+            self_answer_group=answer_group)
+    ]
 
     final_scores = [answer*question_factor for answer,
                     question_factor in zip(answers, question_factors)]
 
-    question_subclasses = [answer.question.ocean_subclass for answer in UserAnswerChoice.objects.filter(
-        self_answer_group=answer_group)]
+    qn_subclasses = [
+        answer.question.ocean_subclass for
+        answer in UserAnswerChoice.objects.filter(
+            self_answer_group=answer_group)
+    ]
+
     scores = [0, 0, 0, 0, 0]
-    for final_score, question_subclass in zip(final_scores, question_subclasses):
+    for final_score, question_subclass in zip(final_scores, qn_subclasses):
         if question_subclass == 'openness':
             scores[0] = scores[0]+final_score
         elif question_subclass == 'conscientiousness':
@@ -41,7 +45,8 @@ def return_group_and_score(primary_key):
             scores[4] = scores[4]+final_score
 
     score_list_dictionary[
-        f"{answer_group.id}: {answer_group.user_profile.user.username}"] = scores
+        f"{answer_group.id}: {answer_group.user_profile.user.username}"
+    ] = scores
 
     return score_list_dictionary
 
@@ -74,7 +79,7 @@ def plotly_draw(list_of_dictionaries):
             fill='toself',
             connectgaps=True,
             name=legend_tag,
-            # visible='legendonly', # disabled because it confuses new users about where their graph is
+            # visible='legendonly', # confuses users where their graph is
         ))
 
     max_num = 0
@@ -119,19 +124,23 @@ def return_ocean_descriptions_with_graph(*args, **kwargs):
 
 
 def clean_multiple_results_data(*primary_keys):
-    primary_keys = list(int(primary_key)
-                        for primary_key in primary_keys if primary_key.strip().isdigit())
-    valid_primary_keys, unavailable_answer_pks, duplicate_answer_pks = set(), set(), set()
+    primary_keys = list(
+        int(primary_key) for
+        primary_key in primary_keys if primary_key.strip().isdigit()
+    )
+    valid_pks, unavailable_pks, duplicate_pks = set(), set(), set()
     for primary_key in primary_keys:
-        if primary_key in [answer_group['pk'] for answer_group in SelfAnswerGroup.objects.values('pk')]:
-            if primary_key not in valid_primary_keys:
-                valid_primary_keys.add(primary_key)
+        if primary_key in [
+            ans_gp['pk'] for ans_gp in SelfAnswerGroup.objects.values('pk')
+        ]:
+            if primary_key not in valid_pks:
+                valid_pks.add(primary_key)
             else:
-                duplicate_answer_pks.add(primary_key)
+                duplicate_pks.add(primary_key)
         else:
-            if primary_key not in unavailable_answer_pks:
-                unavailable_answer_pks.add(primary_key)
+            if primary_key not in unavailable_pks:
+                unavailable_pks.add(primary_key)
             else:
-                duplicate_answer_pks.add(primary_key)
+                duplicate_pks.add(primary_key)
 
-    return valid_primary_keys, unavailable_answer_pks, duplicate_answer_pks
+    return valid_pks, unavailable_pks, duplicate_pks
