@@ -18,6 +18,7 @@ from home.views import (
         ('home:resources', {}, '/resources/', ResourcesView),
     ]
 )
+@pytest.mark.unittest
 def test_home_urls(
     return_views,
     reverse_url,

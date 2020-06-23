@@ -13,6 +13,7 @@ class TestInteractionsGetMethod:
              'You are not logged in, you will be redirected to login'),
         ]
     )
+    @pytest.mark.unittest
     def test_interactions_views(
         self,
         view_namespace_url,
@@ -40,6 +41,7 @@ class TestInteractionsGetMethod:
              ''),
         ]
     )
+    @pytest.mark.unittest
     def test_interactions_views_unregistered_redirect(
         self,
         view_namespace_url,
@@ -66,6 +68,7 @@ class TestInteractionsGetMethod:
              'there are no questions in the database'),
         ]
     )
+    @pytest.mark.unittest
     def test_interactions_views_registered_empty(
             self,
             view_namespace_url,
@@ -93,7 +96,7 @@ class TestInteractionsGetMethod:
              'there are no questions in the database', 'RelationQuestion'),
         ]
     )
-    @pytest.mark.testing
+    @pytest.mark.unittest
     def test_interactions_views_registered_non_empty(
             self,
             view_namespace_url,

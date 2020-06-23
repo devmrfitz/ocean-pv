@@ -1,13 +1,10 @@
 from django.shortcuts import render, HttpResponse
-from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from .functions import(
     return_ocean_descriptions_with_graph,
-    clean_multiple_results_data,
     ultimate_wrapper,
-    utility_function
 )
 from .forms import GraphSelector
 from interactions.models import SelfAnswerGroup
@@ -21,10 +18,8 @@ def single_result_view(request, pk):
 
 @login_required
 def multiple_result_view(request):
-    answer_groups = SelfAnswerGroup.objects.filter(
-        user_profile=request.user.profile)
     if request.method == 'POST':
-        form = GraphSelector(request.POST)
+        form = GraphSelector(request.user, request.POST)
         if form.is_valid():
             primary_keys = list(primary_key for primary_key in form.cleaned_data.get(
                 'primary_key').split(',') if primary_key)
@@ -36,19 +31,18 @@ def multiple_result_view(request):
 
             if unavailable_answer_pks:
                 messages.info(request,
-                              f"Some IDs you entered were invalid and have been filtered out")
+                              "Some IDs you entered were invalid and have been filtered out")
             if duplicate_answer_pks:
                 messages.info(request,
-                              f"Some IDs you entered were duplicates and have been filtered out")
+                              "Some IDs you entered were duplicates and have been filtered out")
 
             return render(request, 'graphs/multiple_results.html', {
-                'form': form, 'answer_groups': answer_groups,
+                'form': form,
                 'plot': plot, 'percentage_list': percentage_list
             })
 
     else:
-        form = GraphSelector(request.GET or None)
+        form = GraphSelector(request.user)
     return render(request, 'graphs/multiple_results.html', {
         'form': form,
-        'answer_groups': answer_groups
     })

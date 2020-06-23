@@ -9,6 +9,7 @@ from interactions.models import (
 )
 
 
+# TODO: Fix the None option
 class UserAnswerChoiceForm(forms.Form):
     CHOICES = (
         #(None, None),

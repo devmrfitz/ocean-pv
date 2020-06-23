@@ -1,4 +1,4 @@
-from .graph_wrapper import(
+from .graph_wrapper import (
     return_ocean_descriptions_with_graph,
     clean_multiple_results_data,
 )

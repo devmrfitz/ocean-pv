@@ -8,7 +8,7 @@ from .functions import (
     save_self_answers_to_db,
     save_relation_answers_to_db,
     find_similar_usernames,
-    find_answer_groups_counts, 
+    find_answer_groups_counts,
     get_data_fn
 )
 from .models import (
@@ -41,7 +41,7 @@ class View(PermissionRequiredMixin, TemplateView):
     raise_exception = True
     
     def data(self):
-    	return get_data_fn()
+        return get_data_fn()
 
 
 @login_required

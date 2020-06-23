@@ -17,6 +17,7 @@ from graphs.views import (
          '/graphs/30/', single_result_view),
     ]
 )
+@pytest.mark.unittest
 def test_home_urls(
     return_views,
     reverse_url,

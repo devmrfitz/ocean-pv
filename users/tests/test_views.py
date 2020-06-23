@@ -23,6 +23,7 @@ class TestUsersViewsGetMethod:
              '/users/selfanswergroup_list.html'),
         ]
     )
+    @pytest.mark.unittest
     def test_users_views_unregistered(
         self,
         view_namespace_url,
@@ -58,6 +59,7 @@ class TestUsersViewsGetMethod:
              'users/password_reset/password_reset_complete.html'),
         ]
     )
+    @pytest.mark.unittest
     def test_users_views(
         self,
         view_namespace_url,
@@ -91,6 +93,7 @@ class TestUsersViewsGetMethod:
 
         ]
     )
+    @pytest.mark.unittest
     def test_users_views_registered(
         self,
         view_namespace_url,
@@ -123,6 +126,7 @@ class TestUsersPostMethod:
              'This field is required', 1),
         ]
     )
+    @pytest.mark.unittest
     def test_users_empty_data(
         self,
         view_namespace_url,
@@ -155,6 +159,7 @@ class TestUsersPostMethod:
              'This field is required', 3),
         ]
     )
+    @pytest.mark.unittest
     def test_users_empty_data_registered(
         self,
         view_namespace_url,
@@ -457,6 +462,7 @@ class TestUsersPostMethod:
                 'This field is required', 1),
         ]
     )
+    @pytest.mark.unittest
     def test_users_partial_data(
         self,
         view_namespace_url,
@@ -597,6 +603,7 @@ class TestUsersPostMethod:
         ]
     )
     @pytest.mark.testing
+    @pytest.mark.unittest
     def test_users_partial_data_registered(
         self,
         view_namespace_url,
@@ -636,6 +643,7 @@ class TestUsersPostMethod:
                 'This field is required', 2),
         ]
     )
+    @pytest.mark.unittest
     def test_users_invalid_data(
         self,
         view_namespace_url,
@@ -663,6 +671,7 @@ class TestInteractionsPostMethodValid:
     """ The data submitted here should be completely valid. Tests 
     should not be parameterized here, unless they really need to be. """
 
+    @pytest.mark.unittest
     def test_home_contact_email(
         self,
         client

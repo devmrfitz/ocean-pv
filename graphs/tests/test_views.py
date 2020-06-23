@@ -16,6 +16,7 @@ class TestGraphsViewsGetMethod:
             ('graphs:multiple_results', {}, 'graphs/multiple_results.html'),
         ]
     )
+    @pytest.mark.unittest
     def test_graphs_views_unregistered(
         self,
         view_namespace_url,
@@ -38,7 +39,7 @@ class TestGraphsViewsGetMethod:
              'graphs/individual_result.html', 'self'),
         ]
     )
-    @pytest.mark.testing
+    @pytest.mark.unittest
     def test_graphs_views_registered(
         self,
         view_namespace_url,

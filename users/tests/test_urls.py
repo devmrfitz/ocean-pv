@@ -48,6 +48,7 @@ from users.views import (
          SelfAnswerGroupsListView),
     ]
 )
+@pytest.mark.unittest
 def test_users_urls(
     return_views,
     reverse_url,

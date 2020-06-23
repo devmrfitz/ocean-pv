@@ -17,6 +17,7 @@ class TestHomeGetMethod:
             ('home:resources', {}, 'home/resources.html')
         ]
     )
+    @pytest.mark.unittest
     def test_home_views(
         self,
         view_namespace_url,
@@ -41,6 +42,7 @@ class TestHomePostMethod:
             ('home:contact', {}, {}, 'This field is required', 3),
         ]
     )
+    @pytest.mark.unittest
     def test_home_empty_data(
         self,
         view_namespace_url,
@@ -73,6 +75,7 @@ class TestHomePostMethod:
                                   'message': 'test message body'}, 'This field is required', 1),
         ]
     )
+    @pytest.mark.unittest
     def test_home_partial_data(
         self,
         view_namespace_url,
@@ -101,6 +104,7 @@ class TestHomePostMethod:
              'This field is required', 2),
         ]
     )
+    @pytest.mark.unittest
     def test_home_invalid_data(
         self,
         view_namespace_url,
@@ -127,6 +131,7 @@ class TestHomePostMethod:
              'Your contact form has been submitted'),
         ]
     )
+    @pytest.mark.unittest
     def test_home_valid_data(
         self,
         view_namespace_url,
@@ -151,7 +156,7 @@ class TestHomePostMethod:
                                   'message': 'This is a test message', 'subject': 'This is a test subject'}),
         ]
     )
-    @pytest.mark.testing
+    @pytest.mark.unittest
     def test_home_contact_email(
         self,
         view_namespace_url,

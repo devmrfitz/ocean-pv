@@ -5,6 +5,9 @@ OCEAN-Personality-Visualization
 .. image:: https://img.shields.io/github/license/IgnisDa/OCEAN-personality-visualization?style=for-the-badge   
 	:alt: GitHub
 
+.. image:: https://img.shields.io/travis/com/IgnisDa/OCEAN-personality-visualization?style=for-the-badge   
+        :alt: Travis (.com)
+
 A website that helps you visualize your personality using graphs and compare it 
 with others. It asks you a
 series of questions and analyzes your inputs to create an easy to understand 
@@ -34,4 +37,9 @@ Building the Docs
 1) Install docs requirements: ``pip install -r docs/requirements-dev.txt``.
 2) ``cd docs``
 3) ``make html``
-4) Open ``_build/index.html`` in your browser.
+4) Open ``docs/_build/index.html`` in your browser.
+
+.. todo::
+	
+	Conscientiousness and agreeableness have same value for
+	`are you easily distracted?`

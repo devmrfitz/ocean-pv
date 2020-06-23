@@ -1,5 +1,6 @@
 from django import forms
 
+from interactions.models import SelfAnswerGroup 
 
 class GraphSelector(forms.Form):
     primary_key = forms.CharField(
@@ -12,3 +13,8 @@ class GraphSelector(forms.Form):
             }
         )
     )
+    answer_group = forms.ModelChoiceField(queryset=None)
+    
+    def __init__(self, user, *args, **kwargs):
+        super(GraphSelector, self).__init__(*args, **kwargs)
+        self.fields['answer_group'].queryset = SelfAnswerGroup.objects.filter(user_profile=user.profile).order_by('-answer_date_and_time')
