@@ -10,7 +10,7 @@ class TestInteractionsGetMethod:
         "view_namespace_url, kwargs, template_name, response_content",
         [
             ('interactions:howto', {}, 'interactions/howto_self.html',
-             'Since you are not logged in, you will be redirected to the login page '),
+             'You are not logged in, you will be redirected to login'),
         ]
     )
     def test_interactions_views(

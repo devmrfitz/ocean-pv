@@ -28,3 +28,10 @@ generated. This graph tell you where you
 .. image:: ./docs/project_deps/pictures/single_result_view.png
     :align: center 
     :alt: alternate text
+
+Building the Docs
+=================
+1) Install docs requirements: ``pip install -r docs/requirements-dev.txt``.
+2) ``cd docs``
+3) ``make html``
+4) Open ``_build/index.html`` in your browser.

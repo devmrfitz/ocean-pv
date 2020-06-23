@@ -2,12 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views.generic import TemplateView
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 from .functions import (
     save_self_answers_to_db,
     save_relation_answers_to_db,
     find_similar_usernames,
-    find_answer_groups_counts
+    find_answer_groups_counts, 
+    get_data_fn
 )
 from .models import (
     SelfQuestion,
@@ -32,8 +34,14 @@ class HowtoView(TemplateView):
         return super().dispatch(request, *args, **kwargs)
 
 
-class View(TemplateView):
+class View(PermissionRequiredMixin, TemplateView):
     template_name = 'interactions/view.html'
+    permission_required = ('users.special_access',)
+    permission_denied_message = 'You do not have the required permissions to access that page'
+    raise_exception = True
+    
+    def data(self):
+    	return get_data_fn()
 
 
 @login_required

@@ -28,3 +28,8 @@ class UserProfile(models.Model):
 
     def get_absolute_url(self):
         return reverse('users:profile', kwargs={'username': self.user.username})
+        
+    class Meta:
+    	permissions = (
+    	('special_access', 'Can access the special page'), 
+    	)

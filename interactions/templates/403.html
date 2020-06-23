@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+<!--================Home Banner Area =================-->
+{% block banner_text %}
+<h1>Invalid permission </h1>
+
+{% endblock %}
+<!--===Home banner area===-->
+
+{% block body %}
+<div id="gtco-services">
+    <div class="gtco-container">
+
+        <div class="row animate-box">
+            <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+            {{ exception }}
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
