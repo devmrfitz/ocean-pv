@@ -4,9 +4,13 @@ from django.contrib.auth.decorators import login_required
 
 from .functions import (
     return_ocean_descriptions_with_graph,
-    ultimate_wrapper,
+    return_plot_and_view_data,
 )
 from .forms import GraphSelector
+
+
+from pprint import pprint as print 
+
 
 
 @login_required
@@ -25,15 +29,18 @@ def multiple_result_view(request):
                 primary_key in form.cleaned_data.get('primary_key').split(',')
                 if primary_key
             )
-            master_dict = {
-                request.user.profile: form.cleaned_data.get('answer_group')
+            
+            view_dict = {
+            'master': form.cleaned_data.get('answer_group'),
+            'to_plot': primary_keys
             }
-            try:
-                unavailable_pks, duplicate_pks, plot = ultimate_wrapper(
-                    master_dict, *primary_keys)
-            except:  # noqa
-                return HttpResponse('You entered corrupted data')
-
+            
+            valid_dict, unavailable_pks, duplicate_pks, plot = return_plot_and_view_data(
+                    view_dict) 
+            
+            # return HttpResponse('You entered corrupted data')
+            
+            print(valid_dict)
             if unavailable_pks:
                 messages.info(
                     request,
@@ -42,7 +49,7 @@ def multiple_result_view(request):
             if duplicate_pks:
                 messages.info(
                     request,
-                    "Duplicate entries were filtered out"
+                    "Duplicate entries have been filtered out"
                 )
 
             return render(request, 'graphs/multiple_results.html', {

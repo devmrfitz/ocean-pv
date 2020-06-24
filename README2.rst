@@ -38,8 +38,3 @@ Building the Docs
 2) ``cd docs``
 3) ``make html``
 4) Open ``docs/_build/index.html`` in your browser.
-
-.. todo::
-	
-	Conscientiousness and agreeableness have same value for
-	`are you easily distracted?`
