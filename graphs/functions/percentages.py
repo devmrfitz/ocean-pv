@@ -75,9 +75,10 @@ def calculate_areas(valid_dict: list) -> list:
     matrices = calculate_coordinates(valid_dict)
     for matrix, dictionary in zip(matrices, valid_dict):
         dictionary.update({
-        'area': find_summation(matrix)
+            'area': find_summation(matrix)
         })
     return valid_dict
+
 
 def calculate_percentages(valid_dict: dict) -> list:
     """ Calculate the percentage difference from [0]'s score area """
@@ -88,10 +89,9 @@ def calculate_percentages(valid_dict: dict) -> list:
     percentage_list = []
     for dictionary in valid_dict:
         dictionary.update({
-        'percentage': abs((dictionary['area']-focus)/focus)*100
+            'percentage': abs((dictionary['area']-focus)/focus)*100
         })
         dictionary.pop('area')
         dictionary.pop('score')
 
-    return valid_dict      
-   
+    return valid_dict

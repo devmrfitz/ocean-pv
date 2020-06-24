@@ -3,7 +3,7 @@ import pytest
 
 from interactions.views import (
     HowtoView,
-    View, 
+    View,
     relation_question_list_view,
     self_question_list_view,
     howto_relations_view
@@ -23,7 +23,7 @@ from interactions.views import (
         ('interactions:howto', {}, '/interactions/howto/', HowtoView),
         ('interactions:howto-relations', {},
          '/interactions/howto/relations/', howto_relations_view),
-         ('interactions:view', {}, '/interactions/view/', View),
+        ('interactions:view', {}, '/interactions/view/', View),
     ]
 )
 @pytest.mark.unittest

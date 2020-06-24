@@ -5,6 +5,7 @@ from django.db import migrations, models
 import django.db.models.deletion
 # eee
 
+
 class Migration(migrations.Migration):
 
     initial = True
@@ -18,67 +19,90 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='RelationQuestion',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('overall_question_number', models.IntegerField()),
                 ('question_text', models.TextField()),
-                ('ocean_subclass', models.CharField(choices=[('openess', 'openess'), ('conscientiousness', 'conscientiousness'), ('extraversion', 'extraversion'), ('agreeableness', 'agreeableness'), ('neuroticism', 'neuroticism')], max_length=150)),
-                ('question_factor', models.IntegerField(choices=[(-1, 'negative'), (1, 'positive')])),
+                ('ocean_subclass', models.CharField(choices=[('openess', 'openess'), ('conscientiousness', 'conscientiousness'), (
+                    'extraversion', 'extraversion'), ('agreeableness', 'agreeableness'), ('neuroticism', 'neuroticism')], max_length=150)),
+                ('question_factor', models.IntegerField(
+                    choices=[(-1, 'negative'), (1, 'positive')])),
             ],
         ),
         migrations.CreateModel(
             name='SelfAnswerGroup',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('answer_date_and_time', models.DateTimeField(auto_now_add=True)),
-                ('user_profile', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.UserProfile')),
+                ('user_profile', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='users.UserProfile')),
             ],
         ),
         migrations.CreateModel(
             name='SelfQuestion',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('overall_question_number', models.IntegerField()),
                 ('question_text', models.TextField()),
-                ('ocean_subclass', models.CharField(choices=[('openess', 'openess'), ('conscientiousness', 'conscientiousness'), ('extraversion', 'extraversion'), ('agreeableness', 'agreeableness'), ('neuroticism', 'neuroticism')], max_length=150)),
-                ('question_factor', models.IntegerField(choices=[(-1, 'negative'), (1, 'positive')])),
+                ('ocean_subclass', models.CharField(choices=[('openess', 'openess'), ('conscientiousness', 'conscientiousness'), (
+                    'extraversion', 'extraversion'), ('agreeableness', 'agreeableness'), ('neuroticism', 'neuroticism')], max_length=150)),
+                ('question_factor', models.IntegerField(
+                    choices=[(-1, 'negative'), (1, 'positive')])),
             ],
         ),
         migrations.CreateModel(
             name='UserAnswerChoice',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('answer_choice', models.IntegerField(choices=[(1, 'Disagree strongly'), (2, 'Disagree a little'), (3, 'Neither agree nor disagree'), (4, 'Agree a little'), (5, 'Agree strongly')])),
-                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='interactions.SelfQuestion')),
-                ('self_answer_group', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='interactions.SelfAnswerGroup')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('answer_choice', models.IntegerField(choices=[(1, 'Disagree strongly'), (2, 'Disagree a little'), (
+                    3, 'Neither agree nor disagree'), (4, 'Agree a little'), (5, 'Agree strongly')])),
+                ('question', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='interactions.SelfQuestion')),
+                ('self_answer_group', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='interactions.SelfAnswerGroup')),
+                ('user', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
             name='RelationAnswerGroup',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('answer_date_and_time', models.DateTimeField(auto_now_add=True)),
-                ('relation_user_profile', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='relation', to='users.UserProfile')),
-                ('self_user_profile', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='self', to='users.UserProfile')),
+                ('relation_user_profile', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, related_name='relation', to='users.UserProfile')),
+                ('self_user_profile', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, related_name='self', to='users.UserProfile')),
             ],
         ),
         migrations.CreateModel(
             name='RelationAnswerChoice',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('answer_choice', models.IntegerField(choices=[(1, 'Disagree strongly'), (2, 'Disagree a little'), (3, 'Neither agree nor disagree'), (4, 'Agree a little'), (5, 'Agree strongly')])),
-                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='interactions.RelationQuestion')),
-                ('self_answer_group', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='interactions.RelationAnswerGroup')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('answer_choice', models.IntegerField(choices=[(1, 'Disagree strongly'), (2, 'Disagree a little'), (
+                    3, 'Neither agree nor disagree'), (4, 'Agree a little'), (5, 'Agree strongly')])),
+                ('question', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='interactions.RelationQuestion')),
+                ('self_answer_group', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='interactions.RelationAnswerGroup')),
+                ('user', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
             name='Average',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('associated_date', models.DateField(auto_now=True)),
                 ('global_poll_average', models.FloatField()),
-                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='interactions.SelfQuestion')),
+                ('question', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='interactions.SelfQuestion')),
             ],
         ),
     ]

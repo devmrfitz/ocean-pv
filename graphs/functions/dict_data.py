@@ -2,9 +2,9 @@ from .cleaner import clean_multiple_results_data
 from .scores import update_dict_with_score
 from .plotter import draw_plot
 from .percentages import (
-calculate_coordinates,
-calculate_areas, 
-calculate_percentages
+    calculate_coordinates,
+    calculate_areas,
+    calculate_percentages
 )
 
 
@@ -28,5 +28,5 @@ def return_plot_and_view_data(view_dict: dict, *args, **kwargs) -> tuple:
     valid_dict = update_dict_with_score(valid_dict)
     plot = draw_plot(valid_dict)
     valid_dict = calculate_percentages(calculate_areas(valid_dict))
-    
+
     return valid_dict, unavailable_pks, duplicate_pks, plot

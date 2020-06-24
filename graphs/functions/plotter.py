@@ -18,7 +18,7 @@ def draw_plot(valid_dict: dict) -> str:
     for dictionary in valid_dict:
         score_list.append(dictionary['score'])
         tag_list.append(
-        f"{dictionary['answer_group_pk']}: {dictionary['name']}"
+            f"{dictionary['answer_group_pk']}: {dictionary['name']}"
         )
 
     fig = go.Figure()

@@ -17,10 +17,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='UserComment',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('user_comment', models.TextField()),
-                ('user_image', models.FileField(default='default.jpg', upload_to='comment_pics')),
-                ('user_name', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('user_image', models.FileField(
+                    default='default.jpg', upload_to='comment_pics')),
+                ('user_name', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

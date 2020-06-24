@@ -39,7 +39,7 @@ class View(PermissionRequiredMixin, TemplateView):
     permission_required = ('users.special_access',)
     permission_denied_message = 'You do not have the required permissions to access that page'
     raise_exception = True
-    
+
     def data(self):
         return get_data_fn()
 

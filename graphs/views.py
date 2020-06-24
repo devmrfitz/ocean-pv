@@ -5,12 +5,12 @@ from django.contrib.auth.decorators import login_required
 from .functions import (
     return_ocean_descriptions_with_graph,
     return_plot_and_view_data,
+    process_valid_dict
 )
 from .forms import GraphSelector
 
 
-from pprint import pprint as print 
-
+from pprint import pprint as print
 
 
 @login_required
@@ -29,18 +29,17 @@ def multiple_result_view(request):
                 primary_key in form.cleaned_data.get('primary_key').split(',')
                 if primary_key
             )
-            
+
             view_dict = {
-            'master': form.cleaned_data.get('answer_group'),
-            'to_plot': primary_keys
+                'master': form.cleaned_data.get('answer_group'),
+                'to_plot': primary_keys
             }
-            
+
             valid_dict, unavailable_pks, duplicate_pks, plot = return_plot_and_view_data(
-                    view_dict) 
-            
-            # return HttpResponse('You entered corrupted data')
-            
-            print(valid_dict)
+                view_dict
+                )
+            d = process_valid_dict(valid_dict)
+            print(d)
             if unavailable_pks:
                 messages.info(
                     request,
@@ -54,7 +53,7 @@ def multiple_result_view(request):
 
             return render(request, 'graphs/multiple_results.html', {
                 'form': form,
-                'plot': plot, 'percentage_list': 'percentage_list'
+                'plot': plot, 'valid_dict': valid_dict
             })
 
     else:

@@ -12,7 +12,6 @@
             <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
                 {% if plot %}
                 {% include 'includes/graph_instructions.html' %}
-                {{ percentage_list }}
                 {{ plot|safe }}
                 {% endif %}
                 <form method="POST">
@@ -27,13 +26,33 @@
                             {% endif %}
                         </p>
                 </form>
-                <div></div>
             </div>
             <div class="row animate-box">
                 <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
                     <h3>Example: </h3>
                     <img class="img img-thumbnail" src="{% static 'graphs/images/multiple_results.png' %}"
                         alt="graph_instructions">
+                        </div>
+                        </div>
+                        
+<div class="row animate-box">
+<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+<div class="card-group">
+
+{% for dict in valid_dict %}
+  <div class="card border-primary mb-3">
+   <div class="card-header text-success">{{ dict.name }}</div>
+    <div class="card-body">
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+{% endfor %}
+
+</div>
+</div>
+</div>
+  
                 </div>
             </div>
         </div>
