@@ -119,3 +119,7 @@ class TestInteractionsGetMethod:
 @pytest.mark.unittest
 class TestInteractionsPostMethod:
     pass
+
+
+if __name__ == '__main__':
+    pytest.main()

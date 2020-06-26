@@ -13,6 +13,6 @@ def find_similar_usernames(form):
 
 def find_answer_groups_counts(queryset):
     answer_groups = [SelfAnswerGroup.objects.filter(
-        Q(user_profile__exact=profile)).count() for profile in queryset]
+        Q(self_user_profile__exact=profile)).count() for profile in queryset]
 
     return answer_groups

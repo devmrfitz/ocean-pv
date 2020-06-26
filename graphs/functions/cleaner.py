@@ -27,7 +27,7 @@ def clean_multiple_results_data(master_pk: int, *primary_keys: list):
         ans_gp = SelfAnswerGroup.objects.get(pk=pk)
         master_bool = True if pk is int(master_pk.pk) else False
         another.append({
-            'name': ans_gp.user_profile.user.username,
+            'name': ans_gp.self_user_profile.user.username,
             'master': master_bool,
             'answer_group_pk': pk
         })

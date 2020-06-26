@@ -1,25 +1,28 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.urls import reverse_lazy
 
 from .functions import (
     save_self_answers_to_db,
     save_relation_answers_to_db,
     find_similar_usernames,
     find_answer_groups_counts,
-    get_data_fn
+    get_data_fn,
+    return_questions,
+    form_json_data
 )
 from .models import (
-    SelfQuestion,
-    RelationQuestion
+    SelfAnswerGroup,
+    RelationAnswerGroup
 )
 from .forms import (
     UserAnswerChoiceForm,
-    RelationSelectorForm
+    RelationSelectorForm,
+    AnswerFormset
 )
-from mixins import CustomLoginRequiredMixin
 
 
 class HowtoView(TemplateView):
@@ -44,61 +47,53 @@ class View(PermissionRequiredMixin, TemplateView):
         return get_data_fn()
 
 
-@login_required
-def self_question_list_view(request):
-    questions = [question['question_text']
-                 for question in SelfQuestion.objects.values('question_text')]
-    if not questions:
-        return render(request, 'interactions/error.html')
-    if request.method == 'POST':
-        form = UserAnswerChoiceForm(request.POST)
-        if form.is_valid():
-            new_answer_group_pk = save_self_answers_to_db(
-                request.user,
-                form,
-                len(questions)
-            )
-            request.session['answer_group'] = new_answer_group_pk
-            messages.success(
-                request, 'Your answers were saved successfully! ')
-            return redirect('users:results', username=request.user.username)
-        else:
-            messages.info(request, 'Please correct the errors below ')
-    else:
-        form = UserAnswerChoiceForm()
+class SelfQuestionView(FormView):
+    template_name = 'interactions/questions.html'
+    form_class = AnswerFormset
+    questions = return_questions('SelfAnswerGroup')
+    extra_context = {'questions': questions}
 
-    return render(request, 'interactions/questions.html',
-                  {'form': zip(form, questions)})
+    def get_success_url(self):
+        url = reverse_lazy(
+            'users:results',
+            kwargs={'username': self.request.user.username}
+        )
+        return url
+
+    def form_valid(self, formset):
+        json_data = form_json_data(formset, self.questions)
+        primary_key = save_self_answers_to_db(
+            json_data, self.request
+        )
+        self.request.session['self_ans_gp'] = primary_key
+        messages.add_message(self.request, messages.SUCCESS,
+                             'Your answers were saved successfully')
+        return super(SelfQuestionView, self).form_valid(formset)
 
 
-@login_required
-def relation_question_list_view(request, pk):
-    questions = [
-        question['question_text']
-        for question in RelationQuestion.objects.values('question_text')
-    ]
-    if not questions:
-        return render(request, 'interactions/error.html')
-    if request.method == 'POST':
-        form = UserAnswerChoiceForm(request.POST)
-        if form.is_valid():
-            new_answer_group_pk = save_relation_answers_to_db(
-                request.user,
-                pk,
-                form,
-                len(questions)
-            )
-            request.session['relation_answer_group'] = new_answer_group_pk
-            messages.success(
-                request, 'Your answers were saved successfully! ')
-            return redirect('users:results', username=request.user.username)
-        else:
-            messages.info(request, 'Please correct the errors below ')
-    else:
-        form = UserAnswerChoiceForm()
+class RelationQuestionView(FormView):
+    template_name = 'interactions/questions.html'
+    form_class = AnswerFormset
+    questions = return_questions('RelationAnswerGroup')
+    extra_context = {'questions': questions}
 
-    return render(request, 'interactions/questions.html',
-                  {'form': zip(form, questions)})
+    def get_success_url(self):
+        url = reverse_lazy(
+            'users:results',
+            kwargs={'username': self.request.user.username}
+        )
+        return url
+
+    def form_valid(self, formset):
+        json_data = form_json_data(formset, self.questions)
+        primary_key = save_relation_answers_to_db(
+            self.kwargs['pk'], json_data, self.request
+        )
+        self.request.session['rel_ans_gp'] = primary_key
+        messages.add_message(self.request, messages.SUCCESS,
+                             'Your answers were saved successfully')
+        return super(RelationQuestionView, self).form_valid(formset)
+
 
 # TODO: queryset must not show current user's profile in the queryset
 
@@ -110,8 +105,10 @@ def howto_relations_view(request):
         if form.is_valid():
             queryset = find_similar_usernames(form)
             answer_groups_counts = find_answer_groups_counts(queryset)
-            context = {'form': form, 'queryset': zip(
-                queryset, answer_groups_counts)}
+            context = {
+                'form': form,
+                'queryset': list(zip(queryset, answer_groups_counts))
+            }
             if not queryset:
                 messages.info(request, 'No such profile exists')
                 return render(request, 'interactions/howto_relations.html',

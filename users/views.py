@@ -30,7 +30,7 @@ from mixins import CustomLoginRequiredMixin
 @login_required
 def result_view(request, username):
     self_answer_groups = SelfAnswerGroup.objects.filter(
-        user_profile=request.user.profile).order_by('-answer_date_and_time')
+        self_user_profile=request.user.profile).order_by('-answer_date_and_time')
     relation_answer_groups = RelationAnswerGroup.objects.filter(
         self_user_profile=request.user.profile).order_by(
             '-answer_date_and_time'
@@ -178,5 +178,5 @@ class SelfAnswerGroupsListView(CustomLoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return SelfAnswerGroup.objects.filter(
-            user_profile=self.kwargs['pk']
+            self_user_profile=self.kwargs['pk']
         ).order_by('-answer_date_and_time')

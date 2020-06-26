@@ -7,3 +7,6 @@ from interactions.models import (
     SelfAnswerGroup,
     UserAnswerChoice,
 )
+
+if __name__ == '__main__':
+    pytest.main()

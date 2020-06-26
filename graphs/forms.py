@@ -19,4 +19,4 @@ class GraphSelector(forms.Form):
     def __init__(self, user, *args, **kwargs):
         super(GraphSelector, self).__init__(*args, **kwargs)
         self.fields['answer_group'].queryset = SelfAnswerGroup.objects.filter(
-            user_profile=user.profile).order_by('-answer_date_and_time')
+            self_user_profile=user.profile).order_by('-answer_date_and_time')

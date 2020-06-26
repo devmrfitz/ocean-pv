@@ -1,7 +1,7 @@
+import json
+
 from interactions.models import (
     SelfAnswerGroup,
-    UserAnswerChoice,
-    SelfQuestion
 )
 
 
@@ -10,26 +10,13 @@ def update_dict_with_score(valid_dict: list) -> list:
     for dictionary in valid_dict:
         answer_group = SelfAnswerGroup.objects.get(
             pk=dictionary['answer_group_pk'])
-
-        answers = [
-            answer.answer_choice for answer in UserAnswerChoice.objects.filter(
-                self_answer_group=answer_group)
-        ]
-
-        question_factors = [
-            answer.question.question_factor for
-            answer in UserAnswerChoice.objects.filter(
-                self_answer_group=answer_group)
-        ]
+        json_data = json.loads(answer_group.answers)
+        answers = [ans['answer_choice'] for ans in json_data]
+        question_factors = [ans['question']['factor'] for ans in json_data]
+        qn_subclasses = [ans['question']['subclass'] for ans in json_data]
 
         final_scores = [answer*question_factor for answer,
                         question_factor in zip(answers, question_factors)]
-
-        qn_subclasses = [
-            answer.question.ocean_subclass for
-            answer in UserAnswerChoice.objects.filter(
-                self_answer_group=answer_group)
-        ]
 
         scores = [0, 0, 0, 0, 0]
         for final_score, question_subclass in zip(final_scores, qn_subclasses):

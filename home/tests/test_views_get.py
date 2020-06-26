@@ -5,7 +5,9 @@ from django.core import mail
 from django.conf import settings
 import pytest
 
-# TODO: Add pytest.mark.unittest to classes 
+# TODO: Add pytest.mark.unittest to classes
+
+
 @pytest.mark.unittest
 class TestHomeGetMethod:
 
@@ -171,3 +173,7 @@ class TestHomePostMethod:
         assert mail.outbox[0].from_email == data['from_email']
         assert mail.outbox[0].to == [settings.EMAIL_HOST_USER] if settings.EMAIL_HOST_USER else [
             'ocean-pv_dev@email.com']
+
+
+if __name__ == '__main__':
+    pytest.main()

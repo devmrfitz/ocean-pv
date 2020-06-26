@@ -3,6 +3,7 @@
 <h1>Questions</h1>
 {% endblock %}
 {% load widget_tweaks %}
+{% load custom_filters %}
 
 {% block body %}
 <div id="gtco-services">
@@ -12,16 +13,18 @@
             <div class="col-md-offset-2">
                 <form method="POST" class="post-form">
                     {% csrf_token %}
-
+                    {{ form.management_form }}
                     <table class="table table-striped table-bordered">
                         <tbody>
-                            {% for field, questions in form %}
+                            {% for field, question in form|zip_lists:questions %}
                             <div class="form-group">
                                 <tr>
                                     <td>
                                         <label for="{{ field.id_for_label }}">
-                                            {{ forloop.counter }}) {{ questions }}</label></td>
-                                    <td>{{ field|add_class:"form-control form-control-lg col-lg-12"  }}
+                                            {{ forloop.counter }})
+                                            {{ question.text }}
+                                        </label></td>
+                                    <td>{{ field.answer_choice }}
                                     </td>
                                 </tr>
                             </div>

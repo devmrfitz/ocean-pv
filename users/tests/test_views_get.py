@@ -108,4 +108,7 @@ class TestUsersViewsGetMethod:
 
         assert response.status_code == 200
         assert template_name in [t.name for t in response.templates]
-    
+
+
+if __name__ == '__main__':
+    pytest.main()

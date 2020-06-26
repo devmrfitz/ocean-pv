@@ -66,3 +66,7 @@ def test_users_urls(
     except (AttributeError, AssertionError):
         assert reverse_view.func.view_class == view_func
         assert resolve_view.func.view_class == view_func
+
+
+if __name__ == '__main__':
+    pytest.main()

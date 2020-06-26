@@ -59,6 +59,5 @@ class TestGraphsViewsGetMethod:
         assert template_name in [t.name for t in response.templates]
 
 
-@pytest.mark.unittest
-class TestGraphsPostMethod:
-    pass
+if __name__ == '__main__':
+    pytest.main()

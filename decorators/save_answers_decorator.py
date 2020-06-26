@@ -2,11 +2,7 @@ from functools import wraps
 
 from interactions.models import (
     SelfAnswerGroup,
-    RelationAnswerGroup,
-    UserAnswerChoice,
-    RelationAnswerChoice,
-    SelfQuestion,
-    RelationQuestion
+    RelationAnswerGroup
 )
 
 

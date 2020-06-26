@@ -1,53 +1,48 @@
+import json
+from pprint import pprint as print
+
 from interactions.models import (
     SelfAnswerGroup,
     RelationAnswerGroup,
-    UserAnswerChoice,
-    RelationAnswerChoice,
-    SelfQuestion,
-    RelationQuestion
 )
 from users.models import UserProfile
 
 
-def save_self_answers_to_db(
-    user,
-    form,
-    num_questions
-):
-    new_answer_group = SelfAnswerGroup.objects.create(
-        user_profile=user.profile,)
-    for x in range(1, num_questions+1):
-        answer = UserAnswerChoice.objects.create(
-            user=user,
-            answer_choice=form.cleaned_data.get(
-                f"answer_for_question_{x}"),
-            question=SelfQuestion.objects.get(
-                overall_question_number=x),
-            self_answer_group=new_answer_group,
-        )
-        answer.save()
+def form_json_data(formset, questions: list) -> list:
+    json_data = []
+    for form, question in zip(formset, questions):
+        valid_dict = {
+            'answer_choice': int(form.cleaned_data.get('answer_choice')),
+            'question': {
+                'subclass': question['subclass'],
+                'factor': int(question['factor'])
+            }
+        }
+        json_data.append(valid_dict)
 
-    return new_answer_group.pk
+    json_data = json.dumps(json_data)
+    return json_data
 
 
-def save_relation_answers_to_db(
-    user,
-    relation,
-    form,
-    num_questions
-):
-    relation_profile = UserProfile.objects.get(pk=relation)
-    new_answer_group = RelationAnswerGroup.objects.create(
-        self_user_profile=user.profile, relation_user_profile=relation_profile)
-    for x in range(1, num_questions+1):
-        answer = RelationAnswerChoice.objects.create(
-            user=user,
-            answer_choice=form.cleaned_data.get(
-                f"answer_for_question_{x}"),
-            question=RelationQuestion.objects.get(
-                overall_question_number=x),
-            self_answer_group=new_answer_group,
-        )
-        answer.save()
+def save_self_answers_to_db(json_data: list, request) -> int:
+    """ A function that takes json data (a list of dicts) and saves them to
+    the database under the model of SelfAnswerGroup """
+    answer_group = SelfAnswerGroup.objects.create(
+        self_user_profile=request.user.profile,
+        answers=json_data
+    )
 
-    return new_answer_group.pk
+    return answer_group.pk
+
+
+def save_relation_answers_to_db(rel: int, json_data: list, request) -> int:
+    """ A function that takes json data (a list of dicts) and saves them to
+    the database under the model of RelationAnswerGroup """
+    rel_profile = UserProfile.objects.get(pk=rel)
+    answer_group = RelationAnswerGroup.objects.create(
+        self_user_profile=request.user.profile,
+        answers=json_data,
+        relation_user_profile=rel_profile
+    )
+
+    return answer_group.pk

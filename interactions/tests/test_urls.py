@@ -44,3 +44,7 @@ def test_urls_interactions(
     except (AttributeError, AssertionError):
         assert reverse_view.func.view_class == view_func
         assert resolve_view.func.view_class == view_func
+
+
+if __name__ == '__main__':
+    pytest.main()

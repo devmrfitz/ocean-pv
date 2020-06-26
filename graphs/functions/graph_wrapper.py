@@ -3,7 +3,6 @@ from plotly.offline import plot
 
 from interactions.models import (
     SelfAnswerGroup,
-    UserAnswerChoice
 )
 from .plotter import draw_plot
 from .scores import update_dict_with_score
@@ -13,7 +12,7 @@ def return_valid_dict(pk: int) -> list:
     
     answer_group = SelfAnswerGroup.objects.get(pk=pk)
     valid_dict = [{
-    'name': answer_group.user_profile.user.username,
+    'name': answer_group.self_user_profile.user.username,
     'master': True,
     'answer_group_pk': pk
     }]
