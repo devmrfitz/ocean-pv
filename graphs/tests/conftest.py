@@ -15,9 +15,8 @@ from interactions.models import (
 
 @pytest.fixture()
 def create_answer_group():
-    """
-    Create self answer group data for graph calculations
-    """
+    """ Create self answer group data for graph calculations. """
+    
     def _create_answer_group(user, answer_group_model):
         answer_group = answer_group_model.objects.create(
             answer_date_and_time=now(),
@@ -30,9 +29,8 @@ def create_answer_group():
 
 @pytest.fixture()
 def create_questions():
-    """
-    Create self questions in the database for graph calculations
-    """
+    """ Create self questions in the database for graph calculations. """
+    
     def _create_questions(question_model):
         return mixer.blend(f"interactions.{question_model}")
 
@@ -41,9 +39,8 @@ def create_questions():
 
 @pytest.fixture()
 def create_answer_choices():
-    """
-    Create self answer choices for graph calculations
-    """
+    """ Create self answer choices for graph calculations. """
+    
     def _create_answer_choices(user, question, answer_group, answer_choice_model):
         return answer_choice_model.objects.create(
             user=user,
@@ -65,9 +62,9 @@ def interactions_wrapper(
     create_answer_choices,
     create_questions,
 ):
-    """
-    Creates an answer_group, then a question_list, then appropriate answer_choices and then returns them
-    """
+    """ Creates an answer_group, then a question_list, then
+    appropriate answer_choices and then returns them. """
+    
     def _interactions_wrapper(user, mode):
         if mode == "self":
             answer_group_model = SelfAnswerGroup

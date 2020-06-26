@@ -38,8 +38,7 @@ def multiple_result_view(request):
             valid_dict, unavailable_pks, duplicate_pks, plot = return_plot_and_view_data(
                 view_dict
                 )
-            d = process_valid_dict(valid_dict)
-            print(d)
+            grouped_data = list(process_valid_dict(valid_dict))
             if unavailable_pks:
                 messages.info(
                     request,
@@ -53,7 +52,7 @@ def multiple_result_view(request):
 
             return render(request, 'graphs/multiple_results.html', {
                 'form': form,
-                'plot': plot, 'valid_dict': valid_dict
+                'plot': plot, 'grouped_data': grouped_data
             })
 
     else:

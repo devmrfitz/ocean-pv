@@ -2,20 +2,18 @@ from django.shortcuts import (
     render,
     redirect,
     HttpResponseRedirect,
-    HttpResponse
 )
-from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth import authenticate, login,  update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.urls import reverse_lazy
-from django.contrib.auth.models import User
 from django.contrib import messages
 from django.urls import reverse
-from django.views.generic import TemplateView, UpdateView, DetailView, ListView
+from django.views.generic import UpdateView, DetailView, ListView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 
-from interactions.models import(
+from interactions.models import (
     SelfAnswerGroup,
     RelationAnswerGroup
 )
@@ -34,7 +32,9 @@ def result_view(request, username):
     self_answer_groups = SelfAnswerGroup.objects.filter(
         user_profile=request.user.profile).order_by('-answer_date_and_time')
     relation_answer_groups = RelationAnswerGroup.objects.filter(
-        self_user_profile=request.user.profile).order_by('-answer_date_and_time')
+        self_user_profile=request.user.profile).order_by(
+            '-answer_date_and_time'
+    )
     return render(
         request, 'users/results.html', {
             'self_answer_groups': self_answer_groups,
@@ -88,7 +88,10 @@ def register(request):
             return redirect('home:home')
     else:
         form = RegistrationForm()
-    return render(request, 'users/register.html', {'form': form, 'SITE_KEY': SITE_KEY})
+    return render(
+        request, 'users/register.html', {'form': form,
+                                         'SITE_KEY': SITE_KEY}
+    )
 
 
 @login_required
@@ -143,7 +146,9 @@ class UserLoginView(auth_views.LoginView):
         return super().dispatch(request, *args, **kwargs)
 
 
-class UserPasswordChangeDoneView(CustomLoginRequiredMixin, auth_views.PasswordChangeDoneView):
+class UserPasswordChangeDoneView(
+    CustomLoginRequiredMixin, auth_views.PasswordChangeDoneView
+):
     template_name = 'users/password_change_done.html'
 
 
@@ -169,6 +174,9 @@ class PasswordResetCompleteView(auth_views.PasswordResetCompleteView):
     template_name = 'users/password_reset/password_reset_complete.html'
 
 
-# TODO: Override the get_queryset method (or change self.queryset and also set the self.ordering attribute) so that only user_profiles of relevance are shown (currently, queryset is UserProfile.objects.all()). If you put self.queryset, then there is no need to define a model
 class SelfAnswerGroupsListView(CustomLoginRequiredMixin, ListView):
-    model = SelfAnswerGroup
+
+    def get_queryset(self):
+        return SelfAnswerGroup.objects.filter(
+            user_profile=self.kwargs['pk']
+        ).order_by('-answer_date_and_time')

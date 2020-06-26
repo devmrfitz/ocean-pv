@@ -88,8 +88,9 @@ def calculate_percentages(valid_dict: dict) -> list:
             focus = d['area']
     percentage_list = []
     for dictionary in valid_dict:
+        avg = (focus+dictionary['area'])/2
         dictionary.update({
-            'percentage': abs((dictionary['area']-focus)/focus)*100
+            'percentage': round(abs((dictionary['area']-avg)/avg)*100, 2)
         })
         dictionary.pop('area')
         dictionary.pop('score')

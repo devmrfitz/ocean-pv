@@ -10,6 +10,7 @@ from interactions.views import (
 )
 
 
+@pytest.mark.unittest
 @pytest.mark.parametrize(
     "reverse_url,kwargs ,resolve_url, view_func",
     [
@@ -26,7 +27,6 @@ from interactions.views import (
         ('interactions:view', {}, '/interactions/view/', View),
     ]
 )
-@pytest.mark.unittest
 def test_urls_interactions(
     return_views,
     kwargs,

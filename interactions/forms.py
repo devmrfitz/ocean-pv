@@ -18,6 +18,7 @@ class UserAnswerChoiceForm(forms.Form):
         (3, 'Neither agree nor disagree'),
         (4, 'Agree a little'),
         (5, 'Agree strongly'),
+        
     )
     answer_for_question_1 = forms.CharField(
         widget=forms.Select(attrs={'style': 'height: 45px'}, choices=CHOICES))

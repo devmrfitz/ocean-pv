@@ -36,14 +36,9 @@ def clean_multiple_results_data(master_pk: int, *primary_keys: list):
 
 
 def process_valid_dict(valid_dict: list) -> list:
-	if len(valid_dict) <= 2:
-		return [valid_dict] 
-	else:
-		cleaned = []
-		for index, dictionary in enumerate(valid_dict):
-			cleaner = []
-			cleaner.append(valid_dict[index:index+2])
-			cleaned.append(cleaner)
-		
-		return cleaned
-		
+    if len(valid_dict) <= 2:
+        yield valid_dict
+    else:
+        for i in range(0, len(valid_dict), 3):
+            yield valid_dict[i:i + 3]
+        

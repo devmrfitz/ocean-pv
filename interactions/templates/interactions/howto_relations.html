@@ -6,8 +6,8 @@
 <!--- TODO: AJAX-ify this page --->
 <div id="gtco-services">
     <div class="gtco-container">
-        <div class="row animate-box">
-            <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+        <div class="animate-box">
+            <div class="col-md-offset-2 text-center gtco-heading">
                 <form method="post">
                     {% csrf_token %}
                     {{ form|crispy }}

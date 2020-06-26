@@ -8,80 +8,44 @@
 {% endblock %}
 <!--===Home banner area===-->
 {% block body %}
+<div id="gtco-services">
+    <div class="gtco-container">
+
+        <div class="animate-box">
+            <div class="col-md-offset-2 gtco-heading text-center">
+                <p>Remember that list that we made all those months ago? And how I told you, I'm gonna do something with
+                    that list? Well here you go. </p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div id="gtco-services">
     <div class="gtco-container">
 
-        <div class="row animate-box">
-            <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+        <div class="animate-box">
+            <div class="col-md-offset-2 text-center gtco-heading">
                 <div id="gtco-testimonial">
                     <div class="gtco-container">
 
-                        <div class="row animate-box">
-                            <div class="owl-carousel owl-carousel-fullwidth ">
+                        {% for item in view.data %}
 
-                                <div class="item">
-                                    <div class="testimony-slide2 active text-center">
-                                        <figure>
-                                            <img src="{% static 'interactions/images/hugs.jpg' %}" alt="user">
-                                        </figure>
-                                        <span><strong>Hugs from Behind</strong></span>
-                                        <blockquote>
-                                            <p>Diptesh</p>
-                                        </blockquote>
-                                    </div>
+                        <div class="card mb-3 border-{{ item.color }}">
+                            <div class="card-header text-{{ item.color }}"><strong>{{ item.title }}</strong></div>
+                            <figure>
+                                <img src="{% static item.img %}" class="img-thumbnail" alt="user">
+                            </figure>
+                            <div class="card-body">
+                                <p class="card-text">{{ item.desc }}</p>
+                                <div class="card-footer bg-transparent border-success text-right">-{{ item.said_by }}
                                 </div>
-
-                                <div class="item">
-                                    <div class="testimony-slide2 active text-center">
-                                        <figure>
-                                            <img src="{% static 'interactions/images/long_walks.jpg' %}" alt="user">
-                                        </figure>
-                                        <span><strong>Long Walks</strong></span>
-                                        <blockquote>
-                                            <p>Diptesh</p>
-                                        </blockquote>
-                                    </div>
-                                </div>
-
-                                <div class="item">
-                                    <div class="testimony-slide2 active text-center">
-                                        <figure>
-                                            <img src="{% static 'interactions/images/dinner_together.jpg' %}">
-                                        </figure>
-                                        <span><strong>Cooking Dinner to Slow Music</strong></span>
-                                        <blockquote>
-                                            <p>Diptesh</p>
-                                        </blockquote>
-                                    </div>
-                                </div>
-
-                                <div class="item">
-                                    <div class="testimony-slide2 active text-center">
-                                        <figure>
-                                            <img src="{% static 'interactions/images/stars_together.jpg' %}">
-                                        </figure>
-                                        <span><strong>Watching the Stars Together</strong></span>
-                                        <blockquote>
-                                            <p>Diptesh</p>
-                                        </blockquote>
-                                    </div>
-                                </div>
-
-                                <div class="item">
-                                    <div class="testimony-slide2 active text-center">
-                                        <figure>
-                                            <img src="{% static 'interactions/images/' %}">
-                                        </figure>
-                                        <span><strong> </strong></span>
-                                        <blockquote>
-                                            <p>Gunjan</p>
-                                        </blockquote>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
+
+                        {% endfor %}
+
+
+
                     </div>
                 </div>
             </div>
