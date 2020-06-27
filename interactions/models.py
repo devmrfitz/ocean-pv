@@ -1,20 +1,29 @@
 from django.db import models
-from django.contrib.auth.models import User
 from users.models import UserProfile
-from django.conf import settings
 from django.urls import reverse
 
 from .validators import json_validator
 
 
 class BaseAnswerGroup(models.Model):
-    
+
     answer_date_and_time = models. DateTimeField(auto_now_add=True)
-    self_user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='%(class)s_self')
-    answers = models.TextField(validators=[json_validator])
-    
+    self_user_profile = models.ForeignKey(
+        UserProfile, on_delete=models.CASCADE, related_name='%(class)s_self')
+    answers = models.TextField(
+        validators=[json_validator], editable=False
+    )
+
     class Meta:
         abstract = True
+
+    def return_formatted_json(self):
+        import json
+        json_data = json.loads(self.answers)
+        return json.dumps(json_data, indent=4, sort_keys=True)
+
+    return_formatted_json.short_description = 'Formatted data'
+
 
 class SelfAnswerGroup(BaseAnswerGroup):
 
@@ -27,8 +36,9 @@ class SelfAnswerGroup(BaseAnswerGroup):
 
 class RelationAnswerGroup(BaseAnswerGroup):
     relation_user_profile = models.ForeignKey(
-        UserProfile, on_delete=models.CASCADE, related_name='%(class)s_relation')
+        UserProfile, on_delete=models.CASCADE,
+        related_name='%(class)s_relation'
+    )
 
     def __str__(self):
         return f"{self.id}"
-    

@@ -29,3 +29,6 @@ Running the tests
 =================
 A ``pytest.ini`` present in the root directory takes care of pointing to the correct settings. It also writes the test coverage in ``htmlcov/``. Simply run ``pytest`` in the root directory to get the tests underway. 
 
+Integrated tests
+================
+These tests are present in ``integrated_tests/``

@@ -1,8 +1,11 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 
 
 class CustomLoginRequiredMixin(LoginRequiredMixin):
+    """ The LoginRequiredMixin extended to add a relevant message to the
+    messages framework by setting the ``permission_denied_message``
+    attribute. """
 
     permission_denied_message = 'You have to be logged in to access that page'
 
@@ -11,10 +14,15 @@ class CustomLoginRequiredMixin(LoginRequiredMixin):
             messages.add_message(request, messages.WARNING,
                                  self.permission_denied_message)
             return self.handle_no_permission()
-        return super(CustomLoginRequiredMixin, self).dispatch(request, *args, **kwargs)
+        return super(CustomLoginRequiredMixin, self).dispatch(
+            request, *args, **kwargs
+        )
 
 
 class RequiredFieldsMixin:
+    """ This can be used as a mixin in forms to easily specify which fields
+    are required through the ``required_fields`` attribute, in the ``Meta``
+    class. Excluded fields are not touched. """
 
     def __init__(self, *args, **kwargs):
 

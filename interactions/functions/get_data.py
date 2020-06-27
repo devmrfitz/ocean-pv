@@ -13,8 +13,8 @@ def get_data_fn():
         j = json.load(f)
         for index, dictionary in enumerate(j, 1):
             dictionary.update({
-            'index': index, 
-            'color': random.choice(['danger', 'success', 'info', 'warning', 'dark'])
+                'index': index,
+                'color': random.choice(['danger', 'success', 'info', 'warning', 'dark'])
             })
         random.shuffle(j)
         return j

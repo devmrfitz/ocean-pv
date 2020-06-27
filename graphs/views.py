@@ -37,7 +37,7 @@ def multiple_result_view(request):
 
             valid_dict, unavailable_pks, duplicate_pks, plot = return_plot_and_view_data(
                 view_dict
-                )
+            )
             grouped_data = list(process_valid_dict(valid_dict))
             if unavailable_pks:
                 messages.info(

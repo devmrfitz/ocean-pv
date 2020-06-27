@@ -14,6 +14,6 @@ with open('docs/project_deps/data/questions_dictionary.csv') as f:
     f_reader = csv.DictReader(f, fieldnames=fieldnames, delimiter='|')
     mylst = list(f_reader)
     random.shuffle(mylst)
-    
+
     with open('docs/project_deps/data/questions.json', 'w') as t:
-    	json.dump(mylst, t, indent=4)
+        json.dump(mylst, t, indent=4)

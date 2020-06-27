@@ -12,9 +12,9 @@ def selenium_options():
 
 @pytest.fixture()
 def selenium_driver(selenium_options):
-    
+
     drivers = []
-    
+
     def _make_selenium_driver(use=False):
         if use is True:
             driver = webdriver.Chrome(
@@ -24,10 +24,10 @@ def selenium_driver(selenium_options):
         else:
             driver = webdriver.Chrome(
                 executable_path='integrated_tests/webdrivers/chromedriver', options=None)
-            drivers.append(driver) 
+            drivers.append(driver)
             return driver
-                
+
     yield _make_selenium_driver
-    
+
     for driver in drivers:
         driver.close()

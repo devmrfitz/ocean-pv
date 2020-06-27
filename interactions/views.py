@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views.generic import TemplateView, FormView
@@ -14,12 +14,7 @@ from .functions import (
     return_questions,
     form_json_data
 )
-from .models import (
-    SelfAnswerGroup,
-    RelationAnswerGroup
-)
 from .forms import (
-    UserAnswerChoiceForm,
     RelationSelectorForm,
     AnswerFormset
 )
@@ -48,6 +43,14 @@ class View(PermissionRequiredMixin, TemplateView):
 
 
 class SelfQuestionView(FormView):
+    """ Displays the ``form`` which eventually saves all the answers in the
+    database after necessary validation. The function ``return_questions``
+    yields a list of questions which is present as a json file present in
+    ``docs/project_deps/data/self_questions.json``. After a test is
+    successfully attempted, a ``request.session['self_ans_gp']`` is set
+    to the Test ID of the newly created test. This can be used for
+    notification purposes on the results page. """
+
     template_name = 'interactions/questions.html'
     form_class = AnswerFormset
     questions = return_questions('SelfAnswerGroup')
@@ -70,8 +73,15 @@ class SelfQuestionView(FormView):
                              'Your answers were saved successfully')
         return super(SelfQuestionView, self).form_valid(formset)
 
+# FIXME: Since both RelationQUestionView and SelfQuestionView are same,
+# (with the difference of sending different questions to the view), an
+# inheritance BaseClass should be implemented to prevent duplicate code
+
 
 class RelationQuestionView(FormView):
+    """ Same as ``SelfQuestionView`` with the difference that the questions
+    sent are loaded from ``docs/project_deps/data/relation_questions.json``.
+    A ``request.session['rel_ans_gp']`` set in this case. """
     template_name = 'interactions/questions.html'
     form_class = AnswerFormset
     questions = return_questions('RelationAnswerGroup')
@@ -95,15 +105,12 @@ class RelationQuestionView(FormView):
         return super(RelationQuestionView, self).form_valid(formset)
 
 
-# TODO: queryset must not show current user's profile in the queryset
-
-
 @login_required
 def howto_relations_view(request):
     if request.method == 'POST':
         form = RelationSelectorForm(request.POST)
         if form.is_valid():
-            queryset = find_similar_usernames(form)
+            queryset = find_similar_usernames(form, request)
             answer_groups_counts = find_answer_groups_counts(queryset)
             context = {
                 'form': form,

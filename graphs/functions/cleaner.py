@@ -1,7 +1,11 @@
 from interactions.models import SelfAnswerGroup
 
 
-def clean_multiple_results_data(master_pk: int, *primary_keys: list):
+def clean_multiple_results_data(master_pk: int, *primary_keys: list) -> tuple:
+    """ Takes in the form submitted in ``multiple_result_view`` and cleans it
+    by removing all the duplicate IDs and invalid IDs. Then returns a json list
+    containing only the valid IDs (the ones present in database). """
+
     primary_keys = list(
         int(primary_key) for
         primary_key in primary_keys if primary_key.strip().isdigit()
@@ -36,9 +40,11 @@ def clean_multiple_results_data(master_pk: int, *primary_keys: list):
 
 
 def process_valid_dict(valid_dict: list) -> list:
+    """ This is used for better formatting of cards which are displayed in
+    ``multiple_result_view``, by grouping them in lists of length 3. """
+
     if len(valid_dict) <= 2:
         yield valid_dict
     else:
         for i in range(0, len(valid_dict), 3):
             yield valid_dict[i:i + 3]
-        

@@ -1,5 +1,4 @@
 import json
-from pprint import pprint as print
 
 from interactions.models import (
     SelfAnswerGroup,
@@ -9,6 +8,11 @@ from users.models import UserProfile
 
 
 def form_json_data(formset, questions: list) -> list:
+    """ For each ``form`` in ``formset``, extracts the user's answer_choice
+    and adds the question details along with its attributes as a dictionary.
+    This is the actual data that is stored in the database as answer, after
+    passing necessary validation. """
+
     json_data = []
     for form, question in zip(formset, questions):
         valid_dict = {
@@ -27,6 +31,7 @@ def form_json_data(formset, questions: list) -> list:
 def save_self_answers_to_db(json_data: list, request) -> int:
     """ A function that takes json data (a list of dicts) and saves them to
     the database under the model of SelfAnswerGroup """
+
     answer_group = SelfAnswerGroup.objects.create(
         self_user_profile=request.user.profile,
         answers=json_data
@@ -38,6 +43,7 @@ def save_self_answers_to_db(json_data: list, request) -> int:
 def save_relation_answers_to_db(rel: int, json_data: list, request) -> int:
     """ A function that takes json data (a list of dicts) and saves them to
     the database under the model of RelationAnswerGroup """
+
     rel_profile = UserProfile.objects.get(pk=rel)
     answer_group = RelationAnswerGroup.objects.create(
         self_user_profile=request.user.profile,

@@ -16,10 +16,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='SelfAnswerGroup',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('answer_date_and_time', models.DateTimeField(auto_now_add=True)),
                 ('answers', models.TextField()),
-                ('self_user_profile', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='selfanswergroup_self', to='users.UserProfile')),
+                ('self_user_profile', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                                        related_name='selfanswergroup_self', to='users.UserProfile')),
             ],
             options={
                 'abstract': False,
@@ -28,11 +30,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='RelationAnswerGroup',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('answer_date_and_time', models.DateTimeField(auto_now_add=True)),
                 ('answers', models.TextField()),
-                ('relation_user_profile', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='relationanswergroup_relation', to='users.UserProfile')),
-                ('self_user_profile', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='relationanswergroup_self', to='users.UserProfile')),
+                ('relation_user_profile', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                                            related_name='relationanswergroup_relation', to='users.UserProfile')),
+                ('self_user_profile', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                                        related_name='relationanswergroup_self', to='users.UserProfile')),
             ],
             options={
                 'abstract': False,
