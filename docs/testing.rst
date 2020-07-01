@@ -31,4 +31,6 @@ A ``pytest.ini`` present in the root directory takes care of pointing to the cor
 
 Integrated tests
 ================
-These tests are present in ``integrated_tests/``
+These tests are present in ``integrated_tests/``. By default, they use
+Chromedriver for testing purposes. The associated webdriver is in
+``integrated_tests/webdrivers``.

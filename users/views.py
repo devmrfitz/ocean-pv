@@ -35,10 +35,15 @@ def result_view(request, username):
         self_user_profile=request.user.profile).order_by(
             '-answer_date_and_time'
     )
+    others_answer_groups = RelationAnswerGroup.objects.filter(
+        relation_user_profile=request.user.profile).order_by(
+            '-answer_date_and_time'
+    )
     return render(
         request, 'users/results.html', {
             'self_answer_groups': self_answer_groups,
-            'relation_answer_groups': relation_answer_groups
+            'relation_answer_groups': relation_answer_groups, 
+            'others_answer_groups': others_answer_groups
         }
     )
 

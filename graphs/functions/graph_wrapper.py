@@ -6,6 +6,7 @@ from .scores import update_dict_with_score
 
 
 def return_valid_dict(pk: int) -> list:
+    """ Makes a dict to be used in ``single_result_view`` """
 
     answer_group = SelfAnswerGroup.objects.get(pk=pk)
     valid_dict = [{

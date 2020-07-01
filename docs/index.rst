@@ -10,6 +10,12 @@
    authors
    license
 
+.. autosummary::
+   :toctree: modules
+
+   interactions
+   users
+   graphs
 Indices and tables
 ==================
 

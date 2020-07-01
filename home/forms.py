@@ -19,7 +19,7 @@ class ContactForm(forms.Form):
     message = forms.CharField(
         required=True,
         label='Email Body',
-        widget=forms.Textarea()
+        widget=forms.Textarea(attrs={'style': 'height: 150px'})
     )
 
     def send_email(self, *args, **kwargs):

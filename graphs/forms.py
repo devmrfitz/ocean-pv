@@ -14,7 +14,7 @@ class GraphSelector(forms.Form):
             }
         )
     )
-    answer_group = forms.ModelChoiceField(queryset=None)
+    answer_group = forms.ModelChoiceField(queryset=None, label='Your Test ID')
 
     def __init__(self, user, *args, **kwargs):
         super(GraphSelector, self).__init__(*args, **kwargs)

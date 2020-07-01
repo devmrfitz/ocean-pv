@@ -87,7 +87,6 @@ To get the website up and running, you need to run the following:
 
 	$ python manage.py makemigrations
 	$ python manage.py migrate
-	$ python manage.py loaddata questions.json
 	$ python manage.py createsuperuser
 	$ python manage.py runserver 
 

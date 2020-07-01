@@ -8,30 +8,8 @@
 {% block body %}
 <div id="gtco-features">
     <div class="gtco-container">
-
-        <div class="card" style="text-align: center; border: thin solid black;">
-
-            <!-- Card image -->
-            <img class="rounded-circle account-img" src="{{ userprofile.user_picture.url }}" alt="Card image cap">
-
-            <!-- Card content -->
-            <div class="card-body">
-
-                <!-- Title -->
-                <h4 class="card-title"><a>Card title</a></h4>
-                <!-- Text -->
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.</p>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="row" style="margin-top: 100px;">
-            <div class="col-md-4 col-sm-4">
+    
+            
                 <div class="feature-center animate-box" data-animate-effect="fadeIn">
                     <span class="icon">
                         <i class="icon-user"></i>
@@ -41,10 +19,9 @@
                             <h2><a href="{% url 'users:results' username=user.username %}">Your test results</a></h2>
                         </div>
                     </p>
-                </div>
             </div>
-
-            <div class="col-md-4 col-sm-4">
+           
+            
                 <div class="feature-center animate-box" data-animate-effect="fadeIn">
                     <span class="icon">
                         <i class="icon-users"></i>
@@ -55,9 +32,7 @@
                         </div>
                     </p>
                 </div>
-            </div>
 
-            <div class="col-md-4 col-sm-4">
                 <div class="feature-center animate-box" data-animate-effect="fadeIn">
                     <span class="icon">
                         <i class="icon-paper-stack"></i>
@@ -69,10 +44,7 @@
                         </div>
                     </p>
                 </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-sm-4">
+        
             <div class="feature-center animate-box" data-animate-effect="fadeIn">
                 <span class="icon">
                     <i class="icon-edit"></i>
@@ -83,7 +55,6 @@
                     </div>
                 </p>
             </div>
-        </div>
 
 
     </div>

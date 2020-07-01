@@ -33,9 +33,19 @@ class RegistrationForm(RequiredFieldsMixin, UserCreationForm):
 
 class ProfileUpdateForm(RequiredFieldsMixin, forms.ModelForm):
 
-    user_bio = forms.CharField(widget=forms.Textarea)
+    user_bio = forms.CharField(widget=forms.Textarea(
+        attrs={'style': 'height: 200px'})
+    )
     birth_date = forms.DateField(
         widget=forms.DateInput(attrs={'type': 'date'}))
+    CHOICES = (
+        (True, 'Yes'),
+        (False, 'No')
+    )
+    visible = forms.ChoiceField(
+        choices=CHOICES,
+        help_text='Whether your profile will be publicly visible or not'
+    )
 
     class Meta:
         model = UserProfile
@@ -45,9 +55,6 @@ class ProfileUpdateForm(RequiredFieldsMixin, forms.ModelForm):
             'country': CountrySelectWidget(
                 layout='{widget}'
             ),
-        }
-        help_texts = {
-            'visible': 'Whether your profile will be publicly visible or not'
         }
         required_fields = '__all__'
 

@@ -66,44 +66,44 @@
 	<div id="page">
 		<nav class="gtco-nav" role="navigation">
 			<div class="gtco-container">
-				<div class="row">
-					<!--TODO: This class row is also causing issues -->
-					<div class="col-xs-2">
-						<div id="gtco-logo"><a href="{% url 'home:home' %}">OCEAN.</a></div>
-					</div>
-					<div class="col-xs-10 text-right menu-1">
-						<ul>
-							<li class="active"><a href="{% url 'home:home' %}">Home</a></li>
-							{% if user.is_authenticated %}
-							<li class="active"><a href="{% url 'users:profile' user.username %}">Profile </a></li>
-							{% else %}
-							<li class="has-dropdown">
-								<a href="#">Profile Options</a>
-								<ul class="dropdown">
-									<li><a href="{% url 'users:register' %}">Register</a></li>
-									<li><a href="{% url 'users:login' %}">Login</a></li>
-								</ul>
-							</li>
-							{% endif %}
 
-							<li class="has-dropdown">
-								<a href="#">Dropdown</a>
-								<ul class="dropdown">
-									<li><a href="{% url 'home:resources' %}">Resources</a></li>
-									{% if user.is_authenticated %}
-									<li><a href="{% url 'users:results' username=request.user.username %}">Results </a>
-									</li>
-									{% endif %}
-									<li><a href="#">jQuery</a></li>
-								</ul>
-							</li>
-							<li><a href="{% url 'home:contact' %}">Contact</a></li>
-							{% if user.is_authenticated %}
-							<li><a href="{% url 'users:logout' %}">Logout</a></li>
-							{% endif %}
-						</ul>
-					</div>
+
+				<div class="col-xs-2">
+					<div id="gtco-logo"><a href="{% url 'home:home' %}">OCEAN.</a></div>
 				</div>
+				<div class="col-xs-10 text-right menu-1">
+					<ul>
+						<li class="active"><a href="{% url 'home:home' %}">Home</a></li>
+						{% if user.is_authenticated %}
+						<li class="active"><a href="{% url 'users:profile' user.username %}">Profile </a></li>
+						{% else %}
+						<li class="has-dropdown">
+							<a href="#">Profile Options</a>
+							<ul class="dropdown">
+								<li><a href="{% url 'users:register' %}">Register</a></li>
+								<li><a href="{% url 'users:login' %}">Login</a></li>
+							</ul>
+						</li>
+						{% endif %}
+
+						<li class="has-dropdown">
+							<a href="#">Discover</a>
+							<ul class="dropdown">
+								{% if user.is_authenticated %}
+								<li><a href="{% url 'users:results' username=user.username %}">Results</a>
+								<li><a href="{% url 'graphs:multiple_results' %}">Comparisons</a>
+								</li>
+								{% endif %}
+								<li><a href="{% url 'home:resources' %}">Resources</a></li>
+							</ul>
+						</li>
+						<li><a href="{% url 'home:contact' %}">Contact</a></li>
+						{% if user.is_authenticated %}
+						<li><a href="{% url 'users:logout' %}">Logout</a></li>
+						{% endif %}
+					</ul>
+				</div>
+
 			</div>
 		</nav>
 

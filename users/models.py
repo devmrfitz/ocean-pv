@@ -27,7 +27,13 @@ class UserProfile(models.Model):
         return f"{self.user}"
 
     def get_absolute_url(self):
-        return reverse('users:profile', kwargs={'username': self.user.username})
+        return reverse(
+            'users:profile',
+            kwargs={'username': self.user.username}
+        )
+
+    def natural_key(self):
+        return (self.user.username, self.user.pk)
 
     class Meta:
         permissions = (

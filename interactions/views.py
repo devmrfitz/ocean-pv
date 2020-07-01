@@ -35,7 +35,9 @@ class HowtoView(TemplateView):
 class View(PermissionRequiredMixin, TemplateView):
     template_name = 'interactions/view.html'
     permission_required = ('users.special_access',)
-    permission_denied_message = 'You do not have the required permissions to access that page'
+    permission_denied_message = (
+        'You do not have the required permissions to access that page'
+    )
     raise_exception = True
 
     def data(self):

@@ -7,6 +7,8 @@ sys.path.insert(0, os.path.abspath('..'))
 extensions = [
     'sphinx_rtd_theme',
     'sphinx.ext.todo',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
 ]
 
 todo_include_todos = True

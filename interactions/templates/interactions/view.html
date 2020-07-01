@@ -36,7 +36,7 @@
                                 <img src="{% static item.img %}" class="img-thumbnail" alt="user">
                             </figure>
                             <div class="card-body">
-                                <p class="card-text">{{ item.desc }}</p>
+                                <p class="card-text">{{ item.desc|safe }}</p>
                                 <div class="card-footer bg-transparent border-success text-right">-{{ item.said_by }}
                                 </div>
                             </div>

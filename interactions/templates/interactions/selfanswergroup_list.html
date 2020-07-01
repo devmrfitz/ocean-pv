@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% block banner_text %}
-<h1>Tests attempted by {{ object_list.0.user_profile.user.username }}</h1>
+<h1>Tests attempted by {{ object_list.0.self_user_profile.user.username }}</h1>
 {% endblock %}
 {% load widget_tweaks %}
 
 <!--- TODO: Change the ordering of the table so that test ID comes after date and time --->
 {% block body %}
+{% if object_list %}
 <div id="gtco-services">
     <div class="gtco-container">
 
@@ -47,4 +48,16 @@
         </div>
     </div>
 </div>
+{% else %}
+<div id="gtco-services">
+    <div class="gtco-container">
+
+        <div class="animate-box">
+            <div class="col-md-offset-2 text-center gtco-heading">
+                Looks like {{ object_list.0.self_user_profile.user.username }} haven't attempted any tests. Why don't you ask them to attempt one?
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
 {% endblock %}

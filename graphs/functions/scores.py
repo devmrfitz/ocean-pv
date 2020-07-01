@@ -6,10 +6,15 @@ from interactions.models import (
 
 
 def update_dict_with_score(valid_dict: list) -> list:
+    """ Updates the dict (from single and multiple_result_view) with
+    the scores of each user present in the list, by calculating their
+    ``answer_choice`` and multiplying them with corresponding
+    question factors. """
 
     for dictionary in valid_dict:
         answer_group = SelfAnswerGroup.objects.get(
-            pk=dictionary['answer_group_pk'])
+            pk=dictionary['answer_group_pk']
+        )
         json_data = json.loads(answer_group.answers)
         answers = [ans['answer_choice'] for ans in json_data]
         question_factors = [ans['question']['factor'] for ans in json_data]
@@ -31,8 +36,6 @@ def update_dict_with_score(valid_dict: list) -> list:
             elif question_subclass == 'neuroticism':
                 scores[4] = scores[4]+final_score
 
-        dictionary.update({
-            'score': scores
-        })
+        dictionary.update({'score': scores})
 
     return valid_dict

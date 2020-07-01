@@ -6,13 +6,13 @@
         "title": "Watch the stars together"
     },
     {
-        "desc": "A long road, a powerful but silent car and a night full of possibilities.",
+        "desc": "A long road, a powerful but silent car and a night full of possibilities. As the car smoothly cruises along, you suddenly find your lover's hand on yours. They leave the steering wheel (the car is a Tesla, duhhhh) and looks at you lovingly. Moments later, you're kissing each other passionately. The stars twinkle on silently and your heart is filled with satisfaction.",
         "img": "interactions/images/long_drives.jpg",
         "said_by": "Gun",
         "title": "Go on a long night drive"
     },
     {
-        "desc": "",
+        "desc": "<strong class='text-success'>Question:<br></strong> What is better than a couple walking hand-in-hand in a dimly lit romantic street?<br> <strong class='text-success'>Answer:<br></strong> That one of those couple is you, and the other is the love of your life. ",
         "img": "interactions/images/long_walks.jpeg",
         "said_by": "Mota Kahika",
         "title": "Long Walks"

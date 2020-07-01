@@ -5,8 +5,6 @@ from django.core import mail
 from django.conf import settings
 import pytest
 
-# TODO: Add pytest.mark.unittest to classes
-
 
 @pytest.mark.unittest
 class TestHomeGetMethod:

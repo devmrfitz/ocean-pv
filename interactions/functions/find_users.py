@@ -11,7 +11,9 @@ def find_similar_usernames(form: dict, request) -> list:
     username = form.cleaned_data.get('username').strip().lower()
     queryset = UserProfile.objects.filter(
         Q(user__username__contains=username)
-    ).exclude(Q(user__username__exact=request.user.username))
+    ).exclude(
+    Q(user__username__exact=request.user.username) | Q(visible=False)
+    )
 
     return queryset
 
