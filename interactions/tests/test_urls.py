@@ -4,8 +4,8 @@ import pytest
 from interactions.views import (
     HowtoView,
     View,
-    relation_question_list_view,
-    self_question_list_view,
+    SelfQuestionView,
+    RelationQuestionView, 
     howto_relations_view
 )
 
@@ -16,9 +16,9 @@ from interactions.views import (
     [
         # Func-based Views
         ('interactions:taketest', {}, '/interactions/taketest/',
-         self_question_list_view),
+         SelfQuestionView),
         ('interactions:taketest-relations', {'pk': 1},
-         '/interactions/taketest/relations/1/', relation_question_list_view),
+         '/interactions/taketest/relations/1/', RelationQuestionView),
 
         # Class-based Views
         ('interactions:howto', {}, '/interactions/howto/', HowtoView),

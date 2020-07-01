@@ -1,12 +1,12 @@
 *******************************
-OCEAN-Personality-Visualization
+OCEAN Personality Visualization
 *******************************
 
 .. image:: https://img.shields.io/github/license/IgnisDa/OCEAN-personality-visualization?style=for-the-badge   
 	:alt: GitHub
 
 .. image:: https://img.shields.io/travis/com/IgnisDa/OCEAN-personality-visualization?style=for-the-badge   
-        :alt: Travis (.com)
+    :alt: Travis (.com)
 
 A website to visualize your personality using graphs and compare it 
 with others. It asks you a
@@ -27,12 +27,11 @@ What this website does
 ======================
 After logging in (or signing up), you're guided to take a small
 test and asked some questions. Based on your answers, a graph is
-generated. This graph tell you where you stand according to the OCEAN_
-model.
+generated. This graph tell you where you stand according to the OCEAN_ personality model.
 
-.. image:: ./docs/project_deps/pictures/single_result_view.png
+.. image:: docs/project_deps/pictures/single_result_view.png
     :align: center 
-    :alt: alternate text
+    :alt: single_result_view.png
 
 Building the Docs
 =================

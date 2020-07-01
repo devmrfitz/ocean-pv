@@ -5,7 +5,6 @@ from graphs.views import (
     single_result_view,
     multiple_result_view,
 )
-from interactions.models import UserAnswerChoice, SelfQuestion
 
 
 @pytest.mark.unittest
