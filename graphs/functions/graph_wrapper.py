@@ -1,3 +1,6 @@
+import os
+import json
+
 from interactions.models import (
     SelfAnswerGroup,
 )
@@ -19,8 +22,46 @@ def return_valid_dict(pk: int) -> list:
     return valid_dict
 
 
+def return_descriptions(valid_dict: list) -> tuple:
+    """ This constructs the file path to ``descriptions.json`` and then
+    uses the ``valid_dict`` to match the scores from ``valid_dict`` and
+    classify them as high or low and return the relevant descriptions. """
+
+    file_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(file_dir, 'descriptions.json')
+    with open(file_path) as f:
+        json_data = json.load(f)
+
+    for dictionary in valid_dict:
+        dictionary.update({'descriptions': {}})
+        scores = dictionary['score']
+        for score in scores:
+            for desc in json_data:
+                if score == desc['subclass']:
+                    if scores[score] > 10:
+                        dictionary['descriptions'].update(
+                            {
+                                score: desc['descriptions']['high']
+                            }
+                        )
+                    else:
+                        dictionary['descriptions'].update(
+                            {
+                                score: desc['descriptions']['low']
+                            }
+                        )
+    return valid_dict
+
+
 def return_ocean_descriptions_with_graph(pk: int, *args, **kwargs) -> tuple:
+    """ This is used for ``single_result_view`` to make a plot
+    and then return the description of the personality related to that
+    particular graph. """
 
     valid_dict = return_valid_dict(pk)
+    valid_dict = return_descriptions(valid_dict)
+    plot = draw_plot(valid_dict)
+    for dictionary in valid_dict:
+        descriptions = dictionary.pop('descriptions')
 
-    return draw_plot(valid_dict)
+    return plot, descriptions

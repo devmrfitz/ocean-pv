@@ -2,10 +2,13 @@ from django.db import models
 from users.models import UserProfile
 from django.urls import reverse
 
-from .validators import json_validator
+from .validators import json_validator, percentage_validator
 
 
 class BaseAnswerGroup(models.Model):
+
+    def calc_scores(self):
+        return
 
     answer_date_and_time = models. DateTimeField(auto_now_add=True)
     self_user_profile = models.ForeignKey(
@@ -13,6 +16,11 @@ class BaseAnswerGroup(models.Model):
     answers = models.TextField(
         validators=[json_validator], editable=False
     )
+    accuracy = models.FloatField(
+        null=True, blank=True,
+        validators=[percentage_validator]
+    )
+    scores = models.TextField(calc_scores, editable=False)
 
     class Meta:
         abstract = True

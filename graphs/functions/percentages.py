@@ -20,8 +20,8 @@ def calculate_coordinates(valid_dict: list) -> list:
 
     score_list = []
     for dictionary in valid_dict:
-        score_list.append(dictionary['score'])
-
+        score_list.append([dictionary['score'][subclass]
+                           for subclass in dictionary['score']])
     theta = (2*math.pi)/len(score_list[0])
 
     coordinate_list = []

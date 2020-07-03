@@ -20,6 +20,7 @@ class RegistrationForm(RequiredFieldsMixin, UserCreationForm):
             'password1',
             'password2'
         ]
+        exclude = ['email']
         required_fields = '__all__'
 
         def save(self, commit=True):

@@ -5,7 +5,7 @@ from interactions.views import (
     HowtoView,
     View,
     SelfQuestionView,
-    RelationQuestionView, 
+    RelationQuestionView,
     howto_relations_view
 )
 

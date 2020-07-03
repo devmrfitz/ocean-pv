@@ -1,7 +1,7 @@
 import plotly.graph_objects as go
 from plotly.offline import plot
 
-from interactions.models import SelfAnswerGroup
+# FIXME: ``valid_dict['score'] should be a dict (currently a list)``
 
 
 def draw_plot(valid_dict: dict) -> str:
@@ -16,7 +16,8 @@ def draw_plot(valid_dict: dict) -> str:
     score_list = []
     tag_list = []
     for dictionary in valid_dict:
-        score_list.append(dictionary['score'])
+        score_list.append([dictionary['score'][subclass]
+                           for subclass in dictionary['score']])
         tag_list.append(
             f"{dictionary['answer_group_pk']}: {dictionary['name']}"
         )

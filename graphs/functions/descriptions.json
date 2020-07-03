@@ -1,0 +1,37 @@
+[
+    {
+        "subclass": "openness",
+        "descriptions": {
+            "high": "You're curious, and have a wide range of interests. You are also strong and independent. You are open to trying out new ideas and put them into action as soon as possible.",
+            "low": "You have a specific routine that you prefer to follow. You are practical and think ideas out before putting them to action. You like to play by the rules and conventions, and prefer that others follow those rules too."
+        }
+    },
+    {
+        "subclass": "conscientiousness",
+        "descriptions": {
+            "high": "You are hardworking and prefer to complete your work before leaving it unfinished. You work well with teams due to your dependability and team spirit. You are also organized and work better in an environment without material distraction or any kind of background noise like loud music or city traffic.",
+            "low": "You are quite impulsive, and work on whims a lot. You are careless and keep losing stuff. Being disorganized is one of your traits. Your working environment is mostly disorganized and you work better if there's some kind of background noise, be it soft music or the city traffic."
+        }
+    },
+    {
+        "subclass": "extraversion",
+        "descriptions": {
+            "high": "Outgoing, warm, seeks adventure.",
+            "low": "Quiet, reserved, withdrawn."
+        }
+    },
+    {
+        "subclass": "agreeableness",
+        "descriptions": {
+            "high": "Helpful, trusting, empathetic.",
+            "low": "Critical, uncooperative, suspicious."
+        }
+    },
+    {
+        "subclass": "neuroticism",
+        "descriptions": {
+            "high": "Anxious, unhappy, prone to negative emotions.",
+            "low": "Calm, even-tempered, secure."
+        }
+    }
+]

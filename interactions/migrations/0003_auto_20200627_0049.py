@@ -14,11 +14,13 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='relationanswergroup',
             name='answers',
-            field=models.TextField(editable=False, validators=[interactions.validators.json_validator]),
+            field=models.TextField(editable=False, validators=[
+                                   interactions.validators.json_validator]),
         ),
         migrations.AlterField(
             model_name='selfanswergroup',
             name='answers',
-            field=models.TextField(editable=False, validators=[interactions.validators.json_validator]),
+            field=models.TextField(editable=False, validators=[
+                                   interactions.validators.json_validator]),
         ),
     ]

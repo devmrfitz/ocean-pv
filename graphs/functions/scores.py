@@ -23,18 +23,34 @@ def update_dict_with_score(valid_dict: list) -> list:
         final_scores = [answer*question_factor for answer,
                         question_factor in zip(answers, question_factors)]
 
-        scores = [0, 0, 0, 0, 0]
+        scores = {'openness': 0, 'conscientiousness': 0, 'extraversion': 0,
+                  'agreeableness': 0, 'neuroticism': 0}
         for final_score, question_subclass in zip(final_scores, qn_subclasses):
             if question_subclass == 'openness':
-                scores[0] = scores[0]+final_score
+                scores['openness'] = (
+                    scores['openness']
+                    + final_score
+                )
             elif question_subclass == 'conscientiousness':
-                scores[1] = scores[1]+final_score
+                scores['conscientiousness'] = (
+                    scores['conscientiousness']
+                    + final_score
+                )
             elif question_subclass == 'extraversion':
-                scores[2] = scores[2]+final_score
+                scores['extraversion'] = (
+                    scores['extraversion']
+                    + final_score
+                )
             elif question_subclass == 'agreeableness':
-                scores[3] = scores[3]+final_score
+                scores['agreeableness'] = (
+                    scores['agreeableness']
+                    + final_score
+                )
             elif question_subclass == 'neuroticism':
-                scores[4] = scores[4]+final_score
+                scores['neuroticism'] = (
+                    scores['neuroticism']
+                    + final_score
+                )
 
         dictionary.update({'score': scores})
 

@@ -1,22 +1,20 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from .functions import (
     return_ocean_descriptions_with_graph,
     return_plot_and_view_data,
-    process_valid_dict
+    process_valid_dict,
 )
 from .forms import GraphSelector
 
 
-from pprint import pprint as print
-
-
 @login_required
 def single_result_view(request, pk):
-    plot = return_ocean_descriptions_with_graph(pk)
-    return render(request, 'graphs/individual_result.html', {'plot': plot})
+    plot, descriptions = return_ocean_descriptions_with_graph(pk)
+    return render(request, 'graphs/individual_result.html',
+                  {'plot': plot, 'descriptions': descriptions})
 
 
 @login_required
@@ -35,8 +33,10 @@ def multiple_result_view(request):
                 'to_plot': primary_keys
             }
 
-            valid_dict, unavailable_pks, duplicate_pks, plot = return_plot_and_view_data(
-                view_dict
+            valid_dict, unavailable_pks, duplicate_pks, plot = (
+                return_plot_and_view_data(
+                    view_dict
+                )
             )
             grouped_data = list(process_valid_dict(valid_dict))
             if unavailable_pks:

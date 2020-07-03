@@ -1,21 +1,14 @@
-.. include:: ../README.rst
-
 .. toctree::
    :caption: Table of contents
    :maxdepth: 4
-   :hidden:
 
+   starting
    testing
    contributing
    authors
    license
 
-.. autosummary::
-   :toctree: modules
 
-   interactions
-   users
-   graphs
 Indices and tables
 ==================
 

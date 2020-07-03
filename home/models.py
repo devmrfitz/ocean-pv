@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.conf import settings
 
 
-#class UserComment(models.Model):
+# class UserComment(models.Model):
 #    user_name = models.ForeignKey(User, on_delete=models.CASCADE)
 #    user_comment = models.TextField()
 #    user_image = models.FileField(

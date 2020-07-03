@@ -42,7 +42,7 @@ def result_view(request, username):
     return render(
         request, 'users/results.html', {
             'self_answer_groups': self_answer_groups,
-            'relation_answer_groups': relation_answer_groups, 
+            'relation_answer_groups': relation_answer_groups,
             'others_answer_groups': others_answer_groups
         }
     )

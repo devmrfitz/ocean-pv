@@ -31,6 +31,14 @@ A ``pytest.ini`` present in the root directory takes care of pointing to the cor
 
 Integrated tests
 ================
+Since they take a lot longer to execute than unittests, they are
+disabled by default (in the ``pytest.ini`` file). 
 These tests are present in ``integrated_tests/``. By default, they use
-Chromedriver for testing purposes. The associated webdriver is in
-``integrated_tests/webdrivers``.
+Chromedriver for testing purposes. They are all marked with ``pytest.mark.browser``.
+The associated webdriver is in ``integrated_tests/webdrivers/``.
+You'll have to make it executable to be able to run the tests.
+
+.. code:: console
+
+	$ chmod +x integrated_tests/webdrivers/chromedriver
+	$ pytest -m browser # run only the integrated tests

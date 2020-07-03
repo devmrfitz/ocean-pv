@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static %}{% load custom_filters %}
 {% block banner_text %}
 <h1>{{ user }}'s Results</h1>
 {% endblock %}
@@ -13,32 +13,32 @@
         {% include 'includes/graph_instructions.html' %}
         {{ plot|safe }}
         {% endif %}
-        <div id="gtco-services">
-          <div class="gtco-container">
-            <div class="animate-box">
-              <div class="col-md-offset-2 text-center gtco-heading">
+
+
+        <div class="animate-box">
+          <div class="col-md-offset-2 text-center gtco-heading">
+              {% for description in descriptions|make_subsets:2 %}
+
+            <div class="card-deck">
+            
+              {% for key, value in description.items %}
+              <div class="card mb-3 border-primary">
+                <div class="card-header text-success">{{ key }}</div>
+                <div class="card-body">
+                  <p class="card-text text-info">{{ value }}</p>
+                  <div class="card-footer bg-transparent border-success">Footer</div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+{% endfor %}
                 <a href="{% url 'graphs:multiple_results' %}" class="btn btn-info btn-block">Click here to
                   compare
                   your personality with your
                   friends</a>
-              </div>
-            </div>
           </div>
         </div>
-
-
-        <div class="card-group">
-          <div class="card">
-            <img class="card-img-top img-thumbnail" src="graphs/graphs.png" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Openess </h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-        </div>
-
+        
       </div>
     </div>
   </div>

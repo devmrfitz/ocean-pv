@@ -16,11 +16,11 @@ class SelfAnswerGroupAdmin(admin.ModelAdmin):
             'fields': ['self_user_profile']
         }),
         ('Answer and questions', {
-            'fields': ['return_formatted_json']
+            'fields': ['accuracy', 'return_formatted_json']
         })
     ]
 
 
 @admin.register(RelationAnswerGroup)
 class RelationAnswerGroupAdmin(SelfAnswerGroupAdmin):
-	pass
+    pass

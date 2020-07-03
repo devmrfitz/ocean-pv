@@ -3,6 +3,11 @@ import json
 from django.core.exceptions import ValidationError
 
 
+def percentage_validator(percent: float) -> None:
+    if not 0 <= percent <= 100.00:
+        raise ValidationError('Please enter a valid percentage')
+
+
 def json_validator(json_string: str) -> None:
     """ Takes a string as an input, and checks the following:
     1) If its in a valid json format
