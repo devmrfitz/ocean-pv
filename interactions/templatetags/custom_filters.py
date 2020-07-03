@@ -6,6 +6,10 @@ register = template.Library()
 
 @register.filter(name='zip_lists')
 def zip_lists(list1, list2):
+    """ Zips two lists (or list like objects) together. Used in 
+    ``interactions/questions.html``. Raises ``TemplateSyntaxError``
+    if ``list1`` and ``list2`` are of unequal lengths. """
+
     if len(list1) != len(list2):
         raise template.TemplateSyntaxError(
             'Only lists of equal length can be zipped'
@@ -15,24 +19,32 @@ def zip_lists(list1, list2):
 
 @register.filter(name='make_subsets')
 def make_subsets(data, size: int) -> list:
-    """ Creates subsets out of ``data``, each subset have ``size``
-    elements. """
+    """ Creates subsets out of ``data``, each subset having ``size``
+    elements. Used in ``graphs/multiple_results.html`` and 
+    ``graphs/individual_result.html``. """
 
-    subset_list = []
+    subset_list = list()
     if type(data) is list:
-        subset = []
-        return ('list')
+        subset = list()
+        while True:
+            subset.append(data.pop())
+            if len(subset) == size:
+                subset_list.append(subset)
+                subset = list()
+            if not data:
+                subset_list.append(subset)
+                break
+
     elif type(data) is dict:
-        subset = {}
+        subset = dict()
         while True:
             key, value = data.popitem()
             subset.update({key.capitalize(): value})
             if len(subset) == size:
                 subset_list.append(subset)
-                subset = {}
+                subset = dict()
             if not data:
                 subset_list.append(subset)
                 break
-    print(subset_list, len(subset_list))
 
     return subset_list

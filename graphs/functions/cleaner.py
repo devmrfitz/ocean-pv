@@ -37,14 +37,3 @@ def clean_multiple_results_data(master_pk: int, *primary_keys: list) -> tuple:
         })
 
     return another, unavailable_pks, duplicate_pks
-
-
-def process_valid_dict(valid_dict: list) -> list:
-    """ This is used for better formatting of cards which are displayed in
-    ``multiple_result_view``, by grouping them in lists of length 3. """
-
-    if len(valid_dict) <= 2:
-        yield valid_dict
-    else:
-        for i in range(0, len(valid_dict), 3):
-            yield valid_dict[i:i + 3]

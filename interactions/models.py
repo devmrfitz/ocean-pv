@@ -1,3 +1,5 @@
+import json
+
 from django.db import models
 from users.models import UserProfile
 from django.urls import reverse
@@ -6,9 +8,6 @@ from .validators import json_validator, percentage_validator
 
 
 class BaseAnswerGroup(models.Model):
-
-    def calc_scores(self):
-        return
 
     answer_date_and_time = models. DateTimeField(auto_now_add=True)
     self_user_profile = models.ForeignKey(
@@ -20,10 +19,50 @@ class BaseAnswerGroup(models.Model):
         null=True, blank=True,
         validators=[percentage_validator]
     )
-    scores = models.TextField(calc_scores, editable=False)
+    scores = models.TextField(editable=False)
 
     class Meta:
         abstract = True
+
+    def save(self, *args, **kwargs):
+        json_data = json.loads(self.answers)
+        answers = [ans['answer_choice'] for ans in json_data]
+        question_factors = [ans['question']['factor'] for ans in json_data]
+        qn_subclasses = [ans['question']['subclass'] for ans in json_data]
+
+        final_scores = [answer*question_factor for answer,
+                        question_factor in zip(answers, question_factors)]
+
+        scores = {'openness': 0, 'conscientiousness': 0, 'extraversion': 0,
+                  'agreeableness': 0, 'neuroticism': 0}
+        for final_score, question_subclass in zip(final_scores, qn_subclasses):
+            if question_subclass == 'openness':
+                scores['openness'] = (
+                    scores['openness']
+                    + final_score
+                )
+            elif question_subclass == 'conscientiousness':
+                scores['conscientiousness'] = (
+                    scores['conscientiousness']
+                    + final_score
+                )
+            elif question_subclass == 'extraversion':
+                scores['extraversion'] = (
+                    scores['extraversion']
+                    + final_score
+                )
+            elif question_subclass == 'agreeableness':
+                scores['agreeableness'] = (
+                    scores['agreeableness']
+                    + final_score
+                )
+            elif question_subclass == 'neuroticism':
+                scores['neuroticism'] = (
+                    scores['neuroticism']
+                    + final_score
+                )
+        self.scores = json.dumps(scores)
+        super().save(*args, **kwargs)
 
     def return_formatted_json(self):
         import json

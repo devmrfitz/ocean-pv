@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_filters %}
 {% load crispy_forms_tags %}
 {% block banner_text %}
 <h1>Compare Personality</h1>
@@ -38,7 +39,7 @@
             <div class="animate-box">
                 <div class="col-md-offset-2 text-center gtco-heading">
 
-                    {% for data in grouped_data %}
+                    {% for data in description_data|make_subsets:3 %}
                     <div class="card-deck">
                         {% for dict in data %}
                         {% if dict.master %}

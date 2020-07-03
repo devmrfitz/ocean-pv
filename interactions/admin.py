@@ -10,13 +10,13 @@ admin.site.site_header = 'ocean-pv administration'
 
 @admin.register(SelfAnswerGroup)
 class SelfAnswerGroupAdmin(admin.ModelAdmin):
-    readonly_fields = ['return_formatted_json']
+    readonly_fields = ['return_formatted_json', 'scores']
     fieldsets = [
         ('User Information', {
             'fields': ['self_user_profile']
         }),
         ('Answer and questions', {
-            'fields': ['accuracy', 'return_formatted_json']
+            'fields': ['accuracy', 'scores', 'return_formatted_json']
         })
     ]
 

@@ -5,7 +5,6 @@ from django.contrib.auth.decorators import login_required
 from .functions import (
     return_ocean_descriptions_with_graph,
     return_plot_and_view_data,
-    process_valid_dict,
 )
 from .forms import GraphSelector
 
@@ -38,7 +37,6 @@ def multiple_result_view(request):
                     view_dict
                 )
             )
-            grouped_data = list(process_valid_dict(valid_dict))
             if unavailable_pks:
                 messages.info(
                     request,
@@ -52,7 +50,7 @@ def multiple_result_view(request):
 
             return render(request, 'graphs/multiple_results.html', {
                 'form': form,
-                'plot': plot, 'grouped_data': grouped_data
+                'plot': plot, 'description_data': valid_dict
             })
 
     else:
