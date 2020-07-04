@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import (
     single_result_view,
-    multiple_result_view, 
+    multiple_result_view,
     IndividualResultView
 )
 from .json_views import update_accuracy

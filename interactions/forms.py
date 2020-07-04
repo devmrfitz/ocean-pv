@@ -8,7 +8,7 @@ from .validators import json_validator
 class AnswerChoiceForm(forms.Form):
 
     CHOICES = (
-        ('None', None),   # FIXME: Remove option before deployment
+        # ('None', None),   # FIXME: Remove option before deployment
         (1, 'Disagree strongly'),
         (2, 'Disagree a little'),
         (3, 'Neither agree nor disagree'),
@@ -18,20 +18,14 @@ class AnswerChoiceForm(forms.Form):
     )
     answer_choice = forms.CharField(
         widget=forms.Select(
-        choices=CHOICES, 
-        attrs={'class': 'form-control', 'style':'width: 270px;'}
-        ), 
-        required = True,
-        )
+            choices=CHOICES,
+            attrs={'class': 'form-control', 'style': 'width: 270px;'}
+        ),
+        required=True,
+    )
 
     class Meta:
         fields = ['self_user_profile']
-    
-    def is_valid(self):
-    	super().is_valid()
-    	answer_choice =self.cleaned_data.get('answer_choice')
-    	if answer_choice == 'None':
-    		raise forms.ValidationError('This field is required')
 
 
 AnswerFormset = formset_factory(

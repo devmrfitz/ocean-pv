@@ -14,11 +14,13 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='relationanswergroup',
             name='accuracy',
-            field=models.FloatField(blank=True, editable=False, null=True, validators=[interactions.validators.percentage_validator]),
+            field=models.FloatField(blank=True, editable=False, null=True, validators=[
+                                    interactions.validators.percentage_validator]),
         ),
         migrations.AlterField(
             model_name='selfanswergroup',
             name='accuracy',
-            field=models.FloatField(blank=True, editable=False, null=True, validators=[interactions.validators.percentage_validator]),
+            field=models.FloatField(blank=True, editable=False, null=True, validators=[
+                                    interactions.validators.percentage_validator]),
         ),
     ]

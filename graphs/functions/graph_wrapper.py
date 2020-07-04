@@ -1,4 +1,4 @@
-import os
+from os import path
 import json
 
 from interactions.models import (
@@ -27,8 +27,9 @@ def return_descriptions(valid_dict: list) -> tuple:
     uses the ``valid_dict`` to match the scores from ``valid_dict`` and
     classify them as high or low and return the relevant descriptions. """
 
-    file_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(file_dir, 'descriptions.json')
+    file_dir = path.dirname(path.dirname(path.abspath(__file__)))
+    file_path = path.join(file_dir, 'static',
+                          'data', 'descriptions.json')
     with open(file_path) as f:
         json_data = json.load(f)
 

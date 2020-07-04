@@ -13,22 +13,23 @@ from .forms import GraphSelector, AccuracySetterForm
 
 
 class IndividualResultView(CustomLoginRequiredMixin, FormMixin, TemplateView):
-	form_class = AccuracySetterForm
-	template_name = 'graphs/individual_result.html'
-	
-	def get_context_data(self, *args, **kwargs):
-		context = super().get_context_data(*args, **kwargs)
-		plot, descriptions = return_ocean_descriptions_with_graph(self.kwargs.get('pk'))
-		context['plot'] = plot
-		context['descriptions'] = descriptions
-		
-		return context
-	
-	def get_initial(self, *args, **kwargs):
-		initial = super().get_initial(*args, **kwargs)
-		initial['pk'] = self.kwargs.get('pk')
-		return initial
-		
+    form_class = AccuracySetterForm
+    template_name = 'graphs/individual_result.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        plot, descriptions = return_ocean_descriptions_with_graph(
+            self.kwargs.get('pk'))
+        context['plot'] = plot
+        context['descriptions'] = descriptions
+
+        return context
+
+    def get_initial(self, *args, **kwargs):
+        initial = super().get_initial(*args, **kwargs)
+        initial['pk'] = self.kwargs.get('pk')
+        return initial
+
 
 @login_required
 def single_result_view(request, pk):
@@ -37,6 +38,7 @@ def single_result_view(request, pk):
     return render(request, 'graphs/individual_result.html',
                   {'plot': plot, 'form': form,
                    'descriptions': descriptions})
+
 
 @ login_required
 def multiple_result_view(request):

@@ -51,19 +51,23 @@
   <div class="animate-box">
     <div class="col-md-offset-2 text-center gtco-heading">
       <form method="GET" id="post-form">
-      <div id="results">
-        {% csrf_token %}
-        {{ form.accuracy.help_text }}
-        <div class="input-group">
-        {{ form.pk }}
-        {{ form.accuracy }}
-        <div class="input-group-append">
-          <div class="input-group-text">%</div>
-        </div>
-      </div>
-        <div class="col-auto my-1">
-        <button class="btn btn-success" type="submit">Submit </button>
-        </div>
+        <div id="results">
+          {% csrf_token %}
+          {{ form.accuracy.help_text }}
+          <div class="input-group">
+            {{ form.pk }}
+            {{ form.accuracy }}
+            <div class="input-group-append">
+              <div class="input-group-text">%</div>
+            </div>
+          </div>
+          <div class="col-auto my-1">
+            <button class="btn btn-success" type="submit">Submit </button>
+          </div>
+
+          <div id="messages">
+          </div>
+
         </div>
       </form>
     </div>
@@ -83,18 +87,24 @@
       url: "{% url 'graphs:update-accuracy' %}", // the endpoint
       type: "GET", // http method
       data: {
-        accuracy: $('#id_accuracy').val(), 
+        accuracy: $('#id_accuracy').val(),
         pk: $('#id_pk').val()
       }, // data sent with the post request
 
       // handle a successful response
       success: function (json) {
         $('#id_accuracy').val(''); // remove the value from the input
-        $('#results').html("<div class='alert-box alert alert-success'>Your input has been saved!");
-        console.log(json); // log the returned json to the console
-        
+        // alert(json.message);
+        if (!json.error) {
+          $('#results').html("<div class='alert-box alert alert-success'>" + json.message);
+        } else {
+          if (json.remove) {
+            $('#results').html("<div class='alert-box alert alert-danger'>" + json.message);
+          } else {
+            $('#messages').append("<div class='alert-box alert alert-success'>" + json.message);
+          }
+        };
       },
-
       // handle a non-successful response
       error: function (xhr, errmsg, err) {
         $('#results').html("<div class='alert-box alert alert-danger'>Oops! We have encountered an error: " +
