@@ -1,8 +1,6 @@
 import plotly.graph_objects as go
 from plotly.offline import plot
 
-# FIXME: ``valid_dict['score'] should be a dict (currently a list)``
-
 
 def draw_plot(valid_dict: dict) -> str:
     ocean_subclasses = [

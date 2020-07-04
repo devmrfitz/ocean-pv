@@ -16,7 +16,7 @@
     {
         "subclass": "extraversion",
         "descriptions": {
-            "high": "Outgoing, warm, seeks adventure.",
+            "high": "This means that you are quite outgoing, warm with people, and good at dealing with people and generally a blast to spend time with. You seek adventure quite often and invite others to join you too (whether they want to or not). You don't like staying alone and thrive around people. Regular human interactions is essential for you. You are the center of attraction in parties.",
             "low": "Quiet, reserved, withdrawn."
         }
     },

@@ -24,14 +24,15 @@ class GraphSelector(forms.Form):
 
 
 class AccuracySetterForm(forms.Form):
-    accuracy = forms.FloatField(widget=forms.NumberInput(
-        attrs={'class': 'form-control'}
-    ), help_text=('Are these descriptions of you accurate?' ' Enter a percentage (0-100), 0 being "very inaccurate" and 100' ' being "extremely accurate".'),
+    accuracy = forms.FloatField(
+        widget=forms.NumberInput(
+            attrs={'class': 'form-control'}
+        ),
+        help_text=(
+            'Are these descriptions of you accurate?'
+            ' Enter a percentage (0-100), 0 being "very inaccurate" and 100'
+            ' being "extremely accurate".'
+        ),
         validators=[percentage_validator]
     )
     pk = forms.CharField(widget=forms.HiddenInput())
-
-    def form_valid(self):
-        super().form_valid()
-        if not 0 <= self.accuracy <= 100:
-            raise ValidationError('Number between 0 and 100 allowed')

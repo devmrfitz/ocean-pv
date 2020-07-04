@@ -32,8 +32,8 @@ class ContactForm(forms.Form):
             subject=subject,
             message=message,
             from_email=from_email,
-            recipient_list=[settings.EMAIL_HOST_USER] if settings.EMAIL_HOST_USER else [
-                'ocean-pv_dev@email.com'],
+            recipient_list=[settings.EMAIL_HOST_USER] if
+            settings.EMAIL_HOST_USER else ['ocean-pv_dev@email.com'],
             html_message=html_message,
             fail_silently=False,
         )

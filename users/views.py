@@ -1,7 +1,6 @@
 from django.shortcuts import (
     render,
     redirect,
-    HttpResponseRedirect,
 )
 from django.contrib.auth import authenticate, login,  update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
@@ -30,7 +29,8 @@ from mixins import CustomLoginRequiredMixin
 @login_required
 def result_view(request, username):
     self_answer_groups = SelfAnswerGroup.objects.filter(
-        self_user_profile=request.user.profile).order_by('-answer_date_and_time')
+        self_user_profile=request.user.profile
+    ).order_by('-answer_date_and_time')
     relation_answer_groups = RelationAnswerGroup.objects.filter(
         self_user_profile=request.user.profile).order_by(
             '-answer_date_and_time'
@@ -137,17 +137,12 @@ class UserLoginView(auth_views.LoginView):
     template_name = 'users/login.html'
 
     def dispatch(self, request, *args, **kwargs):
-        if self.redirect_authenticated_user and self.request.user.is_authenticated:
-            redirect_to = self.get_success_url()
-            if redirect_to == self.request.path:
-                raise ValueError(
-                    "Redirection loop for authenticated user detected. Check that "
-                    "your LOGIN_REDIRECT_URL doesn't point to a login page."
-                )
-            return HttpResponseRedirect(redirect_to)
+        super().dispatch(request, *args, **kwargs)
         if self.request.user.is_authenticated:
-            messages.add_message(request, messages.INFO,
-                                 'You are now logged in successfully! ')
+            messages.add_message(
+                request, messages.INFO,
+                'Login was successful!'
+            )
         return super().dispatch(request, *args, **kwargs)
 
 

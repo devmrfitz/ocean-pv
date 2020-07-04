@@ -1,6 +1,3 @@
-.. 
-	TODO: Create a new README, move this one to docs/
-
 *******************************
 OCEAN-Personality-Visualization
 *******************************

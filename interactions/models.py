@@ -26,6 +26,11 @@ class BaseAnswerGroup(models.Model):
         abstract = True
 
     def save(self, *args, **kwargs):
+        """ This method extracts the ``answer_choice`` from ``self.answers``
+        and then forms a scores ``dict`` which is saved in ``self.scores``
+        attribute. This is done to reduce load on the server while calculating
+        ``GlobalAverages``. """
+
         json_data = json.loads(self.answers)
         answers = [ans['answer_choice'] for ans in json_data]
         question_factors = [ans['question']['factor'] for ans in json_data]
@@ -90,3 +95,8 @@ class RelationAnswerGroup(BaseAnswerGroup):
 
     def __str__(self):
         return f"{self.id}"
+
+
+class GlobalAverages(models.Model):
+    """ Contains the global information about different attributes like
+    which can be used for plotting graphs of global scope. """

@@ -1,10 +1,5 @@
-from django.urls import resolve, reverse
+from django.urls import reverse
 import pytest
-
-from graphs.views import (
-    single_result_view,
-    multiple_result_view,
-)
 
 
 @pytest.mark.unittest
@@ -23,7 +18,8 @@ class TestGraphsViewsGetMethod:
         template_name,
         login_user
     ):
-        """ Test clients are unregistered here and they should return temporary redirect url """
+        """ Test clients are unregistered here and they should return temporary
+        redirect url """
         user, client = login_user()
         url = reverse(view_namespace_url, kwargs=kwargs if kwargs else None)
         response = client.get(url)

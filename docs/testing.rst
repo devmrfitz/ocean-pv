@@ -24,6 +24,7 @@ Each app_ contains its own ``tests`` folder. These tests exclusively test their 
 
 .. _app: https://docs.djangoproject.com/en/3.0/ref/applications/
 .. _selenium: https://pypi.org/project/selenium/
+.. _Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
 
 Running the tests
 =================
@@ -34,7 +35,7 @@ Integrated tests
 Since they take a lot longer to execute than unittests, they are
 disabled by default (in the ``pytest.ini`` file). 
 These tests are present in ``integrated_tests/``. By default, they use
-Chromedriver for testing purposes. They are all marked with ``pytest.mark.browser``.
+Chromedriver_ for testing purposes. They are all marked with ``pytest.mark.browser``.
 The associated webdriver is in ``integrated_tests/webdrivers/``.
 You'll have to make it executable to be able to run the tests.
 

@@ -2,13 +2,12 @@ from django import forms
 from django.forms import formset_factory
 
 from .functions import return_questions
-from .validators import json_validator
 
 
 class AnswerChoiceForm(forms.Form):
 
     CHOICES = (
-        # ('None', None),   # FIXME: Remove option before deployment
+        ('None', None),   # FIXME: Remove option before deployment
         (1, 'Disagree strongly'),
         (2, 'Disagree a little'),
         (3, 'Neither agree nor disagree'),

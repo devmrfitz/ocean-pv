@@ -20,7 +20,7 @@ class UserProfile(models.Model):
         )
     )
     birth_date = models.DateField(null=True, blank=True)
-    # relations = models.ManyToManyField(UserProfile)
+    age = models.IntegerField(null=True, blank=True)
     visible = models.BooleanField(default=True)
 
     def __str__(self):
@@ -39,3 +39,24 @@ class UserProfile(models.Model):
         permissions = (
             ('special_access', 'Can access the special page'),
         )
+
+
+class ProfileRelation(models.Model):
+    user_profile_1 = models.ForeignKey(
+        UserProfile, on_delete=models.CASCADE, related_name='profile1'
+    )
+    user_profile_2 = models.ForeignKey(
+        UserProfile, on_delete=models.CASCADE, related_name='profile2'
+    )
+    relation_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"Relation b/w {self.user_profile_1} and {self.user_profile_2}"
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=('user_profile_1', 'user_profile_2'),
+                name='profile_relations'
+            )
+        ]

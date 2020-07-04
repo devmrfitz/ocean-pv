@@ -22,16 +22,23 @@ personality used by researchers.
 What this website does
 ======================
 
-Starting off
-------------
+First Steps
+-----------
 
 After logging in (or signing up), you're guided to take a small
 test and asked some questions. Based on your answers, a graph is
-generated. This graph tell you where you stand according to the OCEAN_ personality model.
+generated. This graph tell you where you stand according to the
+OCEAN_ personality model, along with a description of what each
+attribute means.
 
 .. image:: docs/project_deps/pictures/single_result_view.png
     :align: center 
     :alt: single_result_view.png
+    
+After completing the test, it's recommended that you complete your
+profile and fill in other information about yourself like `bio`, 
+`email`, `country`, `gender` etc. This will help us to categorize
+your answers better.
 
 After that
 ----------
