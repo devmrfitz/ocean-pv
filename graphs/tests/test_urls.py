@@ -3,7 +3,7 @@ from django.urls import reverse, resolve
 from django.contrib.auth import views as auth_views
 
 from graphs.views import (
-    single_result_view,
+    IndividualResultView,
     multiple_result_view
 )
 
@@ -14,7 +14,7 @@ from graphs.views import (
         ('graphs:multiple_results', {},
          '/graphs/multiple/', multiple_result_view),
         ('graphs:single_result', {'pk': 30},
-         '/graphs/30/', single_result_view),
+         '/graphs/30/', IndividualResultView),
     ]
 )
 @pytest.mark.unittest

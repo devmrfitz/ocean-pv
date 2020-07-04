@@ -5,9 +5,8 @@ from time import sleep
 
 @pytest.mark.browser
 def test_random(selenium_driver, live_server):
-    driver = selenium_driver()
+    driver = selenium_driver(use=True)
     driver.get(live_server.url)
-    sleep(10)
     assert 'IgnisDa' in driver.current_url
 
 

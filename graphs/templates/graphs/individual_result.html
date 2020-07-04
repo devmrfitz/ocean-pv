@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load custom_filters %}
+{% load crispy_forms_tags %}
 {% block banner_text %}
 <h1>{{ user }}'s Results</h1>
 {% endblock %}
@@ -18,10 +19,10 @@
 
         <div class="animate-box">
           <div class="col-md-offset-2 text-center gtco-heading">
-              {% for description in descriptions|make_subsets:2 %}
+            {% for description in descriptions|make_subsets:2 %}
 
             <div class="card-deck">
-            
+
               {% for key, value in description.items %}
               <div class="card mb-3 border-primary">
                 <div class="card-header text-success">{{ key }}</div>
@@ -32,16 +33,77 @@
               </div>
               {% endfor %}
             </div>
-{% endfor %}
-                <a href="{% url 'graphs:multiple_results' %}" class="btn btn-info btn-block">Click here to
-                  compare
-                  your personality with your
-                  friends</a>
+            {% endfor %}
+            <a href="{% url 'graphs:multiple_results' %}" class="btn btn-info btn-block">Click here to
+              compare
+              your personality with your
+              friends</a>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>
 </div>
+
+
+<div class="gtco-container">
+  <div class="animate-box">
+    <div class="col-md-offset-2 text-center gtco-heading">
+      <form method="GET" id="post-form">
+      <div id="results">
+        {% csrf_token %}
+        {{ form.accuracy.help_text }}
+        <div class="input-group">
+        {{ form.pk }}
+        {{ form.accuracy }}
+        <div class="input-group-append">
+          <div class="input-group-text">%</div>
+        </div>
+      </div>
+        <div class="col-auto my-1">
+        <button class="btn btn-success" type="submit">Submit </button>
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{%  block javascript %}
+<script>
+  $('#post-form').on('submit', function (event) {
+    event.preventDefault();
+    add_accuracy();
+  });
+
+  function add_accuracy() {
+    $.ajax({
+      url: "{% url 'graphs:update-accuracy' %}", // the endpoint
+      type: "GET", // http method
+      data: {
+        accuracy: $('#id_accuracy').val(), 
+        pk: $('#id_pk').val()
+      }, // data sent with the post request
+
+      // handle a successful response
+      success: function (json) {
+        $('#id_accuracy').val(''); // remove the value from the input
+        $('#results').html("<div class='alert-box alert alert-success'>Your input has been saved!");
+        console.log(json); // log the returned json to the console
+        
+      },
+
+      // handle a non-successful response
+      error: function (xhr, errmsg, err) {
+        $('#results').html("<div class='alert-box alert alert-danger'>Oops! We have encountered an error: " +
+          errmsg +
+          " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+        console.log(xhr.status + ": " + xhr
+          .responseText); // provide a bit more info about the error to the console
+      }
+    });
+  }
+</script>
 {% endblock %}

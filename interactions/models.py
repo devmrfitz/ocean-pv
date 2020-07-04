@@ -17,7 +17,8 @@ class BaseAnswerGroup(models.Model):
     )
     accuracy = models.FloatField(
         null=True, blank=True,
-        validators=[percentage_validator]
+        validators=[percentage_validator], 
+        editable=False 
     )
     scores = models.TextField(editable=False)
 

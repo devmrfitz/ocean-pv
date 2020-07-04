@@ -1,22 +1,44 @@
 from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import FormMixin
+from django.views.generic import TemplateView
 
+from mixins import CustomLoginRequiredMixin
 from .functions import (
     return_ocean_descriptions_with_graph,
     return_plot_and_view_data,
 )
-from .forms import GraphSelector
+from .forms import GraphSelector, AccuracySetterForm
 
+
+class IndividualResultView(CustomLoginRequiredMixin, FormMixin, TemplateView):
+	form_class = AccuracySetterForm
+	template_name = 'graphs/individual_result.html'
+	
+	def get_context_data(self, *args, **kwargs):
+		context = super().get_context_data(*args, **kwargs)
+		plot, descriptions = return_ocean_descriptions_with_graph(self.kwargs.get('pk'))
+		context['plot'] = plot
+		context['descriptions'] = descriptions
+		
+		return context
+	
+	def get_initial(self, *args, **kwargs):
+		initial = super().get_initial(*args, **kwargs)
+		initial['pk'] = self.kwargs.get('pk')
+		return initial
+		
 
 @login_required
 def single_result_view(request, pk):
+    form = AccuracySetterForm()
     plot, descriptions = return_ocean_descriptions_with_graph(pk)
     return render(request, 'graphs/individual_result.html',
-                  {'plot': plot, 'descriptions': descriptions})
+                  {'plot': plot, 'form': form,
+                   'descriptions': descriptions})
 
-
-@login_required
+@ login_required
 def multiple_result_view(request):
     if request.method == 'POST':
         form = GraphSelector(request.user, request.POST)
