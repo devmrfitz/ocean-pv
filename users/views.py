@@ -90,7 +90,12 @@ def register(request):
             login(request, user)
             messages.success(
                 request, 'Your account was activated successfully ')
+            current_url = request.get_full_path().split('?next=')
+            if len(current_url) == 2:
+                return redirect(current_url[1])
             return redirect('home:home')
+        else:
+            form = RegistrationForm(request.POST)
     else:
         form = RegistrationForm()
     return render(

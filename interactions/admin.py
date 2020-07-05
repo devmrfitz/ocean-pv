@@ -22,5 +22,5 @@ class SelfAnswerGroupAdmin(admin.ModelAdmin):
 
 
 @admin.register(RelationAnswerGroup)
-class RelationAnswerGroupAdmin(SelfAnswerGroupAdmin):
-    pass
+class RelationAnswerGroupAdmin(admin.ModelAdmin):
+    readonly_fields = ['scores', 'accuracy', 'return_formatted_json']

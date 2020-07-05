@@ -40,15 +40,17 @@ def save_self_answers_to_db(json_data: list, request) -> int:
     return answer_group.pk
 
 
-def save_relation_answers_to_db(rel: int, json_data: list, request) -> int:
+def save_relation_answers_to_db(rel: int, json_data: list, request, against_pk: int) -> int:
     """ A function that takes json data (a list of dicts) and saves them to
     the database under the model of RelationAnswerGroup """
 
     rel_profile = UserProfile.objects.get(pk=rel)
+    against = SelfAnswerGroup.objects.get(pk=against_pk)
     answer_group = RelationAnswerGroup.objects.create(
         self_user_profile=request.user.profile,
         answers=json_data,
-        relation_user_profile=rel_profile
+        relation_user_profile=rel_profile, 
+        attempted_against=against 
     )
 
     return answer_group.pk

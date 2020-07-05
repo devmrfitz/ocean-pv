@@ -11,9 +11,6 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
-<!--- TODO: Change the pictures and specifically the instructions for this page --->
-<!--- TODO: AJAX-ify this page --->
-
 {% block instructions %}
 <div id="gtco-services">
     <div class="gtco-container">
@@ -33,7 +30,11 @@
                                         <span><strong>Step 1: Enter your peer's username</strong></span>
                                         <blockquote>
                                             <p>First, enter your peer's username (the one they used to register). Click
-                                                on <em class="text-danger">Submit</em> to get all usernames which match your search. Note that their profile <a href="{% url 'users:profile-update' username=user.username %}#div_id_visible">visibility</a> must be set to <em class="text-danger">Yes</em> for them to appear in this list. They should also have attempted atleast one test.
+                                                on <em class="text-danger">Submit</em> to get all usernames which match
+                                                your search. Note that their profile <a
+                                                    href="{% url 'users:profile-update' username=user.username %}#div_id_visible">visibility</a>
+                                                must be set to <em class="text-danger">Yes</em> for them to appear in
+                                                this list. They should also have attempted atleast one test.
                                         </blockquote>
                                     </div>
                                 </div>
@@ -62,7 +63,8 @@
                                             <p>On clicking <em class="text-danger">Select This</em>, you will be
                                                 redirected to a page where you can select which Test ID you would like
                                                 to attempt the test against. This will be used to calculate your
-                                                accuracy in guessing your peer's personality. You can also <em class="text-danger">Preview</em> their
+                                                accuracy in guessing your peer's personality. You can also <em
+                                                    class="text-danger">Preview</em> their
                                                 test attempt before attempting. When ready, click on <em
                                                     class="text-danger">Take test</em> and you will be directed to the
                                                 survey page.</p>
@@ -140,10 +142,11 @@
                                 {{ counts }}
                             </td>
                             <td>
-                            {% if counts != 0 %}
+                                {% if counts != 0 %}
                                 <a href="{% url 'users:answer-profiles' pk=query.pk %}"><span class="icon"><i
-                                            class="icon-thumbs-up" style="color: #ff8000;"></i></span></a>{% else %}<span class="icon" style="color: #5b5456"><i
-                                            class="icon-thumbs-up"></i></span> {% endif %}
+                                            class="icon-thumbs-up"
+                                            style="color: #ff8000;"></i></span></a>{% else %}<span class="icon"
+                                    style="color: #5b5456"><i class="icon-thumbs-up"></i></span> {% endif %}
                             </td>
                         </tr>
                         {% endfor %}

@@ -68,11 +68,11 @@ class SelfQuestionView(FormView):
     def form_valid(self, formset):
         json_data = form_json_data(formset, self.questions)
         primary_key = save_self_answers_to_db(
-            json_data, self.request
-        )
+                    json_data, self.request
+                )
         self.request.session['self_ans_gp'] = primary_key
         messages.add_message(self.request, messages.SUCCESS,
-                             'Your answers were saved successfully')
+                                     'Your answers were saved successfully')
         return super(SelfQuestionView, self).form_valid(formset)
 
 # FIXME: Since both RelationQUestionView and SelfQuestionView are same,
@@ -99,7 +99,8 @@ class RelationQuestionView(FormView):
     def form_valid(self, formset):
         json_data = form_json_data(formset, self.questions)
         primary_key = save_relation_answers_to_db(
-            self.kwargs['pk'], json_data, self.request
+            self.kwargs['profile_pk'], json_data, self.request, 
+            self.kwargs['against']
         )
         self.request.session['rel_ans_gp'] = primary_key
         messages.add_message(self.request, messages.SUCCESS,

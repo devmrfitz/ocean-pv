@@ -2,12 +2,17 @@ from django import forms
 from django.forms import formset_factory
 
 from .functions import return_questions
+from .validators import none_choice_validator
 
 
+# FIXME: The form should display the first option, ``None`` by
+# default when it is presented to the user. But if the user
+# submits the form with ``None`` selected, it should raise
+# error, something like 'you need to select a valid option'
 class AnswerChoiceForm(forms.Form):
 
     CHOICES = (
-        ('None', None),   # FIXME: Remove option before deployment
+        # ('', None),   # FIXME: Remove option before deployment
         (1, 'Disagree strongly'),
         (2, 'Disagree a little'),
         (3, 'Neither agree nor disagree'),
@@ -15,16 +20,25 @@ class AnswerChoiceForm(forms.Form):
         (5, 'Agree strongly'),
 
     )
-    answer_choice = forms.CharField(
+    answer_choice = forms.ChoiceField(
         widget=forms.Select(
-            choices=CHOICES,
             attrs={'class': 'form-control', 'style': 'width: 270px;'}
         ),
-        required=True,
+        choices=CHOICES,
+        validators=[none_choice_validator],
+        required=True
     )
 
+    def clean_answer_choice(self):
+        answer_choice = self.cleaned_data.get('answer_choice')
+        if not answer_choice:
+            print(answer_choice)
+            raise forms.ValidationError('fuck off')
+        print(answer_choice)
+        return answer_choice
+
     class Meta:
-        fields = ['self_user_profile']
+        pass
 
 
 AnswerFormset = formset_factory(

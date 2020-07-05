@@ -88,6 +88,10 @@ class SelfAnswerGroup(BaseAnswerGroup):
 
 
 class RelationAnswerGroup(BaseAnswerGroup):
+    attempted_against = models.ForeignKey(
+        SelfAnswerGroup, on_delete=models.SET_NULL,
+        related_name='%(class)s_attempted', null=True
+    )
     relation_user_profile = models.ForeignKey(
         UserProfile, on_delete=models.CASCADE,
         related_name='%(class)s_relation'

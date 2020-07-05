@@ -18,7 +18,7 @@ urlpatterns = [
          name='howto-relations-ajax'),
 
     path('taketest/', SelfQuestionView.as_view(), name='taketest'),
-    path('taketest/relations/<int:pk>/', RelationQuestionView.as_view(),
+    path('taketest/relations/<int:profile_pk>/<int:against>/', RelationQuestionView.as_view(),
          name='taketest-relations'),
     path('view/', View.as_view(), name='view')
 

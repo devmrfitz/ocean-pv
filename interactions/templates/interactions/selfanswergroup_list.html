@@ -36,7 +36,7 @@
                                 <td><a href="{% url 'graphs:single_result' object.pk %}"><span class="icon"><i
                                                 class="icon-eye"></i></span></a></td>
 
-                                <td><a href="{% url 'interactions:taketest-relations' object.self_user_profile.pk %}"><span
+                                <td><a href="{% url 'interactions:taketest-relations' profile_pk=object.self_user_profile.pk against=object.pk %}"><span
                                             class="icon"><i class="icon-pencil"></i></span></a></td>
                             </tr>
                         </div>
