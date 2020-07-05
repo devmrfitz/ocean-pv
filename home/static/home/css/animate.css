@@ -289,6 +289,12 @@ Copyright (c) 2015 Daniel Eden
   animation-name: shake;
 }
 
+.overlapa{
+    top: -30px;
+position: relative;
+left: 30px;
+}
+
 @-webkit-keyframes swing {
   20% {
     -webkit-transform: rotate3d(0, 0, 1, 15deg);
